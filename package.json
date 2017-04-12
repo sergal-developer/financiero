@@ -1,0 +1,33 @@
+{
+  "name": "financiero",
+  "version": "0.0.1",
+  "description": "Financial web app",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm install && npm i gulp-cli -g && npm i bower -g && npm i nodemon -g",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "C:\\Users\\SergioGallegos\\OneDrive\\git-develop\\financiero.git"
+  },
+  "keywords": [
+    "fianaciero"
+  ],
+  "author": "Sergio Gallegos",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "body-parser": "^1.10.1",
+    "browser-sync": "^2.17.5",
+    "fs": "0.0.1-security",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-express": "^0.3.5",
+    "gulp-open": "^2.0.0",
+    "gulp-run-sequence": "^0.3.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "underscore": "^1.7.0"
+  }
+}
