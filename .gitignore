@@ -1,0 +1,5 @@
+node_modules
+npm-debug.log
+bower_components
+app/financial/resources/design/design.css
+app/financial/resources/js/common/
