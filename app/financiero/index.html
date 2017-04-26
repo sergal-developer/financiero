@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Map Happening</title>
+	<link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="resources/design/design.css"/>
+</head>
+<body>
+	<div class="happening-app" ng-controller="happening.mainController">
+		<div class="view-container" ng-view="">
+			<!--Dinamic Content-->
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="../../bower_components/angular/angular.js"></script>
+	<!--<script src="components/svg/svg-pluging.js"></script>-->
+    <script src="../../bower_components/angular-route/angular-route.js"></script>
+    <script src="../../bower_components/angular-messages/angular-messages.js"></script>
+	<script src="../../bower_components/traceur/traceur.js"></script>
+	<script>
+        traceur.options.experimental = true;
+        new traceur.WebPageTranscoder(document.location.href).run();
+    </script>
+	<script type="module" src="app.js"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKV5SyEHCpZlZUoyKQTSkE3BPQZ25WY2o&libraries=places"></script>
+</body>
+</html>

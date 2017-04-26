@@ -1,0 +1,10 @@
+@import "common/_globals";
+@import "common/_mixins";
+@import "common/_colors";
+
+html, body  {
+    box-sizing: content-box;
+    // background: #e3e3e3;
+    margin: 0;
+    padding: 0;
+}
