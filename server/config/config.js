@@ -8,7 +8,7 @@ module.exports = {
 		buildPath: '/build/',
 		base: 'app/',
 		gulpbuildPath: 'app/',
-		aplicationStart: '3300/fin/',
+		aplicationStart: '3300/',
 		cssConcatenated: 'financiero/resources/design/design.css',
 		fileCacheSize: {
 	      maxCapacity: 1000 

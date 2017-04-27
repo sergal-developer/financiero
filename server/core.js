@@ -16,13 +16,19 @@ exports.createApp = function (callback) {
 	app.use(bodyParser.json());
 	app.use(express.static('.'));
 
-	app.get('/', function (req, res) {
-		console.log("Works!!");
-	})
-
-	app.use('/fin', express.static(__dirname + '/../app/financiero/'));
+	app.use('/', express.static(__dirname + '/../app/financiero/'));
 	app.use('/libs', express.static(__dirname + '/../bower_components'));
+	
+	app.get('/home', function (req, res) {
+		res.sendFile(path.join(__dirname + '/../appanciero/index.html'));
+	});
 
-    
+	app.get('/login', function(req, res, next) {
+		res.sendFile(path.join(__dirname + '/../app/financiero/index.html'));
+	});
+
+    /*
+	
+	*/
 	return app;
 }

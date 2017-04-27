@@ -3,12 +3,12 @@ import MainController from './views/main.controller';
 import HomeController from './views/home/home.controller';
 import LoginController from './views/login/login.controller';
 
-var moduleName = "happening.controllers";
+var moduleName = "financiero.controllers";
 
 angular.module(moduleName, [])
-    .controller("happening.mainController", MainController)
-    .controller("happening.homeController", HomeController)
-    .controller("happening.loginController", LoginController);
+    .controller("financiero.mainController", MainController)
+    .controller("financiero.homeController", HomeController)
+    .controller("financiero.loginController", LoginController);
 
 export default moduleName;
 
