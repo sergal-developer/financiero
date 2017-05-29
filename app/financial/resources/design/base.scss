@@ -2,9 +2,150 @@
 @import "common/_mixins";
 @import "common/_colors";
 
+.debug * * { outline: 1px dotted #D1C4E9 }
+
 html, body  {
     box-sizing: content-box;
     // background: #e3e3e3;
     margin: 0;
     padding: 0;
+    font-family: 'PT Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12px;;
+}
+
+.field {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px;
+    margin-bottom: 10px;
+    &.right {
+        float: right;
+        text-align: right;
+    }
+}
+
+.buttonComponent {
+    background: #fff;
+    padding: 10px 20px;
+    border: none; 
+    font-size: 5vh;
+    color: #2196F3;
+    font-family: 'PT Sans', sans-serif;
+    margin-bottom: 20px;
+}
+
+.textbox {
+    input {
+        border: none; 
+        background: #fff;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 18px;
+        font-family: 'PT Sans', sans-serif;
+        border-bottom: 2px solid transparent;
+
+        &:hover {
+            //border-bottom: 2px solid #2196F3;
+            background: #e3e3e3;
+        }
+    }
+}
+
+.checkbox {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 16px;
+
+    input { 
+        display:none; 
+    }
+    
+    .component {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 20px;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 4px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+    }
+
+    input:checked + .component {
+        background-color: #2196F3;
+    }
+    input:focus + .component {
+        box-shadow: 0 0 1px #2196F3;
+    }
+    input:checked + .component:before {
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+    }
+}
+
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "";
+    padding-left: 10px;
+    background-color: #EEEEEE; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 16px; margin: 7px;
+    background: #A1A1A1;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+    background-color: #27A1CA; 
 }
