@@ -23,6 +23,11 @@ function config($routeprovider) {
 			controller:'financiero.loginController',
 			controllerAs:'vm'
 		})
+		.when('/category',  {
+			templateUrl:'views/category/category.html',
+			controller:'financiero.categoryController',
+			controllerAs:'vm'
+		})
 		.otherwise({redirectTo:'/'});
 	//$locationProvider.html5Mode(true);
 }
