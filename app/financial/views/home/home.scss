@@ -5,209 +5,49 @@ $themeColor: #00838F;
 $themeColorFont: #fff;
 $themeColorHover: #00ACC1;
 
-.component {
-    text-align: center;
-    line-height: 100%;
-}
+.lato { font-family: "Lato", sans-serif; }
+.merriweather { font-family: "Merriweather", sans-serif; }
+.bree { font-family: "Bree", sans-serif; }
+.pt-sans { font-family: "PT_Sans", sans-serif; }
 
-.app {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    height: 100%;
-    width: 100%;
+
+.screen {
     position: absolute;
-    z-index: 10;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-
-    .app-header {
-        width: $headerWidth;
-        height: $headerHeight;
-        max-height: $headerHeight;
-        line-height: $headerHeight;
-        margin-left: $headerHeight;
-        border-bottom: 2px solid #78909C;
-        .header-left-content {
-            position: absolute;
-            right: 0;
-        }
-    }
-
-    .app-menu {
-        width: 40px;
-        height: 100%;
-        max-height: 100%;
-        background: $themeColor;
-        color: #Fff;
-        position: absolute;
+    height: 100vh;
+    width: 100vw;
+    &.lateral {
+        width: 370px;
         top: 0;
-
-        .menu-button {
-            width: 40px;
-            height: 40px;
-            transition: background 400ms ease;
-            cursor: pointer;
-            text-align: center;
-            line-height: 40px;
-            &:hover {
-                background: $themeColorHover;
-            }
-            &.logo {
-                &:hover {
-                    background: none;
-                }
-            }
-        }
-    }
-    .app-viewport {
-        width: calc(100% - 40px);
-        height: calc(100% - 42px);
-        margin-left: 40px;
-        overflow: hidden;
-
-        .layer {
-            width: 100%;
-            height: 100%;
-            float: left;
-            margin-left: -150%; 
-            transition: margin 400ms ease;
-
-            &.active {
-                margin-left: 0%;
-            }
-
-            &.maps-section {
-                background: grey;
-            }
-            &.settings-section {}
-            &.reports-section {}
-
-            .googleMap {
-                width: 100%;
-                height: 100%;
-                float: left;
-            }
-
-            .panel-map-info {
-                position: absolute;
-                width: calc(400px);
-                height: calc(100%);
-                background: #fff;
-                display: none;
-            }
-
-        }
-    }
-    .app-viewport-lateral {
-        position: absolute;
-        width: calc(400px);
-        height: calc(100%);
-        top: 0;
-        right: -100%;
-        background: #fff;
-        z-index: 100;
-        transition: right 200ms ease;
-        padding-left: 15px;
-        .panel-header {
-            width: 100%;
-            padding: 10px;
-        }
-
-        .panel-content {
-            font-size: 8pt;
-        }
-
-        &.active {
-            right: 0;
-        }
-        
-    }
-
-    .background-app-viewport {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.0);
-        
-        top: 0;
-        right: -100%;
-        transition: right  200ms ease;
-        transition: background 200ms ease;
-        z-index: 10;
-
-        &.active {
-            right: 0;
-            background: rgba(0,0,0,0.6);
-        }
-    }
-
-    .close-viewport {
-        position: absolute;
-        padding: 15px;
-        background: $themeColor;
-        color: $themeColorFont;
-        line-height: 5px;
-        margin-left: -40px;
-        margin-top: 10px;
-    }
-}
-
-.searchbox {
-    width: 300px;
-    height: inherit;
-    min-height: 40px;
-    line-height: 40px;
-    position: absolute;
-    background: #fff;
-
-    // external config
-    float: left;
-    input { 
-        margin: 0;
-        padding: 0;
-        width: calc(100% - 70px);
-        padding: 9px;
-        float: left;
-        left: 0px;
-        // transition: all 400ms ease;
-        margin-left: 40px;
-        margin-top: 2px;
-        &:focus { }
-    }
-    .fa-search {
-        float: left;
-        width: 40px;
-        line-height: 40px;
-        position: absolute;
         left: 0;
+        background: #f5f5f5;
+
+        &.left { left: 0; }
+        &.right { right: 0; left: auto; }
+    }
+    
+
+    .header {
+        padding: 20px 30px;
+        border-bottom: 1px solid #CDCDCD;
+        height: 100px;
+        box-sizing: border-box;
+        
+        .header-category {
+            font-size:15px
+        }
+        .header-title {
+            font-size: 28px;
+        }
+    }
+
+    .content {
+        padding: 20px 30px;
+        height: calc(100vh - 101px);
+        background: violet;
+        box-sizing: border-box;
     }
 }
 
-.avatar {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-
-    // external config
-    float:left;
-}
-
-.notification {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-
-    // external config
-    float:left;
-}
-
-.infoWindowApp {
-    padding: 10px;
-}
-
-// * *{
-//     outline: 1px dotted lightslategray;
-// }
 
 .home {
 }

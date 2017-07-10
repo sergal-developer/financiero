@@ -5,8 +5,6 @@ import { default as controllerModuleName } from './app.controllers';
 var moduleName = 'financieroApp';
 
 function config($routeprovider) {
-    console.log('$routeprovider: ', $routeprovider);
-
 	$routeprovider
 		.when('/',  {
 			templateUrl:'views/home/home.html',

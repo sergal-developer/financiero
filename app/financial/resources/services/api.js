@@ -1,8 +1,5 @@
 class ApiService {
-    constructor() {
-        this.path = "http://localhost:5500/api";
-        this.headers = this.getHeaders();
-    }
+    constructor() { }
 
     getHeaders() {
         return { 
@@ -23,18 +20,25 @@ class ApiService {
     }
 
     call(url, method, body) {
+        var path = "http://localhost:5500/api";
+        var headers = { 
+            "Content-Type": "application/json",
+            "X-Access-Token":"QVBQLUZpbmFuY2llcm8tQVBJLXMzcmcxMEFOVE9OSU80WnVyMw==",
+            "Account":"sergio-gallegos" 
+        }
+        var urlService = `${path}/${url}`;
+        
         var options = {
             method: method || 'GET', 
-            headers: this.headers,
-            body: '{}'
+            headers: new Headers(headers)                                                                                                                                                                                                                                                                                               
         }
 
         if ((method === 'POST' || method === 'PUT') && body) {
             options.body = body;
         }
-        options.headers = new Headers(options.headers);
-        return window.fetch(url, options)
-            .then(this.checkStatus)
+        
+        return window.fetch(urlService, options)
+            // .then(this.checkStatus)
             .then(function (response) {
                 return response.json();
             }).catch(function (error) {
@@ -44,4 +48,4 @@ class ApiService {
 }
 
 
-export default ApiService;
+export default new ApiService();
