@@ -1,13 +1,131 @@
 <div class="home debug">
-    <h1>Home</h1>
-
-    <div class="screen lateral right">
-        <div class="header">
-            <div class="header-category lato">Profile settings</div>
-            <div class="header-title merriweather">Language Settings</div>
+    <div class="screen mobile inactive-screen">
+        <select ng-model="vm.currentTemporality" ng-change="vm.updateTemporality()">
+            <option ng-repeat="t in vm.temporality" value="{{t.value}}">{{t.name}}</option>
+        </select>
+        <header-bar title="Home"></header-bar>
+        
+        <hero-screen currency="vm.currency[0]" 
+                transactions="vm.transactionsFiltered" 
+                temporality="vm.temporality" 
+                current-temporality="vm.currentTemporality"></hero-screen>
+        <balance-chart transactions="vm.transactionsFiltered"></balance-chart> 
+        
+        <div class="section">
+            <span>Temporality: {{ vm.currentTemporality }}</span>
+            <div class="title">Historial de Transacciones</div>
+            <div class="collection-list">
+                <div class="item" ng-repeat="tf in vm.transactionsFiltered">
+                    <div class="item-title">{{ tf.description }}</div>
+                    <div class="item-value">{{ tf.value }}</div>
+                    <div class="category">{{ tf.idtype }}</div>
+                </div>
+            </div>
         </div>
-        <div class="content">
-            
+        <div class="actions-bar">
+            <button type="button">Add</button>
+        </div>
+    </div>
+
+    <div class="screen mobile inactive-screen">
+        <header-bar title="Expense"></header-bar>
+        <div class="header-expense">
+            <div class="actions">
+                <button type="button"> cancel </button>
+                <button type="button"> add </button>
+            </div>
+            <div class="category-image">
+                .category-icon
+            </div>
+            <div class="input-expense">
+                <input type="text" placeholder="0.00">
+                <select>
+                    <option value="1">MXN</option>
+                    <option value="1">USD</option>
+                </select>
+            </div>
+        </div>
+        <div class="expense-notes">
+            <div class="field icon">
+                <div class="icon">.icon</div>
+                <input type="text" placeholder="Add Note..">
+            </div>
+            <div class="fields double">
+                <div class="field icon">
+                    <div class="icon">.icon</div>
+                    <input type="text" placeholder="calendar">
+                </div>
+                <div class="field icon">
+                    <div class="icon">.icon</div>
+                    <input type="text" placeholder="pago futuro">
+                </div>
+            </div>
+            <div class="field">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen mobile inactive-screen">
+        <header-bar title="Crear una Cartera"></header-bar>
+        <div class="header-expense">
+            <div class="actions">
+                <button type="button"> cancel </button>
+                <button type="button"> add </button>
+            </div>
+            <div class="wallet-fields">
+                <div class="field icon">
+                    <div class="icon">.icon-wallet</div>
+                    <input type="text" placeholder="Name">
+                </div>
+                
+                <div class="fields double">
+                    <div class="field icon">
+                        <div class="icon">.icon</div>
+                        <input type="text" placeholder="initial balance">
+                    </div>
+                    <div class="field select">
+                        <select>
+                            <option value="1">MXN</option>
+                            <option value="1">USD</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="wallet-body">
+            <div class="field icon">
+                <div class="icon">.icon</div>
+                <button type="button"> 
+                    <div>
+                        Select Categories 
+                        <span>26 expenses and 5 incomes </span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+     <div class="screen mobile active-screen">
+        <header-bar title="Categorias"></header-bar>
+        <div class="header-expense">
+            <div class="actions">
+                <button type="button"> cancel </button>
+                <button type="button"> add </button>
+            </div>
+            <div class="wallet-fields">
+                <div class="tabs">
+                    <div class="item">Expenses</div>
+                    <div class="item">Income</div>
+                </div>
+            </div>
+        </div>
+        <div class="wallet-body">
+            <div class="category icon">
+                <div class="icon">.icon</div>
+                <div class="name">name</div>
+            </div>
         </div>
     </div>
 </div>

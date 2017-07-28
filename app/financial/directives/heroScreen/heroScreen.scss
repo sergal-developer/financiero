@@ -1,0 +1,28 @@
+.hero-screen {
+    width: inherit;
+    height: 210px;
+    .hero-screen--title {
+        font-size: 16px;
+        text-align: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .hero-screen--balance {
+        width: inherit;
+        overflow: hidden;
+        text-align: center;
+        padding: 0 25%;
+        .prefix, .value, .symbol { float: left; }
+
+        .prefix { font-size: 24px; }
+        .value { font-size: 56px; }
+        .symbol { font-size: 20px; }
+    }
+    .hero-screen--balance-status {
+        text-align: center;
+        padding: 0 25%;
+        .time, .budget { float: left; }
+        .time { font-size: 15px; }
+        .budget { font-size: 16px; }
+    }
+}

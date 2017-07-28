@@ -1,6 +1,6 @@
 import { default as controllerModuleName } from './app.controllers';
 // import { default as servicesModuleName } from './app.services';
-// import { default as directivesModuleName } from './app.directives';
+import { default as directivesModuleName } from './app.directives';
 
 var moduleName = 'financieroApp';
 
@@ -36,8 +36,8 @@ var app = angular.module(moduleName, [
 	'ngRoute', 
 	'ngMessages',
 	// servicesModuleName, 
-	controllerModuleName
-	// directivesModuleName
+	controllerModuleName,
+	directivesModuleName
 ]).config(config);
 
 export default moduleName;
