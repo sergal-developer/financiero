@@ -60,9 +60,18 @@ class HomeController {
             { id: 1, name: "deuda", icon: "icon", isentry: 0 },
             { id: 2, name: "salario", icon: "icon", isentry: 1 },
             { id: 3, name: "gasto 1", icon: "icon", isentry: 0 },
+            { id: 4, name: "deuda", icon: "icon", isentry: 0 },
+            { id: 5, name: "salario", icon: "icon", isentry: 1 },
+            { id: 6, name: "gasto 1", icon: "icon", isentry: 0 },
+            { id: 7, name: "deuda", icon: "icon", isentry: 0 },
+            { id: 8, name: "salario", icon: "icon", isentry: 0 },
+            { id: 9, name: "gasto 1", icon: "icon", isentry: 0 },
+            { id: 10, name: "deuda", icon: "icon", isentry: 0 },
+            { id: 11, name: "salario", icon: "icon", isentry: 0 },
+            { id: 12, name: "gasto 1", icon: "icon", isentry: 0 },
+            
         ]
         
-
         this.transactions = [
             { id: 1, description: "description 1", value: 514.52, update: "2017-07-01T00:00:00.000Z", idcurrency: 1, idwallet: 1, idtype: 1, idplan: null, isbudget: false },
             { id: 2, description: "description 1", value: 554.52, update: "2017-07-02T00:00:00.000Z", idcurrency: 1, idwallet: 1, idtype: 1, idplan: null, isbudget: false },
@@ -105,8 +114,6 @@ class HomeController {
             { id: 39, description: "description 1", value: 54.65, update: "2017-06-25T00:00:00.000Z", idcurrency: 1, idwallet: 1, idtype: 1, idplan: null, isbudget: false },
             { id: 40, description: "description 1", value: 12.1, update: "2017-06-25T00:00:00.000Z", idcurrency: 1, idwallet: 1, idtype: 1, idplan: null, isbudget: false }
         ]
-
-        
     }
 
     applyFilter(temporalityCustom) {

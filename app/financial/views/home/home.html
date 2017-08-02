@@ -107,25 +107,25 @@
         </div>
     </div>
 
-     <div class="screen mobile active-screen">
+    <div class="screen mobile active-screen category">
         <header-bar title="Categorias"></header-bar>
-        <div class="header-expense">
-            <div class="actions">
-                <button type="button"> cancel </button>
-                <button type="button"> add </button>
-            </div>
-            <div class="wallet-fields">
-                <div class="tabs">
-                    <div class="item">Expenses</div>
-                    <div class="item">Income</div>
-                </div>
+        <div class="categories-tabs tabs">
+            <div class="">
+                <div class="tab-item active">Todos</div>
+                <div class="tab-item">Gastos</div>
+                <div class="tab-item">Entradas</div>
             </div>
         </div>
-        <div class="wallet-body">
-            <div class="category icon">
-                <div class="icon">.icon</div>
-                <div class="name">name</div>
+
+        <div class="collection-category">
+            <div class="category-item icon" ng-repeat="t in vm.types">
+                <div class="category-item-icon">{{ t.icon }}</div>
+                <div class="category-item-name">{{ t.name }}</div>
             </div>
+        </div>
+
+        <div class="categories-actions">
+            <button type="button" class="button-add">Add</button>
         </div>
     </div>
 </div>

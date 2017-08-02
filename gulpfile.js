@@ -74,11 +74,6 @@ gulp.task('develop',() => {
 gulp.task('develop-s',() => {
     runSequence('build', 'watchers-design');
     server.run(['server/server.js']);
-
-     gulp.watch(['server/**/*.js'],() => {
-        server.stop();
-        runSequence('develop');
-    })
 });
 
 

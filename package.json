@@ -8,6 +8,7 @@
     "browser-sync": "^2.17.5",
     "express": "^4.15.2",
     "fs": "0.0.1-security",
+    "fs-extra": "^4.0.1",
     "fs-promise": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.1",
@@ -17,7 +18,10 @@
     "gulp-run-sequence": "^0.3.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.9.1",
+    "lowdb": "^0.16.2",
+    "node-linq": "0.0.5",
     "request": "^2.81.0",
+    "sqlite3": "^3.1.8",
     "underscore": "^1.7.0",
     "vinyl-source-stream": "^1.1.0"
   },

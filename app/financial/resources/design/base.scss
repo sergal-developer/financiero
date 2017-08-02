@@ -4,10 +4,10 @@
 
 .debug * * { outline: 1px dotted #D1C4E9 }
 
-@include font-face("Bree", "../fonts/BreeSerif/BreeSerif", 500, normal);
-@include font-face("Lato", "../fonts/Lato/Lato", 500, normal);
-@include font-face("Merriweather", "../fonts/Merriweather/Merriweather", 500, normal);
-@include font-face("PT_Sans", "../fonts/PT_Sans/PT_Sans", 500, normal);
+@include font-face("Bree", "../fonts/BreeSerif/BreeSerif", 500, normal, ttf);
+@include font-face("Lato", "../fonts/Lato/Lato", 500, normal, ttf);
+@include font-face("Merriweather", "../fonts/Merriweather/Merriweather", 500, normal, ttf);
+@include font-face("PT_Sans", "../fonts/PT_Sans/PT_Sans", 500, normal, ttf);
 
 html, body  {
     // background: #e3e3e3;
@@ -16,6 +16,15 @@ html, body  {
     font-family: 'PT_Sans', sans-serif;
     font-size: 12px;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+
 /*
 .field {
     width: 100%;

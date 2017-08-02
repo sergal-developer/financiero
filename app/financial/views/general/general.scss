@@ -1,0 +1,65 @@
+.log-fixed {
+    position: fixed;
+    background: #333;
+    padding: 5px;
+    right: 10px;
+    bottom: 10px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.screen {
+    float: left;
+    background: #f3f3f3;
+    border: 1px solid #616161;
+    width: 100%;
+    overflow: auto;
+    
+    &.mobile {
+        width: 320px;
+        height: 568px;
+        margin: 10px;
+    }
+}
+
+.fields {}
+
+.actions {
+    width: 100%;
+    overflow: hidden;
+    margin: 5px 0;
+    .button {
+        padding: 10px;
+        float: left;
+        border: 1px solid gray;
+        margin-right: 5px;
+        &:hover {
+            background: #1565C0;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}
+
+.list {
+    .item {
+        padding: 2px;
+        border: 1px solid #BDBDBD;
+        margin-bottom: 1px;
+    }
+}
+
+
+.fields {
+
+    input {
+        padding: 4px 6px;
+        border: 1px solid #333; 
+        //background: none;
+        outline: none;
+        margin: 1px;
+        font-size: 13px;
+        font-family: "Lato", sans-serif;
+    }
+
+}
