@@ -1,33 +1,42 @@
 {
   "name": "financiero",
   "version": "0.0.1",
-  "description": "Financial web app",
-  "main": "index.js",
-  "scripts": {
-    "install": "npm install && npm i gulp-cli -g && npm i bower -g && npm i nodemon -g",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "C:\\Users\\SergioGallegos\\OneDrive\\git-develop\\financiero.git"
-  },
-  "keywords": [
-    "fianaciero"
-  ],
-  "author": "Sergio Gallegos",
-  "license": "ISC",
+  "description": "finanaciero app",
+  "main": "index.html",
   "dependencies": {
-    "express": "^4.15.2",
     "body-parser": "^1.10.1",
     "browser-sync": "^2.17.5",
+    "express": "^4.15.2",
     "fs": "0.0.1-security",
+    "fs-extra": "^4.0.1",
+    "fs-promise": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.1",
     "gulp-express": "^0.3.5",
+    "gulp-nodemon": "^2.2.1",
     "gulp-open": "^2.0.0",
     "gulp-run-sequence": "^0.3.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.9.1",
-    "underscore": "^1.7.0"
-  }
+    "lowdb": "^0.16.2",
+    "node-linq": "0.0.5",
+    "request": "^2.81.0",
+    "sqlite3": "^3.1.8",
+    "underscore": "^1.7.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "install": "^0.8.8",
+    "npm": "^4.5.0",
+    "typescript": "^2.2.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "C:/Users/sergi/OneDrive/git-develop/financiero.git"
+  },
+  "author": "",
+  "license": "ISC"
 }
