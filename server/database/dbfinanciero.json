@@ -1,0 +1,34 @@
+{
+  "users": [],
+  "currency": [
+    {
+      "id": 1,
+      "name": "Pesos",
+      "symbol": "MXN",
+      "prefix": "$"
+    },
+    {
+      "id": 2,
+      "name": "Dollars",
+      "symbol": "DLS",
+      "prefix": "$"
+    },
+    {
+      "id": 3,
+      "name": "Euro",
+      "symbol": "EUR",
+      "prefix": "€"
+    },
+    {
+      "id": 4,
+      "name": "YEN",
+      "symbol": "JPY",
+      "prefix": "¥"
+    }
+  ],
+  "wallets": [],
+  "temporality": [],
+  "categories": [],
+  "transactions": [],
+  "plans": []
+}
