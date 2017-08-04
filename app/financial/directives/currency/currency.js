@@ -13,13 +13,23 @@ export default () => {
 }
 
 class currencyDirective {
-    constructor($timeout) {
+    constructor($timeout, $scope) {
+        this.scope = $scope;
+        this.scope.data = {
+            currency: []
+        };
+
         this.currencyTemp = {
             name: "",
             prefix: "",
             symbol: "",
         }
         this.currencyTempSelected = null;
+
+        this.getCurrencies();
+
+        // this.scope.parent
+        // console.log('this.scope.parent: ', this.scope.$parent.vm.getCurrencies());
     }
 
     selectItem(data, scope) {
@@ -109,7 +119,9 @@ class currencyDirective {
             apiService.call("/data/currency", "POST", data).then((res) => {
                 if(res) {
                     this.cleanData(data);
+                    
                     this.getCurrencies();
+                    this.scope.$parent.vm.getCurrencies()
                 }
             });
             
@@ -128,4 +140,4 @@ class currencyDirective {
     }
 }
 
-currencyDirective.$inject = ['$timeout'];
+currencyDirective.$inject = ['$timeout', '$scope'];

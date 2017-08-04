@@ -24,6 +24,30 @@
       "name": "YEN",
       "symbol": "JPY",
       "prefix": "¥"
+    },
+    {
+      "id": 5,
+      "name": "egerg",
+      "symbol": "ergerg",
+      "prefix": "ergerg"
+    },
+    {
+      "id": 6,
+      "name": "erdgherge",
+      "symbol": "rgerg",
+      "prefix": "ergergegr"
+    },
+    {
+      "id": 7,
+      "name": "we",
+      "symbol": "ewfwef",
+      "prefix": "wefwef"
+    },
+    {
+      "id": 8,
+      "name": "wefwefwef",
+      "symbol": "wefwe",
+      "prefix": "fwef"
     }
   ],
   "wallets": [],
