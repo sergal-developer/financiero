@@ -13,38 +13,34 @@ class ApiService {
         if (response.status >= 200 && response.status < 300) {
             return response
         } else {
-            var error = new Error(response.statusText);
-            error.response = response;
-            throw error
+            console.error(response.statusText);
         }
     }
 
-    call(url, method, body) {
-        var path = "http://localhost:5500/api";
-        var headers = { 
-            "Content-Type": "application/json",
-            "X-Access-Token":"QVBQLUZpbmFuY2llcm8tQVBJLXMzcmcxMEFOVE9OSU80WnVyMw==",
-            "Account":"sergio-gallegos" 
-        }
-        var urlService = `${path}/${url}`;
-        
+    call(path, method, body, headers, convertResponseToJSON) {
+        var url = path;
         var options = {
-            method: method || 'GET', 
-            headers: new Headers(headers)                                                                                                                                                                                                                                                                                               
-        }
+            method: method || 'GET',
+            headers: headers || {"Content-Type": "application/json"}
+        };
 
         if ((method === 'POST' || method === 'PUT') && body) {
-            options.body = body;
+            options.body = JSON.stringify(body);
         }
-        
-        return window.fetch(urlService, options)
-            // .then(this.checkStatus)
+
+        convertResponseToJSON = convertResponseToJSON || false;
+
+        options.headers = new Headers(options.headers);
+
+        return fetch(url, options)
+            .then(this.checkStatus)
             .then(function (response) {
                 return response.json();
             }).catch(function (error) {
                 console.log('Request Failed:', error)
-            }); 
+            });
     }
+
 }
 
 

@@ -1,829 +1,512 @@
 var config = require('../config/config.js'),
-    fs = require('fs'),
-    file = config.database.file,
-    exists = fs.existsSync(file),
-    tables = config.database.querys.table;
+    low = require('lowdb'),
+    db = low('./server/database/dbfinanciero.json', {
+        autosave: true, // automatically save database on change (default: true)
+        async: true     // asynchronous write (default: true)
+    }),
+    models = require('./models/models');
 
-// Configuration of db sqlite
-var sqlite3 = require("sqlite3").verbose();
-var db = null;
-    if(!exists) {
-		fs.openSync(file, "w");
-        db = new sqlite3.Database(file);
-        createTables(db);
-	} else {
-        db = new sqlite3.Database(file);
+function identity(modelName) {
+    var index = db.get(modelName).map('id').last().value();
+    if(typeof index == "undefined")
+        index = 0
+    return ++index;
+}
+
+function startDataBase() {
+    db.defaults({
+            users: [],
+            currency: [],
+            wallets: [],
+            temporality: [],
+            categories: [],
+            transactions: [],
+            plans: []
+         }).write();
+}
+
+function ParseToModel(item, model) {
+    var result = {};
+    for(var key in model) {
+        if(item[key] != undefined || item[key] != null)
+            result[key] = item[key];
+        else if(!(result[key] != undefined || result[key] != null))
+            result[key] = null
     }
+    return result;
+}
 
-// Include models and helpers 
-var models = require('./models/models');
-var helpersData = require('./helpers-data');
+var Currency = {
+    modelName: 'currency',
+    all: () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Currency.modelName)
+                    .value();
 
-// initialize database
-function createTables(db) {
-    loadModelSQLFile((sql) => {
-        var sqlc = sql.replace(/\r/g, "").replace(/\n/g, "").replace(/\t/g, "")
-        var statements = sqlc.split("GO");
-        try {
-            for(var i in statements)
-            {
-                if(statements[i]) {
-                    db.run(statements[i], function(err, res) {
-                        if(err) {
-                            console.log(`error: ${err} \n in STATEMENT: ${ statements[i] }`);
-                            return;
-                        }
-                    });
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    allFilter: (filter) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Currency.modelName)
+                    .find(filter)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    add: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // assing item into model
+                item = ParseToModel(item, models.currency);
+                // validate if exist item
+                var valid = db.get(Currency.modelName)
+                    .map('name')
+                    .filter({ name: item.name })
+                    .value();
+                // save object
+                if(valid.length == 0) {    
+                    // generate new identified
+                    item.id = identity(Currency.modelName);
+                    var post = db.get(Currency.modelName)
+                        .push(item)
+                        .write();
+
+                    resolve(post);
+                } else {
+                    resolve("[]");
                 }
+            } catch (error) {
+                reject(error);
             }
-            console.log("DB file creation success");
-        } catch(error) {
-            console.error(error);
-        }
-    });
-}
-
-function loadModelSQLFile(callback) {
-    var file = config.database.fileSchema;
-    fs.readFile(file, "utf8", function(err, contents) {
-        callback(contents);
-    });
-}
-
-//ERROR LOG
-function Data(data, isError, message) {
-    isError = isError || false;
-    message = message || "";
-    return {data: data, error: isError, message: message}
-}
-
-//#region Functions-Types-Table
-var TypesCore = {
-    findAllTypes: () => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.types, "findAll");
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
         });
     },
-    findByIdTypes: (id) => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.types, "findById", id);
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByNameTypes: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.types, "findByName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    findAnyNameTypes: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.types, "findAnyName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    addType: (type) => {
+    update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if name exist
-                TypesCore.findByNameTypes(type.name).then((response) => {
-                    if(response.data.length === 0) {
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.type, type);
-                        ob = helpersData.toSQLData(ob);
-                        var query = helpersData.buildQuery(tables.types, "add", 
-                            ob.name, ob.icon, ob.isentry);
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `TYPES has been updated`));
-                    }
-                    return resolve(Data(false, true, `TYPES can't update in addType`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                // save object
+                db.get(Currency.modelName)
+                    .find({ id: item.id })
+                    .assign(item)
+                    .write();
+
+                resolve(item);
+            } catch (error) {
+                reject(error);
             }
-        });
+        })
     },
-    updateType: (id, type) => {
+    remove: (value) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if id exist
-                TypesCore.findByIdTypes(id).then((response) => {
-                    if(response.data.length !== 0) {                    
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.type, type);
-                        ob = helpersData.toSQLData(ob);
-                        
-                        var query = helpersData.buildQuery(tables.types, "update",
-                            ob.name, ob.icon, ob.isentry, id);
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `TYPES has been updated`));
-                    }
-                    return resolve(Data(false, true, `TYPES can't update in updateType`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                // remove object
+                db.get(Currency.modelName)
+                    .remove({ id: value })
+                    .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
             }
-        });
-    },
-    deleteType: (id) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                // check if id exist
-                TypesCore.findByIdTypes(id).then((response) => {
-                    if(response.data.length !== 0) {
-                        var query = helpersData.buildQuery(tables.types, "delete", id);
-                        db.run(query);
-                        return resolve(Data(true, false, `TYPES has been deleted`));
-                    }
-                    return resolve(Data(false, true, `TYPES can't delete in deleteType`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
-            }
-        });
+        })
     }
-}
-//#endregion Functions-Types-Table
+};
 
-//#region Functions-Currency-Table
-var CurrencyCore = {
-    findAllCurrencies: () => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.currency, "findAll");
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByIdCurrencies: (id) => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.currency, "findById", id);   
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByNameCurrencies: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.currency, "findByName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    findAnyNameCurrencies: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.currency, "findAnyName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    addCurrency: (currency) => {
+var Users = {
+    modelName: 'users',
+    all: () => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if name exist
-                CurrencyCore.findByNameCurrencies(currency.name).then((response) => {
-                    if(response.data.length === 0) {
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.currency, currency);
-                        ob = helpersData.toSQLData(ob);
+                var result = db.get(Users.modelName)
+                    .value();
 
-                        var query = helpersData.buildQuery(tables.currency, "add", 
-                            ob.name, ob.symbol, ob.prefix);                    
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `Currency has been updated`));
-                    }
-                    return resolve(Data(false, true, `Currency can't update in addCurrency`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    allFilter: (filter) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Users.modelName)
+                    .find(filter)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    add: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // assing item into model
+                item = ParseToModel(item, models.user);
+                // validate if exist item
+                var valid = db.get(Users.modelName)
+                    .map('username')
+                    .filter({ username: item.username })
+                    .value();
+                // save object
+                if(valid.length == 0) {    
+                    // generate new identified
+                    item.id = identity(Users.modelName);
+                    var post = db.get(Users.modelName)
+                        .push(item)
+                        .write();
+
+                    resolve(post);
+                } else {
+                    resolve("[]");
+                }
+            } catch (error) {
+                reject(error);
             }
         });
     },
-    updateCurrency: (id, currency) => {
+    update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if id exist
-                CurrencyCore.findByIdCurrencies(id).then((response) => {
-                    if(response.data.length !== 0) {
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.currency, currency);
-                        ob = helpersData.toSQLData(ob);
+                // save object
+                db.get(Users.modelName)
+                    .find({ id: item.id })
+                    .assign(item)
+                    .write();
 
-                        var query = helpersData.buildQuery(tables.currency, "update", 
-                            ob.name, ob.symbol, ob.prefix, id); 
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `Currency has been updated`));
-                    }
-                    return resolve(Data(false, true, `Currency can't update in updateCurrency`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                resolve(item);
+            } catch (error) {
+                reject(error);
             }
-        });
+        })
     },
-    deleteCurrency: (id) => {
+    remove: (value) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if id exist
-                CurrencyCore.findByIdCurrencies(id).then((response) => {
-                    if(response.data.length !== 0) {
-                        var query = helpersData.buildQuery(tables.currency, "delete", id); 
-                        db.run(query);
-                        return resolve(Data(true, false, `Currency has been deleted`));
-                    }
-                    return resolve(Data(false, true, `Currency can't delete in deleteCurrency`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                // remove object
+                db.get(Users.modelName)
+                    .remove({ id: value })
+                    .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
             }
-        });
+        })
     }
-}
-//#endregion Functions-Currency-Table
+};
 
-//#region Functions-Users-Table
-var UserCore = {
-    findAllUsers: () => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.user, "findAll");
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByIdUsers: (id) => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.user, "findById", id);
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByNameUsers: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.user, "findByName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    findAnyNameUsers: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.user, "findAnyName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    addUser: (user) => {
+var Wallets = {
+    modelName: 'wallets',
+    all: () => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if name exist
-                UserCore.findByNameUsers(user.name).then((response) => {
-                    if(response.data.length === 0) {
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.user, user);
-                        ob = helpersData.toSQLData(ob);
-                        var query = helpersData.buildQuery(tables.user, "add",
-                        ob.username, ob.password, ob.givenname, 
-                        ob.middlename, ob.familyname, ob.email, 
-                        ob.gender, ob.birthdate);
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `User has been updated`));
-                    }
-                    return resolve(Data(false, true, `User can't update in addUser`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
-            }
-        });
-    },
-    updateUser: (id, user) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                // check if id exist
-                UserCore.findByIdUsers(id).then((response) => {
-                    if(response.data.length !== 0) { 
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.user, user);
-                        ob = helpersData.toSQLData(ob);
+                var result = db.get(Wallets.modelName)
+                    .value();
 
-                        var query = helpersData.buildQuery(tables.user, "update",
-                        ob.username, ob.password, ob.givenname, 
-                        ob.middlename, ob.familyname, ob.email, 
-                        ob.gender, ob.birthdate, id);
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `User has been updated`));
-                    }
-                    return resolve(Data(false, true, `User can't update in updateUser`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    allFilter: (filter) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Wallets.modelName)
+                    .find(filter)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    add: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // assing item into model
+                item = ParseToModel(item, models.wallets);
+                // validate if exist item
+                var valid = db.get(Wallets.modelName)
+                    .map('name')
+                    .filter({ name: item.name })
+                    .value();
+                // save object
+                if(valid.length == 0) {    
+                    // generate new identified
+                    item.id = identity(Wallets.modelName);
+                    var post = db.get(Wallets.modelName)
+                        .push(item)
+                        .write();
+
+                    resolve(post);
+                } else {
+                    resolve("[]");
+                }
+            } catch (error) {
+                reject(error);
             }
         });
     },
-    deleteUser: (id) => {
+    update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if id exist
-                UserCore.findByIdUsers(id).then((response) => {
-                    if(response.data.length !== 0) {
-                        var query = helpersData.buildQuery(tables.user, "delete", id);
-                        db.run(query);
-                        return resolve(Data(true, false, `User has been deleted`));
-                    }
-                    return resolve(Data(false, true, `User can't delete in deleteUser`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                // save object
+                db.get(Wallets.modelName)
+                    .find({ id: item.id })
+                    .assign(item)
+                    .write();
+
+                resolve(item);
+            } catch (error) {
+                reject(error);
             }
-        });
+        })
+    },
+    remove: (value) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                db.get(Wallets.modelName)
+                    .remove({ id: value })
+                    .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
     }
-}
-//#endregion Functions-Users-Table
+};
 
-//#region Functions-Wallets-Table
-var WalletCore = {
-    findAllWallets: () => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.wallet, "findAll");
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByIdWallets: (id) => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.wallet, "findById", id);
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByNameWallets: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.wallet, "findByName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    findAnyNameWallets: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.wallet, "findAnyName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    addWallet: (Wallet) => {
+var Categories = {
+    modelName: 'categories',
+    all: () => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if name exist
-                WalletCore.findByNameWallets(Wallet.name).then((response) => {
-                    if(response.data.length === 0) {
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.wallet, Wallet);
-                        ob = helpersData.toSQLData(ob);
+                var result = db.get(Categories.modelName)
+                    .value();
 
-                        var query = helpersData.buildQuery(tables.wallet, "add", 
-                        ob.name, ob.balance, ob.idcurrency, ob.iduser);                        
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `Wallet has been updated`));
-                    }
-                    return resolve(Data(false, true, `Wallet can't update in addWallet`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    allFilter: (filter) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Categories.modelName)
+                    .find(filter)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    add: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // assing item into model
+                item = ParseToModel(item, models.type);
+                // validate if exist item
+                var valid = db.get(Categories.modelName)
+                    .map('name')
+                    .filter({ name: item.name })
+                    .value();
+                // save object
+                if(valid.length == 0) {    
+                    // generate new identified
+                    item.id = identity(Categories.modelName);
+                    var post = db.get(Categories.modelName)
+                        .push(item)
+                        .write();
+
+                    resolve(post);
+                } else {
+                    resolve("[]");
+                }
+            } catch (error) {
+                reject(error);
             }
         });
     },
-    updateWallet: (id, Wallet) => {
+    update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if id exist
-                WalletCore.findByIdWallets(id).then((response) => {
-                    if(response.data.length !== 0) { 
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.wallet, Wallet);
-                        ob = helpersData.toSQLData(ob);
+                // save object
+                db.get(Categories.modelName)
+                    .find({ id: item.id })
+                    .assign(item)
+                    .write();
 
-                        var query = helpersData.buildQuery(tables.wallet, "updat", 
-                        ob.name, ob.balance, ob.idcurrency, ob.iduser, id);                        
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `Wallet has been updated`));
-                    }
-                    return resolve(Data(false, true, `Wallet can't update in updateWallet`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                resolve(item);
+            } catch (error) {
+                reject(error);
             }
-        });
+        })
     },
-    deleteWallet: (id) => {
+    remove: (value) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if id exist
-                WalletCore.findByIdWallets(id).then((response) => {
-                    if(response.data.length !== 0) {
-                        var query = helpersData.buildQuery(tables.wallet, "delete", id);                        
-                        db.run(query);
-                        return resolve(Data(true, false, `Wallet has been deleted`));
-                    }
-                    return resolve(Data(false, true, `Wallet can't delete in deleteWallet`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                // remove object
+                db.get(Categories.modelName)
+                    .remove({ id: value })
+                    .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
             }
-        });
+        })
     }
-}
-//#endregion Functions-Wallets-Table
+};
 
-//#region Functions-Transaction-Table
-var TransactionCore = {
-    findAllTransactions: () => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.transaction, "findAll"); 
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByIdTransactions: (id) => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.transaction, "findById", id); 
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findAnyNameTransactions: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.transaction, "findByName", name);
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    addTransaction: (Transaction) => {
+var Transactions = {
+    modelName: 'transactions',
+    all: () => {
         return new Promise(function (resolve, reject) {
             try {
-                var ob = {};
-                ob = helpersData.mergeObjects(models.transaction, Transaction);
-                ob = helpersData.toSQLData(ob);
+                var result = db.get(Transactions.modelName)
+                    .value();
 
-                var query = helpersData.buildQuery(tables.transaction, "add", 
-                ob.description, ob.value, ob.update, ob.idcurrency, ob.idwallet, 
-                ob.idtype, ob.idcurrency, ob.isbudget); 
-                db.run(query);
+                if(typeof result == "undefined")
+                    result = [];
 
-                return resolve(Data(true, false, `Transaction has been updated`));
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    allFilter: (filter) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Transactions.modelName)
+                    .find(filter)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    add: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // assing item into model
+                item = ParseToModel(item, models.transaction);
+                // generate new identified
+                item.id = identity(Transactions.modelName);
+                var post = db.get(Transactions.modelName)
+                    .push(item)
+                    .write();
+
+                resolve(post);
+            } catch (error) {
+                reject(error);
             }
         });
     },
-    updateTransaction: (id, Transaction) => {
+    update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if id exist
-                TransactionCore.findByIdTransactions(id).then((response) => {
-                    if(response.data.length !== 0) { 
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.transaction, Transaction);
-                        ob = helpersData.toSQLData(ob);
+                // save object
+                db.get(Transactions.modelName)
+                    .find({ id: item.id })
+                    .assign(item)
+                    .write();
 
-                        var query = helpersData.buildQuery(tables.transaction, "update", 
-                        ob.description, ob.value, ob.update, ob.idcurrency, ob.idwallet, 
-                        ob.idtype, ob.idcurrency, ob.isbudget, id);                 
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `Transaction has been updated`));
-                    }
-                    return resolve(Data(false, true, `Transaction can't update in updateTransaction`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                resolve(item);
+            } catch (error) {
+                reject(error);
             }
-        });
+        })
     },
-    deleteTransaction: (id) => {
+    remove: (value) => {
         return new Promise(function (resolve, reject) {
             try {
-                // check if id exist
-                TransactionCore.findByIdTransactions(id).then((response) => {
-                    if(response.data.length !== 0) {
-                        var query = helpersData.buildQuery(tables.transaction, "delete", id); 
-                        db.run(query);
-                        return resolve(Data(true, false, `Transaction has been deleted`));
-                    }
-                    return resolve(Data(false, true, `Transaction can't delete in deleteTransaction`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
+                // remove object
+                db.get(Transactions.modelName)
+                    .remove({ id: value })
+                    .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
             }
-        });
+        })
     }
-}
-//#endregion Functions-Transaction-Table
-
-//#region Functions-Plan-Table
-var PlanCore = {
-    findAllPlans: () => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.plan, "findAll");    
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByIdPlans: (id) => {
-        return new Promise(function (resolve, reject) {
-            db.serialize(function() { 
-                var query = helpersData.buildQuery(tables.plan, "findById", id);      
-                db.all(query, function(err, rows) {
-                    if(err) return reject(Data(null, true, err));
-                    return resolve(Data(rows));
-                });
-            });
-        });
-    },
-    findByNamePlans: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.plan, "findByName", name);    
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    findAnyNamePlans: (name) => {
-        return new Promise(function (resolve, reject) {
-            var query = helpersData.buildQuery(tables.plan, "findAnyName", name);    
-            db.all(query, function(err, rows) {
-                if(err) return reject(Data(null, true, err));
-                return resolve(Data(rows));
-            });
-        });
-    },
-    addPlan: (Plan) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                // check if name exist
-                PlanCore.findByNamePlans(Plan.name).then((response) => {
-                    if(response.data.length === 0) {
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.plan, Plan);
-                        ob = helpersData.toSQLData(ob);
-
-                        var query = helpersData.buildQuery(tables.plan, "add", 
-                        ob.name, ob.value, ob.cutday, ob.paymentstype, 
-                        ob.instalment, ob.update, ob.idwallet);
-                        db.run(query);
-                        
-                        var pay = helpersData.getPayments(Plan.value, Plan.instalment, Plan.paymentstype, Plan.cutday);
-
-                        /*for(var i = 0; i < Plan.instalment; i++) {
-                            var tra = models.transaction;
-                            tra.description , Plan.name}-${i+1}`;
-                            tra.value = pay.payment;
-                            tra.update = pay.dates[i + 1], 
-                            tra.idcurrency =  1, 
-                            tra.idwallet =  Plan.idwallet, 
-                            tra.idtype =  1, 
-                            tra.idplan =  1,
-                            tra.isbudget =  true
-                            TransactionCore.addTransaction(tra).then((res) => {
-                                console.log(res.data);
-                            });
-                        }*/
-
-                        return resolve(Data(true, false, `Plan has been updated`));
-                    }
-                    return resolve(Data(false, true, `Plan can't update in addPlan`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
-            }
-        });
-    },
-    updatePlan: (id, Plan) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                // check if id exist
-                PlanCore.findByIdPlans(id).then((response) => {
-                    if(response.data.length !== 0) { 
-                        var ob = {};
-                        ob = helpersData.mergeObjects(models.plan, Plan);
-                        ob = helpersData.toSQLData(ob);
-
-                        var query = helpersData.buildQuery(tables.plan, "update", 
-                        ob.name, ob.value, ob.cutday, ob.paymentstype, 
-                        ob.instalment, ob.update, ob.idwallet, id);
-                        db.run(query);
-                        
-                        return resolve(Data(true, false, `Plan has been updated`));
-                    }
-                    return resolve(Data(false, true, `Plan can't update in updatePlan`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
-            }
-        });
-    },
-    deletePlan: (id) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                // check if id exist
-                PlanCore.findByIdPlans(id).then((response) => {
-                    if(response.data.length !== 0) {
-                        var query = helpersData.buildQuery(tables.plan, "delete", id);
-                        db.run(query);
-                        return resolve(Data(true, false, `Plan has been deleted`));
-                    }
-                    return resolve(Data(false, true, `Plan can't delete in deletePlan`));
-                }, (error) => {
-                    return reject(Data(false, true, error));
-                });
-                
-            } catch(err) {
-                console.error('error: ', err);
-                return reject(Data(false, true, err));
-            }
-        });
-    }
-}
-//#endregion Functions-Plan-Table
-
+};
 
 module.exports = {
-    //Types
-    findAllTypes: TypesCore.findAllTypes,
-    findByIdTypes: TypesCore.findByIdTypes,
-    findAnyNameTypes: TypesCore.findAnyNameTypes,
-    addType: TypesCore.addType,
-    updateType: TypesCore.updateType,
-    deleteType: TypesCore.deleteType,
+    startDataBase: startDataBase,
     //Currencies
-    findAllCurrencies: CurrencyCore.findAllCurrencies, 
-    findByIdCurrencies: CurrencyCore.findByIdCurrencies, 
-    findAnyNameCurrencies: CurrencyCore.findAnyNameCurrencies,
-    addCurrency: CurrencyCore.addCurrency,
-    updateCurrency: CurrencyCore.updateCurrency, 
-    deleteCurrency: CurrencyCore.deleteCurrency,
+    getCurrency: Currency.all,
+    getCurrencyFilter: Currency.allFilter,
+    addCurrency: Currency.add,
+    updateCurrency: Currency.update,
+    deleteCurrency: Currency.remove,
     //Users
-    findAllUsers: UserCore.findAllUsers, 
-    findByIdUsers: UserCore.findByIdUsers, 
-    findAnyNameUsers: UserCore.findAnyNameUsers,
-    addUser: UserCore.addUser,
-    updateUser: UserCore.updateUser, 
-    deleteUser: UserCore.deleteUser,
-    //Wallet
-    findAllWallet: WalletCore.findAllWallets,
-    findByIdWallet: WalletCore.findByIdWallets,
-    findAnyNameWallet: WalletCore.findAnyNameWallets,
-    addWallet: WalletCore.addWallet,
-    updateWallet: WalletCore.updateWallet,
-    deleteWallet: WalletCore.deleteWallet,
-    //Transaction
-    findAllTransaction: TransactionCore.findAllTransactions,
-    findByIdTransaction: TransactionCore.findByIdTransactions,
-    findAnyNameTransaction: TransactionCore.findAnyNameTransactions,
-    addTransaction: TransactionCore.addTransaction,
-    updateTransaction: TransactionCore.updateTransaction,
-    deleteTransaction: TransactionCore.deleteTransaction,
-    //Plan
-    findAllPlan: PlanCore.findAllPlans,
-    findByIdPlan: PlanCore.findByIdPlans,
-    findAnyNamePlan: PlanCore.findAnyNamePlans,
-    addPlan: PlanCore.addPlan,
-    updatePlan: PlanCore.updatePlan,
-    deletePlan: PlanCore.deletePlan
-}
+    getUsers: Users.all,
+    getUsersFilter: Users.allFilter,
+    addUsers: Users.add,
+    updateUsers: Users.update,
+    deleteUsers: Users.remove,
+    //Wallets
+    getWallets: Wallets.all,
+    getWalletsFilter: Wallets.allFilter,
+    addWallets: Wallets.add,
+    updateWallets: Wallets.update,
+    deleteWallets: Wallets.remove,
+    //Categories
+    getCategories: Categories.all,
+    getCategoriesFilter: Categories.allFilter,
+    addCategories: Categories.add,
+    updateCategories: Categories.update,
+    deleteCategories: Categories.remove,
+    //Transactions
+    getTransactions: Transactions.all,
+    getTransactionsFilter: Transactions.allFilter,
+    addTransactions: Transactions.add,
+    updateTransactions: Transactions.update,
+    deleteTransactions: Transactions.remove,
+
+};

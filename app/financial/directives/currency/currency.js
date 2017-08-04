@@ -1,66 +1,25 @@
 import apiService from '../../resources/services/api';
 
-class GeneralController {
-    constructor($timeout, $scope, $rootScope) {
-        this.scope = $scope;
-        this.rootScope = $rootScope;
+export default () => {
+    return {
+        restrict: 'E',
+        templateUrl: 'directives/currency/currency.html', 
+        scope: {},
+        link: function(scope) {},
+        controller: currencyDirective,
+        controllerAs: 'vm',
+        bindToController: true
+    };
+}
 
-        this.scope.data = {
-            currency: []
-        };
-        this.rootScope.global = {
-        };
-        
-        //this.getDatabase();
-        this.getCurrencies();
-        this.log = "";
-
+class currencyDirective {
+    constructor($timeout) {
         this.currencyTemp = {
             name: "",
             prefix: "",
             symbol: "",
         }
         this.currencyTempSelected = null;
-
-        this.userTemp = {
-            username: "",
-            password: "",
-            givenname: "",
-            middlename: "",
-            familyname: "",
-            email: "",
-            gender: "",
-            birthdate: ""
-        }
-        this.userTempSelected = angular.copy(this.userTemp);
-
-        this.walletTemp = {
-            name: "",
-            balance: "",
-            idcurrency: "",
-            iduser: ""
-        }
-        this.walletTempSelected = angular.copy(this.walletTemp);
-
-        this.typeTemp = {
-            name: "",
-            icon: "",
-            isentry: ""
-        }
-        this.typeTempSelected = angular.copy(this.typeTemp);
-
-        this.transactionTemp = {
-            description: "",
-            value: "",
-            update: "",
-            idcurrency: "",
-            idwallet: "",
-            idtype: "",
-            idplan: "",
-            isbudget: ""
-        }
-        this.transactionTempSelected = angular.copy(this.transactionTemp);
-        
     }
 
     selectItem(data, scope) {
@@ -110,7 +69,7 @@ class GeneralController {
                 object[key] = null;
             }
         }
-        return object;
+        return object;  
     }
 
     validate(object) {
@@ -169,6 +128,4 @@ class GeneralController {
     }
 }
 
-GeneralController.$inject = ['$timeout', '$scope', '$rootScope'];
-
-export default GeneralController;
+currencyDirective.$inject = ['$timeout'];

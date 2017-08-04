@@ -58,9 +58,10 @@ gulp.task('browser-sync',() => {
 
 gulp.task('develop',() => {
     runSequence('build', 'watchers-design', 'browser-sync');
-    //server.run(['server/server.js']);
+    server.run(['server/server.js']);
+    //nodemon({ script: 'server/server.js'})
 
-    var stream = nodemon({ script: 'server/server.js'});
+    /*var stream = nodemon({ script: 'server/server.js'});
     stream
         .on('restart', function () {
         console.log('restarted!')
@@ -68,7 +69,7 @@ gulp.task('develop',() => {
         .on('crash', function() {
         console.error('Application has crashed!\n')
             stream.emit('restart', 10)  // restart the server in 10 seconds
-        });
+        });*/
 });
 
 gulp.task('develop-s',() => {

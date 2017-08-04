@@ -1,4 +1,4 @@
-var databaseCore = require('../core.new');
+var databaseCore = require('../core');
 
 function findAll(req, res) {
     databaseCore.getCurrency().then((data) => {
@@ -32,7 +32,6 @@ function findAnyName(req, res) {
 function add(req, res) {
     if(req.body) {
         databaseCore.addCurrency(req.body).then((data) => {
-            console.log('data: ', data);
             res.send(data);
         }, (error) => {
             console.error('error: ', error);

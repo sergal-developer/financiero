@@ -17,41 +17,39 @@ var plan = require('./controllers/plan-controller');
 //#endregion Router-Currency-Data
 
 //#region Router-Types-Data
-    // router.get('/types', types.findAll);
-    // router.get('/types/:name', types.findAnyName);
-    // router.get('/type/:id', types.findById);
-    // router.post('/type', types.add);
-    // router.put('/type/:id', types.update);
-    // router.delete('/type/:id', types.deleteById);
+    router.get('/types', types.findAll);
+    router.get('/types/name/:name', types.findAnyName);
+    router.get('/type/:id', types.findById);
+    router.post('/type', types.add);
+    router.put('/type/:id', types.update);
+    router.delete('/type/:id', types.deleteById);
 //#endregion Router-Types-Data
 
-
-
 //#region Router-users-Data
-    // router.get('/users', user.findAll);
-    // router.get('/users/:name', user.findAnyName);
-    // router.get('/user/:id', user.findById);
-    // router.post('/user', user.add);
-    // router.put('/user/:id', user.update);
-    // router.delete('/user/:id', user.deleteById);
+    router.get('/users', user.findAll);
+    router.get('/users/username/:name', user.findAnyName);
+    router.get('/user/:id', user.findById);
+    router.post('/user', user.add);
+    router.put('/user/:id', user.update);
+    router.delete('/user/:id', user.deleteById);
 //#endregion Router-users-Data
 
 //#region Router-Wallets-Data
-    // router.get('/wallets', wallet.findAll);
-    // router.get('/wallets/:name', wallet.findAnyName);
-    // router.get('/wallet/:id', wallet.findById);
-    // router.post('/wallet', wallet.add);
-    // router.put('/wallet/:id', wallet.update);
-    // router.delete('/wallet/:id', wallet.deleteById);
+    router.get('/wallets', wallet.findAll);
+    router.get('/wallets/name/:name', wallet.findAnyName);
+    router.get('/wallet/:id', wallet.findById);
+    router.post('/wallet', wallet.add);
+    router.put('/wallet/:id', wallet.update);
+    router.delete('/wallet/:id', wallet.deleteById);
 //#endregion Router-Wallets-Data
 
 //#region Router-transactions-Data
-    // router.get('/transactions', transaction.findAll);
-    // router.get('/transactions/:name', transaction.findAnyName);
-    // router.get('/transaction/:id', transaction.findById);
-    // router.post('/transaction', transaction.add);
-    // router.put('/transaction/:id', transaction.update);
-    // router.delete('/transaction/:id', transaction.deleteById);
+    router.get('/transactions', transaction.findAll);
+    router.get('/transactions/name/:name', transaction.findAnyName);
+    router.get('/transaction/:id', transaction.findById);
+    router.post('/transaction', transaction.add);
+    router.put('/transaction/:id', transaction.update);
+    router.delete('/transaction/:id', transaction.deleteById);
 //#endregion Router-Wallets-Data
 
 //#region Router-plans-Data

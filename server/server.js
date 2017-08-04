@@ -4,7 +4,7 @@ var express = require('express'),
     config = require('./config/config.js'),
 	bodyParser = require('body-parser');
     request = require('request'),
-    coreData = require('./database/core.new');
+    coreData = require('./database/core');
     app = express();
 
 function createApp(app) {

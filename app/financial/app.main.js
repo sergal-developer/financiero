@@ -11,21 +11,21 @@ function config($routeprovider) {
 			controller:'financiero.generalController',
 			controllerAs:'vm'
 		})
-		.when('/home',  {
-			templateUrl:'views/home/home.html',
-			controller:'financiero.homeController',
-			controllerAs:'vm'
-		})
-		.when('/login',  {
-			templateUrl:'views/login/login.html',
-			controller:'financiero.loginController',
-			controllerAs:'vm'
-		})
-		.when('/category',  {
-			templateUrl:'views/category/category.html',
-			controller:'financiero.categoryController',
-			controllerAs:'vm'
-		})
+		// .when('/home',  {
+		// 	templateUrl:'views/home/home.html',
+		// 	controller:'financiero.homeController',
+		// 	controllerAs:'vm'
+		// })
+		// .when('/login',  {
+		// 	templateUrl:'views/login/login.html',
+		// 	controller:'financiero.loginController',
+		// 	controllerAs:'vm'
+		// })
+		// .when('/category',  {
+		// 	templateUrl:'views/category/category.html',
+		// 	controller:'financiero.categoryController',
+		// 	controllerAs:'vm'
+		// })
 		.otherwise({redirectTo:'/'});
 	//$locationProvider.html5Mode(true);
 }
