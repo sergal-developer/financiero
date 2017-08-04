@@ -4,11 +4,11 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response
   } else {
-    //console.log(response.statusText);
+    console.log(response.statusText);
   }
 }
 
-function request(path, method, headers, body, convertResponseToJSON) {
+function request(path, method, body, headers, convertResponseToJSON) {
   var url = path;
   var options = {
     method: method || 'GET',
@@ -16,7 +16,7 @@ function request(path, method, headers, body, convertResponseToJSON) {
   };
 
   if ((method === 'POST' || method === 'PUT') && body) {
-    options.body = body;
+    options.body = JSON.stringify(body);
   }
 
   convertResponseToJSON = convertResponseToJSON || false;
@@ -28,7 +28,7 @@ function request(path, method, headers, body, convertResponseToJSON) {
     .then(function (response) {
         return response.json();
     }).catch(function (error) {
-      //console.log('Request Failed:', error)
+      console.log('Request Failed:', error)
     });
 }
 
@@ -124,15 +124,10 @@ class GeneralController {
             switch(source) {
                 case 'currency': 
                     this.createCurrency(object);
-                break;
+                    return;
                 default:
                 break;
             }
-
-            /*var temp = angular.copy(object);
-            temp.id = source.length +  1;
-            source.push(temp);
-            this.cleanData(object)*/
         } else {
             console.log('Invalid Object: ', object);
         }
@@ -182,28 +177,40 @@ class GeneralController {
         });
     }
 
-    getCurrencies() {
-        
-        request("/data/currencies").then((data) => {
+    getCurrencies(callback) {
+        request("/data/currency").then((data) => {
             if(data) {
                 this.scope.data.currency = data;
-                console.log('this.scope.data.currency: ', this.scope.data.currency);
                 this.scope.$apply();
+                if(callback)
+                    callback();
             }
         });
     }
 
     createCurrency(data) {
-        console.log('data: ', data);
-        request("/data/currency", "POST", data).then((res) => {
-            console.log('createCurrency: ', res);
-            /*if(data) {
-                
-                this.scope.data.currency = data;
-                console.log('this.scope.data.currency: ', this.scope.data.currency);
-                this.scope.$apply();
-            }*/
-        });
+        if(this.validate(data)) {
+            request("/data/currency", "POST", data).then((res) => {
+                if(res) {
+                    this.getCurrencies(() => {
+                        console.log("Success")
+                    });
+                }
+            });
+            this.cleanData(data);
+        }
+    }
+
+    deleteCurrency(object) {
+        if(object && object.id) {
+            var url = "/data/currency/" + object.id;
+            request(url, "DELETE").then((res) => {
+                if(res) {
+                    //console.log('res: ', res);
+                    this.getCurrencies();
+                }
+            });
+        }
     }
 }
 

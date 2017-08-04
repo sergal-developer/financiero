@@ -1,17 +1,18 @@
-var databaseCore = require('../core');
+var databaseCore = require('../core.new');
 
 function findAll(req, res) {
-    databaseCore.findAllCurrencies().then((data) => {
-        res.send(data.data);
+    databaseCore.getCurrency().then((data) => {
+        res.send(data);
     }, (error) => {
-            console.error('error: ', error);
-        });
+        console.error('error: ', error);
+    });
 }
 
 function findById(req, res) {    
     if(req.params.id) {
-        databaseCore.findByIdCurrencies(req.params.id).then((data) => {
-            res.send(data.data);
+        var id = Number(req.params.id);
+        databaseCore.getCurrencyFilter({ id: id }).then((data) => {
+            res.send(data);
         }, (error) => {
             console.error('error: ', error);
         });
@@ -20,8 +21,8 @@ function findById(req, res) {
 
 function findAnyName(req, res) {    
     if(req.params.name) {
-        databaseCore.findAnyNameCurrencies(req.params.name).then((data) => {
-            res.send(data.data);
+        databaseCore.getCurrencyFilter({ name: req.params.name }).then((data) => {
+            res.send(data);
         }, (error) => {
             console.error('error: ', error);
         });
@@ -30,9 +31,9 @@ function findAnyName(req, res) {
 
 function add(req, res) {
     if(req.body) {
-        console.log('req.body: ', req.body);
         databaseCore.addCurrency(req.body).then((data) => {
-            res.send(data.data);
+            console.log('data: ', data);
+            res.send(data);
         }, (error) => {
             console.error('error: ', error);
         });
@@ -41,8 +42,9 @@ function add(req, res) {
 
 function update(req, res) {
     if(req.params.id && req.body) {
-        databaseCore.updateCurrency(req.params.id, req.body).then((data) => {
-            res.send(data.data);
+        req.body.id = Number(req.params.id);
+        databaseCore.updateCurrency(req.body).then((data) => {
+            res.send(data);
         }, (error) => {
             console.error('error: ', error);
         });
@@ -51,8 +53,9 @@ function update(req, res) {
 
 function deleteById(req, res) {
     if(req.params.id) {
-        databaseCore.deleteCurrency(req.params.id).then((data) => {
-            res.send(data.data);
+        var id = Number(req.params.id);
+        databaseCore.deleteCurrency(id).then((data) => {
+            res.send(data);
         }, (error) => {
             console.error('error: ', error);
         });

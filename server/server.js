@@ -4,9 +4,11 @@ var express = require('express'),
     config = require('./config/config.js'),
 	bodyParser = require('body-parser');
     request = require('request'),
+    coreData = require('./database/core.new');
     app = express();
 
 function createApp(app) {
+    coreData.startDataBase();
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     app.all('/*', function(req, res, next) {
@@ -20,8 +22,6 @@ function createApp(app) {
 	app.use(config.server.appLibs, express.static(__dirname + '/../bower_components/'));
 	app.use("/database", express.static(__dirname + '/database/'));
     app.use('/data', require('./database/api-routes.js'));
-
-    
 }
 
 module.exports = createApp(app);
