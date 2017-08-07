@@ -3,7 +3,7 @@
 import currencyPage from './directives/currency/currency';
 import walletsPage from './directives/wallets/wallets';
 import categoriesPage from './directives/categories/categories';
-import transactionsPage from './directives/wallets/wallets';
+import transactionsPage from './directives/transactions/transactions';
 import usersPage from './directives/users/users';
 
 // # COMPONENTS
@@ -21,6 +21,7 @@ angular.module(moduleName, [])
     .directive('transactionsPage', transactionsPage)
     .directive('categoriesPage', categoriesPage)
     .directive('walletsPage', walletsPage)
+
     .directive('balanceChart', balanceChartDirective)
     .directive('collectionTransactions', collectionTransactionsDirective)
     .directive('headerBar', headerBarDirective)

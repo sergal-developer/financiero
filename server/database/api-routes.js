@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var types = require('./controllers/type-controller');
+var categories = require('./controllers/categories-controller');
 var currency = require('./controllers/currency-controller');
 var user = require('./controllers/user-controller');
 var wallet = require('./controllers/wallet-controller');
@@ -16,40 +16,40 @@ var plan = require('./controllers/plan-controller');
     router.delete('/currency/:id', currency.deleteById);
 //#endregion Router-Currency-Data
 
-//#region Router-Types-Data
-    router.get('/types', types.findAll);
-    router.get('/types/name/:name', types.findAnyName);
-    router.get('/type/:id', types.findById);
-    router.post('/type', types.add);
-    router.put('/type/:id', types.update);
-    router.delete('/type/:id', types.deleteById);
-//#endregion Router-Types-Data
+//#region Router-categories-Data
+    router.get('/categories', categories.findAll);
+    router.get('/categories/name/:name', categories.findAnyName);
+    router.get('/categories/:id', categories.findById);
+    router.post('/categories', categories.add);
+    router.put('/categories/:id', categories.update);
+    router.delete('/categories/:id', categories.deleteById);
+//#endregion Router-categories-Data
 
 //#region Router-users-Data
     router.get('/users', user.findAll);
     router.get('/users/username/:name', user.findAnyName);
-    router.get('/user/:id', user.findById);
-    router.post('/user', user.add);
-    router.put('/user/:id', user.update);
-    router.delete('/user/:id', user.deleteById);
+    router.get('/users/:id', user.findById);
+    router.post('/users', user.add);
+    router.put('/users/:id', user.update);
+    router.delete('/users/:id', user.deleteById);
 //#endregion Router-users-Data
 
 //#region Router-Wallets-Data
     router.get('/wallets', wallet.findAll);
     router.get('/wallets/name/:name', wallet.findAnyName);
-    router.get('/wallet/:id', wallet.findById);
-    router.post('/wallet', wallet.add);
-    router.put('/wallet/:id', wallet.update);
-    router.delete('/wallet/:id', wallet.deleteById);
+    router.get('/wallets/:id', wallet.findById);
+    router.post('/wallets', wallet.add);
+    router.put('/wallets/:id', wallet.update);
+    router.delete('/wallets/:id', wallet.deleteById);
 //#endregion Router-Wallets-Data
 
 //#region Router-transactions-Data
     router.get('/transactions', transaction.findAll);
     router.get('/transactions/name/:name', transaction.findAnyName);
-    router.get('/transaction/:id', transaction.findById);
-    router.post('/transaction', transaction.add);
-    router.put('/transaction/:id', transaction.update);
-    router.delete('/transaction/:id', transaction.deleteById);
+    router.get('/transactions/:id', transaction.findById);
+    router.post('/transactions', transaction.add);
+    router.put('/transactions/:id', transaction.update);
+    router.delete('/transactions/:id', transaction.deleteById);
 //#endregion Router-Wallets-Data
 
 //#region Router-plans-Data

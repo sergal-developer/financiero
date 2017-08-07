@@ -1,5 +1,61 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 1,
+      "username": "Root",
+      "password": "1234",
+      "givenname": "Sergio",
+      "middlename": "Antonio",
+      "familyname": "Gallegos",
+      "email": "saga@live.com.mx",
+      "gender": "M",
+      "birthdate": "13-06-1988"
+    },
+    {
+      "id": 2,
+      "username": "erg",
+      "password": "ergerg",
+      "givenname": "erger",
+      "middlename": "gerg",
+      "familyname": "erger",
+      "email": "gerg",
+      "gender": "ergerg",
+      "birthdate": "ergerg"
+    },
+    {
+      "id": 3,
+      "username": "erger",
+      "password": "gerger",
+      "givenname": "rgerg",
+      "middlename": "ergerg",
+      "familyname": "ergerg",
+      "email": "ergerger",
+      "gender": "gerg",
+      "birthdate": "ergerg"
+    },
+    {
+      "id": 4,
+      "username": "erge",
+      "password": "grerg",
+      "givenname": "erger",
+      "middlename": "gerg",
+      "familyname": "ergerg",
+      "email": "erger",
+      "gender": "gerg",
+      "birthdate": "ergerg"
+    },
+    {
+      "id": 5,
+      "username": "erger",
+      "password": "gerg",
+      "givenname": "erger",
+      "middlename": "gerge",
+      "familyname": "rger",
+      "email": "gerg",
+      "gender": "erger",
+      "birthdate": "gerg"
+    }
+  ],
   "currency": [
     {
       "id": 1,
@@ -17,42 +73,125 @@
       "id": 3,
       "name": "Euro",
       "symbol": "EUR",
-      "prefix": "€"
+      "prefix": "e"
+    }
+  ],
+  "wallets": [
+    {
+      "id": 1,
+      "name": "Default",
+      "balance": 1500,
+      "idcurrency": 1,
+      "iduser": 1
+    },
+    {
+      "id": 2,
+      "name": "wwewef",
+      "balance": null,
+      "idcurrency": 1,
+      "iduser": 4
+    },
+    {
+      "id": 3,
+      "name": "wefwefw",
+      "balance": null,
+      "idcurrency": 3,
+      "iduser": 3
     },
     {
       "id": 4,
-      "name": "YEN",
-      "symbol": "JPY",
-      "prefix": "¥"
+      "name": "wefwefwefwe",
+      "balance": null,
+      "idcurrency": 1,
+      "iduser": 1
+    }
+  ],
+  "temporality": [],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Hogar",
+      "icon": ".home",
+      "isentry": true
+    },
+    {
+      "id": 2,
+      "name": "Salario",
+      "icon": "salary",
+      "isentry": true
+    },
+    {
+      "id": 3,
+      "name": "Diversion",
+      "icon": "fun",
+      "isentry": false
+    },
+    {
+      "id": 4,
+      "name": "Comida",
+      "icon": "food",
+      "isentry": false
     },
     {
       "id": 5,
-      "name": "egerg",
-      "symbol": "ergerg",
-      "prefix": "ergerg"
+      "name": "wefc",
+      "icon": "wecwec",
+      "isentry": false
     },
     {
       "id": 6,
-      "name": "erdgherge",
-      "symbol": "rgerg",
-      "prefix": "ergergegr"
+      "name": "wcwecwe",
+      "icon": "cwecwecwe",
+      "isentry": false
     },
     {
       "id": 7,
-      "name": "we",
-      "symbol": "ewfwef",
-      "prefix": "wefwef"
+      "name": "wecwecwe",
+      "icon": "cwecwec",
+      "isentry": false
     },
     {
       "id": 8,
-      "name": "wefwefwef",
-      "symbol": "wefwe",
-      "prefix": "fwef"
+      "name": "wecwec",
+      "icon": "ewcwecwec",
+      "isentry": false
+    },
+    {
+      "id": 9,
+      "name": "wcwecwec",
+      "icon": "wecwec",
+      "isentry": false
+    },
+    {
+      "id": 10,
+      "name": "wecwec",
+      "icon": "wecwec",
+      "isentry": false
     }
   ],
-  "wallets": [],
-  "temporality": [],
-  "categories": [],
-  "transactions": [],
+  "transactions": [
+    {
+      "id": 1,
+      "description": "sdgvws",
+      "value": "32534",
+      "update": "07/08/2017",
+      "idcurrency": "1",
+      "idwallet": "1",
+      "idcategory": "1",
+      "idplan": 0,
+      "isbudget": false
+    },
+    {
+      "id": 2,
+      "description": "fdher",
+      "value": "02432",
+      "update": "",
+      "idcurrency": "1",
+      "idwallet": "1",
+      "idcategory": "1",
+      "idplan": 0,
+      "isbudget": false
+    }
+  ],
   "plans": []
 }

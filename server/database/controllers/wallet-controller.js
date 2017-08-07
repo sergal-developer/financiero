@@ -32,6 +32,9 @@ function findAnyName(req, res) {
 
 function add(req, res) {
     if(req.body) {
+        // req.body.balance = Number(req.params.balance);
+        // req.body.idcurrency = Number(req.params.idcurrency);
+        // req.body.iduser = Number(req.params.iduser);
         databaseCore.addWallets(req.body).then((data) => {
             res.send(data);
         }, (error) => {

@@ -21,15 +21,15 @@
     </div>
 
     <div class="actions">
-        <div class="button save" ng-click="vm.createCurrency(vm.currencyTemp)">Guardar</div>
-        <div class="button limpiar" ng-click="vm.cleanData(vm.currencyTemp)">Limpiar</div>
-        <div class="button eliminar" ng-click="vm.deleteCurrency(vm.currencyTempSelected)">Eliminar <span>ID: </span></div>
+        <div class="button save" ng-click="vm.create(vm.currencyTemp)">Guardar</div>
+        <div class="button limpiar" ng-click="vm.clean(vm.currencyTemp)">Limpiar</div>
+        <div class="button eliminar" ng-if="vm.currencyTempSelected" ng-click="vm.delete(vm.currencyTempSelected)">Eliminar <span>ID: {{ vm.currencyTempSelected.id }}</span></div>
+        <div class="button eliminar" ng-if="vm.currencyTempSelected" ng-click="vm.update(vm.currencyTempSelected)">Update <span>ID: {{ vm.currencyTempSelected.id }}</span></div>
     </div>
 
     <div class="list">
-        <span>List Monedas</span>
-        <span>{{ vm.currencyTempSelected }}</span>
-        <div class="item" ng-repeat="u in data.currency" ng-click="vm.selectItem(u, 'currency')">
+        <span>List</span>
+        <div class="item" ng-repeat="u in vm.data" ng-click="vm.selectItem(u)">
             <span>Item {{ u.id }} {{ u.name }}</span>
         </div>
     </div>

@@ -1,8 +1,8 @@
-var type = {
+var categories = {
     "id": 1,
     "name": "name",
     "icon": "icon",
     "isentry": 1
 }
 
-module.exports = type;
+module.exports = categories;

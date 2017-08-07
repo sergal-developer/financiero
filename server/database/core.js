@@ -253,7 +253,7 @@ var Wallets = {
         return new Promise(function (resolve, reject) {
             try {
                 // assing item into model
-                item = ParseToModel(item, models.wallets);
+                item = ParseToModel(item, models.wallet);
                 // validate if exist item
                 var valid = db.get(Wallets.modelName)
                     .map('name')
@@ -343,7 +343,7 @@ var Categories = {
         return new Promise(function (resolve, reject) {
             try {
                 // assing item into model
-                item = ParseToModel(item, models.type);
+                item = ParseToModel(item, models.categories);
                 // validate if exist item
                 var valid = db.get(Categories.modelName)
                     .map('name')

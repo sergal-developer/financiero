@@ -1,4 +1,4 @@
-var type = require('./type');
+var categories = require('./categories');
 var currency = require('./currency');
 var user = require('./user');
 var wallet = require('./wallet');
@@ -6,7 +6,7 @@ var plan = require('./plan');
 var transaction = require('./transaction');
 
 module.exports = {
-    type: type, 
+    categories: categories, 
     currency: currency,
     user: user, 
     wallet: wallet,

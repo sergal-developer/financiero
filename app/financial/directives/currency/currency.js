@@ -4,7 +4,9 @@ export default () => {
     return {
         restrict: 'E',
         templateUrl: 'directives/currency/currency.html', 
-        scope: {},
+        scope: {
+            data: '=',
+        },
         link: function(scope) {},
         controller: currencyDirective,
         controllerAs: 'vm',
@@ -15,74 +17,34 @@ export default () => {
 class currencyDirective {
     constructor($timeout, $scope) {
         this.scope = $scope;
-        this.scope.data = {
-            currency: []
-        };
+        this.setupForm();
+    }
 
+    setupForm() {
         this.currencyTemp = {
             name: "",
             prefix: "",
             symbol: "",
         }
         this.currencyTempSelected = null;
-
-        this.getCurrencies();
-
-        // this.scope.parent
-        // console.log('this.scope.parent: ', this.scope.$parent.vm.getCurrencies());
     }
 
-    selectItem(data, scope) {
-        if(scope) {
-            switch(scope) {
-                case "currency": 
-                    this.currencyTempSelected = data;
-                break;
-                default:
-                    console.log('data: ', data);
-                break;
-            }
-        }
+    selectItem(data) {
+        this.currencyTemp = this.currencyTempSelected = angular.copy(data);
     }
 
-    saveData(object, source) {
-        if(this.validate(object)) {
-            switch(source) {
-                case 'currency': 
-                    this.createCurrency(object);
-                    return;
-                default:
-                break;
-            }
-        } else {
-            console.log('Invalid Object: ', object);
-        }
-    }
-
-    delete(object, source) {
-        if(object) {
-            this.deleteFromArray(source, object);
-        }
-    }
-
-    deleteFromArray(source, object) {
-        var item = source.indexOf(object);
-        if (item !== -1) {
-            source.splice(item, 1);
-        }
-        return source;
-    }
-
-    cleanData(object) {
+    clean(object) {
         if(object) {
             for(var key in object) {
                 object[key] = null;
             }
         }
+
+        this.currencyTempSelected = null;
         return object;  
     }
 
-    validate(object) {
+    _validate(object) {
         var valid = [];
         if(object) {
             for(var key in object) {
@@ -96,48 +58,47 @@ class currencyDirective {
         return y == -1 ? true : false;
     }
 
-    getDatabase() {
-        apiService.call("/database/sample.json").then((data) => {
-            this.scope.data = data;
-            this.scope.$apply();
-        });
-    }
-
-    getCurrencies(callback) {
-        apiService.call("/data/currency").then((data) => {
-            if(data) {
-                this.scope.data.currency = data;
-                this.scope.$apply();
-                if(callback)
-                    callback();
-            }
-        });
-    }
-
-    createCurrency(data) {
-        if(this.validate(data)) {
-            apiService.call("/data/currency", "POST", data).then((res) => {
+    create(data) {
+        if(this._validate(data)) {
+           apiService.call("/data/currency", "POST", data).then((res) => {
                 if(res) {
-                    this.cleanData(data);
-                    
-                    this.getCurrencies();
-                    this.scope.$parent.vm.getCurrencies()
+                    this.clean(data);
+                    this.updateSourceData();
                 }
             });
-            
+        }
+        else {
+            console.log("error: ", data);
         }
     }
 
-    deleteCurrency(object) {
+    delete(object) {
         if(object && object.id) {
             var url = "/data/currency/" + object.id;
             apiService.call(url, "DELETE").then((res) => {
                 if(res) {
-                    this.getCurrencies();
+                    this.updateSourceData();
                 }
             });
         }
     }
+
+    update(object) {
+        if(object && object.id) {
+            var url = "/data/currency/" + object.id;
+            apiService.call(url, "PUT", object).then((res) => {
+                if(res) {
+                    this.updateSourceData();
+                }
+            });
+        }
+    }
+
+    updateSourceData() {
+        this.scope.$parent.vm.getData("currency")
+    }
+
+    
 }
 
 currencyDirective.$inject = ['$timeout', '$scope'];

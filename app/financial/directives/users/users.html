@@ -1,0 +1,64 @@
+
+<div class="screen mobile">
+    <h1>User</h1>
+
+    <span>Edit Mode On</span>
+    <div class="fields">
+        <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="Username" ng-model="vm.usersTemp.username">
+            </div>
+        </div>
+        <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="Password" ng-model="vm.usersTemp.password">
+            </div>
+        </div>
+        <!-- <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="Password Rewrite" ng-model="vm.usersTemp.password">
+            </div>
+        </div> -->
+        <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="GivenName" ng-model="vm.usersTemp.givenname">
+            </div>
+        </div>
+        <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="Middlename" ng-model="vm.usersTemp.middlename">
+            </div>
+        </div>
+        <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="FamiliName" ng-model="vm.usersTemp.familyname">
+            </div>
+        </div>
+        <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="Email" ng-model="vm.usersTemp.email">
+            </div>
+        </div>
+        <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="Gender" ng-model="vm.usersTemp.gender">
+            </div>
+        </div>
+        <div class="field">
+            <div class="textbox">
+                <input type="text" placeholder="Birthdate" ng-model="vm.usersTemp.birthdate">
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="button save" ng-click="vm.create(vm.usersTemp)">Guardar</div>
+        <div class="button limpiar" ng-click="vm.clean(vm.usersTemp)">Limpiar</div>
+        <div class="button eliminar" ng-click="vm.delete(vm.usersTempSelected)">Eliminar <span>ID: </span></div>
+    </div>
+    <div class="list">
+        <span>List Usuarios</span>
+        <div class="item" ng-repeat="u in vm.data" ng-click="vm.selectItem(u)">
+            <span>Item {{ u.username }}</span>
+        </div>
+    </div>
+</div>
