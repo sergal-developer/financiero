@@ -191,6 +191,28 @@
       "idcategory": "1",
       "idplan": 0,
       "isbudget": false
+    },
+    {
+      "id": 3,
+      "description": "fwefwef",
+      "value": "8846",
+      "update": "",
+      "idcurrency": "2",
+      "idwallet": "1",
+      "idcategory": "4",
+      "idplan": 0,
+      "isbudget": false
+    },
+    {
+      "id": 4,
+      "description": "wefwef",
+      "value": "4534",
+      "update": "10/10/2017",
+      "idcurrency": "1",
+      "idwallet": "1",
+      "idcategory": "3",
+      "idplan": "0",
+      "isbudget": true
     }
   ],
   "plans": []
