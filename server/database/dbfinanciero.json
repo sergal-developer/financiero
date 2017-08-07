@@ -10,50 +10,6 @@
       "email": "saga@live.com.mx",
       "gender": "M",
       "birthdate": "13-06-1988"
-    },
-    {
-      "id": 2,
-      "username": "erg",
-      "password": "ergerg",
-      "givenname": "erger",
-      "middlename": "gerg",
-      "familyname": "erger",
-      "email": "gerg",
-      "gender": "ergerg",
-      "birthdate": "ergerg"
-    },
-    {
-      "id": 3,
-      "username": "erger",
-      "password": "gerger",
-      "givenname": "rgerg",
-      "middlename": "ergerg",
-      "familyname": "ergerg",
-      "email": "ergerger",
-      "gender": "gerg",
-      "birthdate": "ergerg"
-    },
-    {
-      "id": 4,
-      "username": "erge",
-      "password": "grerg",
-      "givenname": "erger",
-      "middlename": "gerg",
-      "familyname": "ergerg",
-      "email": "erger",
-      "gender": "gerg",
-      "birthdate": "ergerg"
-    },
-    {
-      "id": 5,
-      "username": "erger",
-      "password": "gerg",
-      "givenname": "erger",
-      "middlename": "gerge",
-      "familyname": "rger",
-      "email": "gerg",
-      "gender": "erger",
-      "birthdate": "gerg"
     }
   ],
   "currency": [
@@ -68,40 +24,13 @@
       "name": "Dollars",
       "symbol": "DLS",
       "prefix": "$"
-    },
-    {
-      "id": 3,
-      "name": "Euro",
-      "symbol": "EUR",
-      "prefix": "e"
     }
   ],
   "wallets": [
     {
       "id": 1,
       "name": "Default",
-      "balance": 1500,
-      "idcurrency": 1,
-      "iduser": 1
-    },
-    {
-      "id": 2,
-      "name": "wwewef",
-      "balance": null,
-      "idcurrency": 1,
-      "iduser": 4
-    },
-    {
-      "id": 3,
-      "name": "wefwefw",
-      "balance": null,
-      "idcurrency": 3,
-      "iduser": 3
-    },
-    {
-      "id": 4,
-      "name": "wefwefwefwe",
-      "balance": null,
+      "balance": 0,
       "idcurrency": 1,
       "iduser": 1
     }
@@ -110,109 +39,426 @@
   "categories": [
     {
       "id": 1,
-      "name": "Hogar",
-      "icon": ".home",
-      "isentry": true
+      "name": "Vehiculo",
+      "icon": "Vehiculo",
+      "isentry": false
     },
     {
       "id": 2,
-      "name": "Salario",
-      "icon": "salary",
-      "isentry": true
+      "name": "Alimentos",
+      "icon": "Alimentos",
+      "isentry": false
     },
     {
       "id": 3,
-      "name": "Diversion",
-      "icon": "fun",
+      "name": "Familia y Personal",
+      "icon": "Familia y Personal",
       "isentry": false
     },
     {
       "id": 4,
-      "name": "Comida",
-      "icon": "food",
+      "name": "Facturas",
+      "icon": "Facturas",
       "isentry": false
     },
     {
       "id": 5,
-      "name": "wefc",
-      "icon": "wecwec",
+      "name": "Entrenamiento",
+      "icon": "Entrenamiento",
       "isentry": false
     },
     {
       "id": 6,
-      "name": "wcwecwe",
-      "icon": "cwecwecwe",
+      "name": "Hogar",
+      "icon": "Hogar",
       "isentry": false
     },
     {
       "id": 7,
-      "name": "wecwecwe",
-      "icon": "cwecwec",
+      "name": "Servicios",
+      "icon": "Servicios",
       "isentry": false
     },
     {
       "id": 8,
-      "name": "wecwec",
-      "icon": "ewcwecwec",
+      "name": "Compras",
+      "icon": "Compras",
       "isentry": false
     },
     {
       "id": 9,
-      "name": "wcwecwec",
-      "icon": "wecwec",
+      "name": "Salud",
+      "icon": "Salud",
       "isentry": false
     },
     {
       "id": 10,
-      "name": "wecwec",
-      "icon": "wecwec",
+      "name": "Ropa",
+      "icon": "Ropa",
       "isentry": false
+    },
+    {
+      "id": 11,
+      "name": "Transporte",
+      "icon": "Transporte",
+      "isentry": false
+    },
+    {
+      "id": 12,
+      "name": "Educacion",
+      "icon": "Educacion",
+      "isentry": false
+    },
+    {
+      "id": 13,
+      "name": "Salario",
+      "icon": "Salario",
+      "isentry": true
+    },
+    {
+      "id": 14,
+      "name": "Negocios",
+      "icon": "Negocios",
+      "isentry": true
+    },
+    {
+      "id": 15,
+      "name": "Regalos",
+      "icon": "Regalos",
+      "isentry": true
+    },
+    {
+      "id": 16,
+      "name": "Prestamo",
+      "icon": "Prestamo",
+      "isentry": true
+    },
+    {
+      "id": 17,
+      "name": "Ingreso Extra",
+      "icon": "Ingreso Extra",
+      "isentry": true
     }
   ],
   "transactions": [
     {
       "id": 1,
-      "description": "sdgvws",
-      "value": "32534",
-      "update": "07/08/2017",
-      "idcurrency": "1",
-      "idwallet": "1",
-      "idcategory": "1",
-      "idplan": 0,
+      "description": "",
+      "value": 145,
+      "update": "2017-07-01T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
       "isbudget": false
     },
     {
       "id": 2,
-      "description": "fdher",
-      "value": "02432",
-      "update": "",
-      "idcurrency": "1",
-      "idwallet": "1",
-      "idcategory": "1",
-      "idplan": 0,
+      "description": "",
+      "value": 2545,
+      "update": "2017-07-02T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
       "isbudget": false
     },
     {
       "id": 3,
-      "description": "fwefwef",
-      "value": "8846",
-      "update": "",
-      "idcurrency": "2",
-      "idwallet": "1",
-      "idcategory": "4",
-      "idplan": 0,
+      "description": "",
+      "value": 231,
+      "update": "2017-07-03T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
       "isbudget": false
     },
     {
       "id": 4,
-      "description": "wefwef",
-      "value": "4534",
-      "update": "10/10/2017",
-      "idcurrency": "1",
-      "idwallet": "1",
-      "idcategory": "3",
-      "idplan": "0",
-      "isbudget": true
+      "description": "",
+      "value": 41,
+      "update": "2017-07-04T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 5,
+      "description": "",
+      "value": 154,
+      "update": "2017-07-05T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 6,
+      "description": "",
+      "value": 178,
+      "update": "2017-07-06T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 7,
+      "description": "",
+      "value": 10,
+      "update": "2017-07-07T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 8,
+      "description": "",
+      "value": 154,
+      "update": "2017-07-08T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 9,
+      "description": "",
+      "value": 21,
+      "update": "2017-07-09T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 10,
+      "description": "",
+      "value": 454,
+      "update": "2017-07-10T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 11,
+      "description": "",
+      "value": 200,
+      "update": "2017-07-11T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 12,
+      "description": "",
+      "value": 645,
+      "update": "2017-07-12T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 13,
+      "description": "",
+      "value": 8478,
+      "update": "2017-07-13T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 14,
+      "description": "",
+      "value": 40,
+      "update": "2017-07-14T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 15,
+      "description": "",
+      "value": 10,
+      "update": "2017-07-15T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 16,
+      "description": "",
+      "value": 50,
+      "update": "2017-07-16T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 17,
+      "description": "",
+      "value": 41,
+      "update": "2017-07-17T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 18,
+      "description": "",
+      "value": 10,
+      "update": "2017-07-18T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 19,
+      "description": "",
+      "value": 54,
+      "update": "2017-07-19T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 20,
+      "description": "",
+      "value": 454,
+      "update": "2017-06-10T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 21,
+      "description": "",
+      "value": 200,
+      "update": "2017-06-11T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 22,
+      "description": "",
+      "value": 645,
+      "update": "2017-06-12T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 23,
+      "description": "",
+      "value": 8478,
+      "update": "2017-06-13T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 24,
+      "description": "",
+      "value": 40,
+      "update": "2017-06-14T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 25,
+      "description": "",
+      "value": 10,
+      "update": "2017-06-15T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 26,
+      "description": "",
+      "value": 50,
+      "update": "2017-06-16T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 27,
+      "description": "",
+      "value": 41,
+      "update": "2017-06-17T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 28,
+      "description": "",
+      "value": 10,
+      "update": "2017-06-18T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 29,
+      "description": "",
+      "value": 54,
+      "update": "2017-06-19T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
     }
   ],
   "plans": []

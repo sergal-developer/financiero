@@ -68,6 +68,7 @@ class transactionsDirective {
     }
 
     create(data) {
+        data.update = new Date().toJSON();
         if(this._validate(data)) {
            apiService.call("/data/transactions", "POST", data).then((res) => {
                 if(res) {

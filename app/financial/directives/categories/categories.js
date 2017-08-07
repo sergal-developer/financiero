@@ -63,7 +63,7 @@ class categoriesDirective {
         if(this._validate(data)) {
            apiService.call("/data/categories", "POST", data).then((res) => {
                 if(res) {
-                    this.clean(data);
+                    //this.clean(data);
                     this.updateSourceData();
                 }
             });
