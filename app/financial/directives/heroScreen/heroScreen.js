@@ -3,10 +3,8 @@ export default () => {
         restrict: 'E',
         templateUrl: 'directives/heroScreen/heroScreen.html', 
         scope: {
-            currency: "=",
-            transactions: "=",
-            temporality: "=",
-            currentTemporality: "=",
+            config: '=',
+            data: '='
         },
         link: function(scope) {},
         controller: heroScreenDirective,
@@ -17,21 +15,23 @@ export default () => {
 
 class heroScreenDirective {
     constructor($timeout, $scope) {
+        
         this.balance = 0;
-        this.actualCurrency = this.currency;
-        this.budget = 0;
+        // this.actualCurrency = this.currency;
+        // this.budget = 0;
+        // this.getBalance();
+        // this.scope = $scope;
+        // this.scope.$watch('transactions', () => {
+        //     this.getBalance();
+        // });
         this.getBalance();
-        this.scope = $scope;
-        this.scope.$watch('transactions', () => {
-            this.getBalance();
-        });
     }
 
     getBalance() {
         this.balance = 0;
-        if(this.transactions) {
-            for(var i in this.transactions) {
-                this.balance += this.transactions[i].value;
+        if(this.data) {
+            for(var i in this.data) {
+                this.balance += this.data[i].value;
             }
         }
         this.balance = this.balance.toFixed(2);

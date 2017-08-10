@@ -14,7 +14,7 @@ export default () => {
 }
 
 class headerBarDirective {
-    constructor($timeout) {
+    constructor($timeout, $scope) {
         this.screenSize = "small";
     }
 
@@ -38,4 +38,4 @@ class headerBarDirective {
 
 }
 
-headerBarDirective.$inject = ['$timeout'];
+headerBarDirective.$inject = ['$timeout', '$scope'];

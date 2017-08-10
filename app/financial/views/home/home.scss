@@ -1,128 +1,111 @@
-$headerHeight: 40px;
-$headerWidth: calc(100% - $headerHeight);
+.log-fixed {
+    position: fixed;
+    background: #333;
+    padding: 5px;
+    right: 10px;
+    bottom: 10px;
+    color: #fff;
+    font-size: 18px;
+}
 
-$themeColor: #00838F;
-$themeColorFont: #fff;
-$themeColorHover: #00ACC1;
+.screen {
+    float: left;
+    background: #f3f3f3;
+    width: 100%;
+    overflow: auto;
+    
+    &.mobile {
+        width: 320px;
+        height: 568px;
+    }
+}
 
-.lato { font-family: "Lato", sans-serif; }
-.merriweather { font-family: "Merriweather", sans-serif; }
-.bree { font-family: "Bree", sans-serif; }
-.pt-sans { font-family: "PT_Sans", sans-serif; }
+.fields {}
 
-// .screenxxxx{
-//     /*
-//     background: #844c8d;
-//     background: -moz-linear-gradient(-45deg, #844c8d 0%, #363060 52%);
-//     background: -webkit-linear-gradient(-45deg, #844c8d 0%,#363060 52%);
-//     background: linear-gradient(135deg, #844c8d 0%,#363060 52%);
-//     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#844c8d', endColorstr='#363060',GradientType=1 );
-//     */
+.actions {
+    width: 100%;
+    overflow: hidden;
+    margin: 5px 0;
+    .button {
+        padding: 10px;
+        float: left;
+        border: 1px solid gray;
+        margin-right: 5px;
+        &:hover {
+            background: #1565C0;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}
 
-//     background: #e3e3e3;
-
-//     &.mobile {
-//         width: 100vw;
-//         height: 100vh;
-//     }
-
-//     &.inactive-screen {
-//         position: absolute;
-//         top: 0;
-//         left: -100vw;
-//     }
-//     &.active-screen {
-//         position: absolute;
-//         top: 0;
-//         left: 0;;
-//     }
-// }
-
-
-
-// .section {
-//     width: 100%;
-//     height: calc(100vh - 300px);
-//     background: #fff;
-// }
-
-
-
-// .actions-bar {
-//     position: fixed; 
-//     bottom: 0;
-//     background: #333;
-//     color: #fff;
-//     width: inherit;
-//     height: 50px;
-//     button {
-//         padding: 10px;
-//     }
-// }
+.list {
+    .item {
+        padding: 2px;
+        border: 1px solid #BDBDBD;
+        margin-bottom: 1px;
+    }
+}
 
 
-// .category {
-//     font-family: "Lato", Arial, Helvetica, sans-serif;
-//     font-size: 15px;
+.fields {
 
-//     .categories-tabs {
-//         margin: 20px 0px 10px;
-//     }
+    input {
+        padding: 4px 6px;
+        border: 1px solid #333; 
+        //background: none;
+        outline: none;
+        margin: 1px;
+        font-size: 13px;
+        font-family: "Lato", sans-serif;
+    }
 
-//     .category-item {
-//         width: calc(100% / 4 - 20px); 
-//         float: left;
-//         margin: 10px;
+}
 
-//         .category-item-icon {
-//             background: #B6B6B6;
-//             width: 100%;
-//             height: 60px;
-//             width: 60px;
-//             margin: 0 auto;
-//             margin-bottom: 5px;
-//             text-align: center; 
-//             line-height: 60px;
-//             color: #3e3e3e;
-//         }
+.icon {
+    width: 20px;
+    height: 20px;
+    &.small {
+        width: 10px;
+        height: 10px;
+    }
+}
 
-//         .category-item-name {
-//             text-align: center; 
-//             font-size: 13px;
-//          }
-//     }
+.action-events {
+    width: 100%;
+    text-align: center;
+    bottom: 10px;
+    position: fixed;
+}
 
-//     .tabs {
-//         overflow: hidden;
-//         .tab-item {
-//             float: left;
-//             padding: 10px;
-//             font-size: 15px;
-            
-//             &.active {
-//                 background: #1976D2;
-//                 color: #fff;
-//             }
-//         }
-//     }
+button {
+    padding: 5px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: gray;
+    border-radius: 50%;
+}
 
-//     .categories-actions {
-//         position: fixed; 
-//         bottom: 20px;
-//         margin: 0 auto;
-//         width: 100%;
-//         text-align: center;
+// #root-menu
+.root-menu {
+    width: 100vw;
+    height: 100vh;
+    background: #333;
+    color: #fff;
+    position: absolute;
 
-//         .button-add {
-//             width: 60px;
-//             height: 60px;
-//             background: #333;
-//             color: #fff;
-//             border: none;
-//             border-radius: 100%;
-//             text-align: center;
-//             line-height: 60px;
-//             font-size: 15px;
-//         }
-//     }
-// }
+    &.close {
+        left: -100vw;
+    }
+    &.open {
+        left: 0;
+    }
+    .root-menu-item {
+        width: 100%;
+        padding: 15px;
+        font-size: 15px;
+        font-weight: 300;
+        box-sizing: border-box;
+    }
+}

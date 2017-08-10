@@ -7,8 +7,8 @@ var moduleName = 'financieroApp';
 function config($routeprovider) {
 	$routeprovider
 		.when('/',  {
-			templateUrl:'views/general/general.html',
-			controller:'financiero.generalController',
+			templateUrl:'views/home/home.html',
+			controller:'financiero.homeController',
 			controllerAs:'vm'
 		})
 		// .when('/home',  {

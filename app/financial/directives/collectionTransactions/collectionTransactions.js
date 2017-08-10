@@ -2,7 +2,10 @@ export default () => {
     return {
         restrict: 'E',
         templateUrl: 'directives/collectionTransactions/collectionTransactions.html', 
-        scope: {},
+        scope: {
+            config: '=',
+            data: '='
+        },
         link: function(scope) {},
         controller: collectionTransactionsDirective,
         controllerAs: 'vm',
@@ -11,28 +14,9 @@ export default () => {
 }
 
 class collectionTransactionsDirective {
-    constructor($timeout) {
-        this.screenSize = "small";
-    }
-
-    getTypes() {
-        apiService.call('types', 'GET', null).then((data) => {
-            console.log("data: ", data);
-        })
-    }
-
-    changeSize() {
-        if(this.screenSize === "small") {
-            this.screenSize = "medium";
-        } else if(this.screenSize === "medium") {
-            this.screenSize = "big";
-        } else if(this.screenSize === "big") {
-            this.screenSize = "small";
-        }
-
-        console.log(this.screenSize);
+    constructor($timeout, $scope) {
     }
 
 }
 
-collectionTransactionsDirective.$inject = ['$timeout'];
+collectionTransactionsDirective.$inject = ['$timeout', '$scope'];

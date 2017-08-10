@@ -1,131 +1,39 @@
-<div class="home debug">
-    <div class="screen mobile inactive-screen">
-        <select ng-model="vm.currentTemporality" ng-change="vm.updateTemporality()">
-            <option ng-repeat="t in vm.temporality" value="{{t.value}}">{{t.name}}</option>
-        </select>
+<div class="general debug">
+    <div class="screen mobile">
+
+        <div class="root-menu close">
+            <div class="root-menu-item">Return</div>
+            <div class="root-menu-item">Home</div>
+            <div class="root-menu-item">Tranacciones</div>
+            <div class="root-menu-item">Categorias</div>
+            <div class="root-menu-item">Reportes</div>
+            <div class="root-menu-item">Configuración</div>
+        </div>
+
         <header-bar title="Home"></header-bar>
-        
-        <hero-screen currency="vm.currency[0]" 
-                transactions="vm.transactionsFiltered" 
-                temporality="vm.temporality" 
-                current-temporality="vm.currentTemporality"></hero-screen>
-        <balance-chart transactions="vm.transactionsFiltered"></balance-chart> 
-        
-        <div class="section">
-            <span>Temporality: {{ vm.currentTemporality }}</span>
-            <div class="title">Historial de Transacciones</div>
-            <div class="collection-list">
-                <div class="item" ng-repeat="tf in vm.transactionsFiltered">
-                    <div class="item-title">{{ tf.description }}</div>
-                    <div class="item-value">{{ tf.value }}</div>
-                    <div class="category">{{ tf.idtype }}</div>
-                </div>
-            </div>
-        </div>
-        <div class="actions-bar">
-            <button type="button">Add</button>
+        <hero-screen config="config" data="data.transactions"></hero-screen>
+        <collection-transactions config="config" data="data.transactions"></collection-transactions>
+
+        <div class="action-events">
+            <button class="button add">
+                <img src="/resources/svg/plus.svg" alt="" class="icon">
+            </button>
         </div>
     </div>
+    
+ <!-- monedas -->
+ <!-- <currency-page ng-if="data.currency" data="data.currency"></currency-page>  -->
 
-    <div class="screen mobile inactive-screen">
-        <header-bar title="Expense"></header-bar>
-        <div class="header-expense">
-            <div class="actions">
-                <button type="button"> cancel </button>
-                <button type="button"> add </button>
-            </div>
-            <div class="category-image">
-                .category-icon
-            </div>
-            <div class="input-expense">
-                <input type="text" placeholder="0.00">
-                <select>
-                    <option value="1">MXN</option>
-                    <option value="1">USD</option>
-                </select>
-            </div>
-        </div>
-        <div class="expense-notes">
-            <div class="field icon">
-                <div class="icon">.icon</div>
-                <input type="text" placeholder="Add Note..">
-            </div>
-            <div class="fields double">
-                <div class="field icon">
-                    <div class="icon">.icon</div>
-                    <input type="text" placeholder="calendar">
-                </div>
-                <div class="field icon">
-                    <div class="icon">.icon</div>
-                    <input type="text" placeholder="pago futuro">
-                </div>
-            </div>
-            <div class="field">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-        </div>
-    </div>
+<!-- usuarios -->
+ <!-- <users-page ng-if="data.users" data="data.users"></users-page>  -->
 
-    <div class="screen mobile inactive-screen">
-        <header-bar title="Crear una Cartera"></header-bar>
-        <div class="header-expense">
-            <div class="actions">
-                <button type="button"> cancel </button>
-                <button type="button"> add </button>
-            </div>
-            <div class="wallet-fields">
-                <div class="field icon">
-                    <div class="icon">.icon-wallet</div>
-                    <input type="text" placeholder="Name">
-                </div>
-                
-                <div class="fields double">
-                    <div class="field icon">
-                        <div class="icon">.icon</div>
-                        <input type="text" placeholder="initial balance">
-                    </div>
-                    <div class="field select">
-                        <select>
-                            <option value="1">MXN</option>
-                            <option value="1">USD</option>
-                        </select>
-                    </div>
-                </div>
+<!-- Categorias -->
+  <!-- <categories-page ng-if="data.categories" data="data.categories"></categories-page>   -->
 
-            </div>
-        </div>
-        <div class="wallet-body">
-            <div class="field icon">
-                <div class="icon">.icon</div>
-                <button type="button"> 
-                    <div>
-                        Select Categories 
-                        <span>26 expenses and 5 incomes </span>
-                    </div>
-                </button>
-            </div>
-        </div>
-    </div>
+<!-- Carteras -->
+ <!-- <wallets-page ng-if="data.wallets" data="data.wallets" currency="data.currency" users="data.users"></wallets-page>  -->
 
-    <div class="screen mobile active-screen category">
-        <header-bar title="Categorias"></header-bar>
-        <div class="categories-tabs tabs">
-            <div class="">
-                <div class="tab-item active">Todos</div>
-                <div class="tab-item">Gastos</div>
-                <div class="tab-item">Entradas</div>
-            </div>
-        </div>
+<!-- transacciones --> 
+<!-- <transactions-page ng-if="data.transactions" data="data.transactions" currency="data.currency" users="data.users" wallets="data.wallets" categories="data.categories"></transactions-page> -->
 
-        <div class="collection-category">
-            <div class="category-item icon" ng-repeat="t in vm.types">
-                <div class="category-item-icon">{{ t.icon }}</div>
-                <div class="category-item-name">{{ t.name }}</div>
-            </div>
-        </div>
-
-        <div class="categories-actions">
-            <button type="button" class="button-add">Add</button>
-        </div>
-    </div>
 </div>

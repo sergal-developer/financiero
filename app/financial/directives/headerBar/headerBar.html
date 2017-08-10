@@ -1,11 +1,18 @@
 <div class="header-bar">
-    <div class="actions">
-        <div class="content" ng-if="vm.actions"></div>
+    <div class="header-bar-actions">
+        <div class="action--item menu">
+            <img src="/resources/svg/bars-menu.svg" alt="" class="icon">
+        </div>
+        <!-- <div class="action--item return">
+            <img src="/resources/svg/arrow-left.svg" alt="" class="icon">
+        </div> -->
     </div>
     <div class="title">
         {{ vm.title }}
     </div>
-    <div class="actions">
-        Profile
+    <div class="header-bar-actions">
+        <div class="action--item settings">
+            <img src="/resources/svg/settings.svg" alt="" class="icon">
+        </div>
     </div>
 </div>

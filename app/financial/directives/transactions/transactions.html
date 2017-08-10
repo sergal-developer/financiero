@@ -22,7 +22,6 @@
             <div class="dropdown">
                 Moneda: 
                 <select ng-model="vm.transactionsTemp.idcurrency">
-                    <option value="0"> Selecciona uno ... </option>
                     <option value="{{ c.id }}" ng-repeat="c in vm.currency"> {{ c.name }} </option>
                 </select>
             </div>
@@ -31,7 +30,6 @@
             <div class="dropdown">
                 Cartera: 
                 <select ng-model="vm.transactionsTemp.idwallet">
-                    <option value="0"> Selecciona uno ... </option>
                     <option value="{{ c.id }}" ng-repeat="c in vm.wallets"> {{ c.name }} </option>
                 </select>
             </div>
@@ -40,7 +38,6 @@
             <div class="dropdown">
                 Tipo: 
                 <select ng-model="vm.transactionsTemp.idcategory">
-                    <option value="0"> Selecciona uno ... </option>
                     <option value="{{ c.id }}" ng-repeat="c in vm.categories"> {{ c.name }} </option>
                 </select>
             </div>
@@ -49,7 +46,6 @@
             <div class="dropdown">
                 Plan: 
                 <select ng-model="vm.transactionsTemp.idplan">
-                    <option value="0"> Selecciona uno ... </option>
                     <option value="{{ c.id }}" ng-repeat="c in vm.plan"> {{ c.name }} </option>
                 </select>
             </div>
