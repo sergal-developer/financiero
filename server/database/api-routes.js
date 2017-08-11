@@ -6,6 +6,14 @@ var user = require('./controllers/user-controller');
 var wallet = require('./controllers/wallet-controller');
 var transaction = require('./controllers/transaction-controller');
 var plan = require('./controllers/plan-controller');
+var config = require('./controllers/config-controller')
+
+//#region Router-config-Data
+    router.get('/config', config.findAll);
+    router.post('/config', config.add);
+    router.put('/config/:id', config.update);
+    router.delete('/config/:id', config.deleteById);
+//#endregion Router-config-Data
 
 //#region Router-Currency-Data
     router.get('/currency', currency.findAll);

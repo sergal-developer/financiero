@@ -15,6 +15,7 @@ function identity(modelName) {
 
 function startDataBase() {
     db.defaults({
+            config: {},
             users: [],
             currency: [],
             wallets: [],
@@ -35,6 +36,65 @@ function ParseToModel(item, model) {
     }
     return result;
 }
+
+var Config = {
+    modelName: 'config',
+    all: () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Config.modelName)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    add: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var post = db.get(Config.modelName)
+                    .push(item)
+                    .write();
+                resolve(post);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    update: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // save object
+                db.get(Config.modelName)
+                    .find(item)
+                    .assign(item)
+                    .write();
+
+                resolve(item);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    remove: (object) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                db.get(Config.modelName)
+                    .remove(object)
+                    .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+};
 
 var Currency = {
     modelName: 'currency',
@@ -478,6 +538,11 @@ var Transactions = {
 
 module.exports = {
     startDataBase: startDataBase,
+    //config
+    getConfig: Config.all,
+    addConfig: Config.add,
+    updateConfig: Config.update,
+    deleteConfig: Config.remove,
     //Currencies
     getCurrency: Currency.all,
     getCurrencyFilter: Currency.allFilter,

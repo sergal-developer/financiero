@@ -4,13 +4,16 @@
             Balance
         </div>
         <div class="hero-screen--balance">
-            <div class="prefix">{{ vm.config.currency.prefix }}</div>
+            <div class="prefix">{{ vm.config.current.currency.prefix }}</div>
             <div class="value">{{ vm.balance }}</div>
-            <div class="symbol">{{ vm.config.currency.symbol }}</div>
+            <div class="symbol"> {{ vm.config.current.currency.symbol }}</div>
         </div>
         <div class="hero-screen--balance-status">
             <div class="time-dropdown">
-                Mensualmente <img src="/resources/svg/arrow-down.svg" alt="" class="icon small">
+                <select ng-model="vm.currentTemporality" ng-change="vm.changeTemporality()">
+                    <option value="{{ t.id }}" ng-repeat="t in vm.temporality">{{ t.name }}</option>
+                </select>
+                <!-- Mensualmente <img src="/resources/svg/arrow-down.svg" alt="" class="icon small"> -->
             </div>
             <div class="budget">${{ vm.budget }}</div>
         </div>
@@ -21,7 +24,7 @@
             </select> -->
         </div>
         <div class="balance-chart">
-            .chart
+             <balance-chart></balance-chart> 
         </div>
     </div>
 

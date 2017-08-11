@@ -1,8 +1,8 @@
 <div class="general debug">
     <div class="screen mobile">
 
-        <div class="root-menu close">
-            <div class="root-menu-item">Return</div>
+        <div class="root-menu" ng-class="{ close: !$root.menu.status, open: $root.menu.status }">
+            <div class="root-menu-item" ng-click="vm.toogleMenu()">Return</div>
             <div class="root-menu-item">Home</div>
             <div class="root-menu-item">Tranacciones</div>
             <div class="root-menu-item">Categorias</div>
@@ -10,9 +10,9 @@
             <div class="root-menu-item">Configuración</div>
         </div>
 
-        <header-bar title="Home"></header-bar>
-        <hero-screen config="config" data="data.transactions"></hero-screen>
-        <collection-transactions config="config" data="data.transactions"></collection-transactions>
+        <header-bar title="Home" menu-func="vm.toogleMenu()"></header-bar>
+        <hero-screen config="config" current-temporality="$root.currentTemporality" temporality="vm.temporality"  data="vm.transactionsFiltered"></hero-screen>
+        <collection-transactions config="config" data="vm.transactionsFiltered"></collection-transactions>
 
         <div class="action-events">
             <button class="button add">

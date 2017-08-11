@@ -4,6 +4,8 @@ export default () => {
         templateUrl: 'directives/heroScreen/heroScreen.html', 
         scope: {
             config: '=',
+            temporality: '=',
+            currentTemporality: '=',
             data: '='
         },
         link: function(scope) {},
@@ -14,16 +16,11 @@ export default () => {
 }
 
 class heroScreenDirective {
-    constructor($timeout, $scope) {
-        
+    constructor($timeout, $scope, $rootScope) {
+        this.scope = $scope;
+        this.rootScope = $rootScope;
         this.balance = 0;
-        // this.actualCurrency = this.currency;
-        // this.budget = 0;
-        // this.getBalance();
-        // this.scope = $scope;
-        // this.scope.$watch('transactions', () => {
-        //     this.getBalance();
-        // });
+        
         this.getBalance();
     }
 
@@ -36,6 +33,12 @@ class heroScreenDirective {
         }
         this.balance = this.balance.toFixed(2);
     }
+
+    changeTemporality(data) {
+        console.log('this.currentTemporality-root: ', this.scope.$parent.vm);
+        this.scope.$parent.vm.updateTransactions();
+        this.getBalance();
+    }
 }
 
-heroScreenDirective.$inject = ['$timeout', '$scope'];
+heroScreenDirective.$inject = ['$timeout', '$scope', '$rootScope'];

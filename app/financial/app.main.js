@@ -37,7 +37,9 @@ var app = angular.module(moduleName, [
 	'ngMessages',
 	// servicesModuleName, 
 	controllerModuleName,
-	directivesModuleName
+	directivesModuleName,
+	//modules chars
+	// 'chartjs-directive'
 ]).config(config);
 
 export default moduleName;

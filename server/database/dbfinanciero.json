@@ -459,7 +459,365 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false
+    },
+    {
+      "id": 30,
+      "description": "",
+      "value": 145,
+      "update": "2017-08-08T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 31,
+      "description": "",
+      "value": 145,
+      "update": "2017-08-01T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 32,
+      "description": "",
+      "value": 2545,
+      "update": "2017-08-02T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 33,
+      "description": "",
+      "value": 231,
+      "update": "2017-08-03T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 34,
+      "description": "",
+      "value": 41,
+      "update": "2017-08-04T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 35,
+      "description": "",
+      "value": 154,
+      "update": "2017-08-05T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 36,
+      "description": "",
+      "value": 178,
+      "update": "2017-08-06T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 37,
+      "description": "",
+      "value": 10,
+      "update": "2017-08-08T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 38,
+      "description": "",
+      "value": 154,
+      "update": "2017-08-08T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 39,
+      "description": "",
+      "value": 21,
+      "update": "2017-08-09T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 40,
+      "description": "",
+      "value": 454,
+      "update": "2017-08-10T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 41,
+      "description": "",
+      "value": 200,
+      "update": "2017-08-11T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 42,
+      "description": "",
+      "value": 645,
+      "update": "2017-08-12T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 43,
+      "description": "",
+      "value": 8478,
+      "update": "2017-08-13T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 44,
+      "description": "",
+      "value": 40,
+      "update": "2017-08-14T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 45,
+      "description": "",
+      "value": 10,
+      "update": "2017-08-15T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 46,
+      "description": "",
+      "value": 50,
+      "update": "2017-08-16T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 47,
+      "description": "",
+      "value": 41,
+      "update": "2017-08-17T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 48,
+      "description": "",
+      "value": 10,
+      "update": "2017-08-18T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 49,
+      "description": "",
+      "value": 54,
+      "update": "2017-08-19T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 50,
+      "description": "",
+      "value": 454,
+      "update": "2017-09-10T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 51,
+      "description": "",
+      "value": 200,
+      "update": "2017-09-11T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 52,
+      "description": "",
+      "value": 645,
+      "update": "2017-09-12T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 53,
+      "description": "",
+      "value": 8478,
+      "update": "2017-09-13T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 54,
+      "description": "",
+      "value": 40,
+      "update": "2017-09-14T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 55,
+      "description": "",
+      "value": 10,
+      "update": "2017-09-15T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 56,
+      "description": "",
+      "value": 50,
+      "update": "2017-09-16T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 57,
+      "description": "",
+      "value": 41,
+      "update": "2017-09-17T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 58,
+      "description": "",
+      "value": 10,
+      "update": "2017-09-18T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
+    },
+    {
+      "id": 59,
+      "description": "",
+      "value": 54,
+      "update": "2017-09-19T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false
     }
   ],
-  "plans": []
+  "plans": [],
+  "config": {
+    "current": {
+      "currency": {
+        "id": 1,
+        "name": "Pesos",
+        "symbol": "MXN",
+        "prefix": "$"
+      },
+      "user": {
+        "id": 1,
+        "username": "Root",
+        "password": "1234",
+        "givenname": "Sergio",
+        "middlename": "Antonio",
+        "familyname": "Gallegos",
+        "email": "saga@live.com.mx",
+        "gender": "M",
+        "birthdate": "13-06-1988"
+      },
+      "wallet": {
+        "id": 1,
+        "name": "Default",
+        "balance": 0,
+        "idcurrency": 1,
+        "iduser": 1
+      }
+    }
+  }
 }
