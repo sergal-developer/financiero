@@ -14,8 +14,12 @@ class HomeController {
         };
 
         this.rootScope = $rootScope;
-        this.rootScope.menu = { status: false  }
+        this.rootScope.menu = { 
+            rootMenuStatus: false, 
+            userMenuStatus: false  
+        }
         this.rootScope.currentTemporality = 1;
+
         this.temporality = [
             { id: 1, name: "Monthly" },
             { id: 2, name: "Weekly" },
@@ -72,6 +76,7 @@ class HomeController {
             apiService.call("/data/config").then((data) => {
                 if(data) {
                     this.scope.config = data;
+                    console.log('this.scope.config: ', this.scope.config);
                     this.scope.config.temporality = { id: 1, name: "Monthly" };
                     this.scope.$apply();
                 }
@@ -81,11 +86,19 @@ class HomeController {
         
     }
 
-    toogleMenu() {
-        if(this.rootScope.menu.status) {
-            this.rootScope.menu.status = false;
+    toogleRootMenu() {
+        if(this.rootScope.menu.rootMenuStatus) {
+            this.rootScope.menu.rootMenuStatus = false;
         } else{
-            this.rootScope.menu.status = true;
+            this.rootScope.menu.rootMenuStatus = true;
+        }
+    }
+
+    toogleUserMenu() {
+        if(this.rootScope.menu.userMenuStatus) {
+            this.rootScope.menu.userMenuStatus = false;
+        } else{
+            this.rootScope.menu.userMenuStatus = true;
         }
     }
 

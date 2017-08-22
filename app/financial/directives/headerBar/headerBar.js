@@ -4,8 +4,8 @@ export default () => {
         templateUrl: 'directives/headerBar/headerBar.html', 
         scope: {
             title: '@',
-            actions: "=",
-            menuFunc: '&'
+            actionFunc: '&',
+            configFunc: '&'
         },
         link: function(scope) {},
         controller: headerBarDirective,

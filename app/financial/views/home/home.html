@@ -1,16 +1,86 @@
 <div class="general debug">
-    <div class="screen mobile">
-
-        <div class="root-menu" ng-class="{ close: !$root.menu.status, open: $root.menu.status }">
-            <div class="root-menu-item" ng-click="vm.toogleMenu()">Return</div>
-            <div class="root-menu-item">Home</div>
-            <div class="root-menu-item">Tranacciones</div>
-            <div class="root-menu-item">Categorias</div>
-            <div class="root-menu-item">Reportes</div>
-            <div class="root-menu-item">Configuración</div>
+        <div class="root-menu">
+            <!-- <div class="root-menu-item" ng-click="vm.toogleRootMenu()">Return</div> -->
+            <div class="root-menu-item root-item-logo" title="Home"> <i class="fa fa-eercast" aria-hidden="true"></i> </div>
+            <div class="root-menu-item" title="Home"> <i class="fa fa-area-chart" aria-hidden="true"></i></div>
+            <div class="root-menu-item" title="Historial"> <i class="fa fa-history" aria-hidden="true"></i> </div>
+            <div class="root-menu-item" title="Categorias"> <i class="fa fa-leaf" aria-hidden="true"></i> </div>
+            <div class="root-menu-item" title="Reportes"> <i class="fa fa-magic" aria-hidden="true"></i> </div>
+            <div class="root-menu-item" title="Configuración"> <i class="fa fa-cog" aria-hidden="true"></i> </div>
         </div>
+        <div class="root-status-bar">
+            <div class="root-status--title">
+                <i class="fa fa-feed" aria-hidden="true"></i> Dashboard
+            </div>
 
-        <header-bar title="Home" menu-func="vm.toogleMenu()"></header-bar>
+            <div class="root-status-bar--actions">
+                <div class="root-status-bar-item"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                <div class="root-status-bar-item"> <div class="avatar"> <i class="fa fa-user-o" aria-hidden="true"></i> </div> </div>
+                <div class="root-status-bar-item automatic"><i class="fa fa-search" aria-hidden="true"></i> </div>
+            </div>
+
+        </div>
+        <div class="root-contents">
+
+            <div class="panel-component panel-graph">
+                <div class="panel-component-title">Summary</div>
+                <div class="panel-component-status">
+                    <div class="panel-component-status--summary">
+                        <div class="panel-component-status--summary-item">9999 <b>Budget</b></div>
+                        <div class="panel-component-status--summary-item">9999 <b>Expense</b></div>
+                        <div class="panel-component-status--summary-item">9999 <b>Total</b></div>
+                    </div>   
+                    <div class="panel-component-status--filter">
+                        <div class="panel-component-status--filter-item">Day</div>
+                        <div class="panel-component-status--filter-item">Week</div>
+                        <div class="panel-component-status--filter-item active">Month</div>
+                        <div class="panel-component-status--filter-item">Year</div>
+                    </div>
+                </div>
+                <div class="panel-component-graph"></div>
+            </div>
+
+            <div class="history-component">
+                <div class="history-component-acctions">
+                    <button type="botton">Load more ...</button>
+                </div>
+            </div>
+
+            <div class="transactions-history-component">
+                .table transactions
+            </div>
+    
+        </div>    
+</div>
+
+
+
+<!-- <div class="general debug">
+     <div class="root-menu" ng-class="{ close: !$root.menu.rootMenuStatus, open: $root.menu.rootMenuStatus }">
+        <div class="root-menu-item" ng-click="vm.toogleRootMenu()">Return</div>
+        <div class="root-menu-item">Home</div>
+        <div class="root-menu-item">Tranacciones</div>
+        <div class="root-menu-item">Categorias</div>
+        <div class="root-menu-item">Reportes</div>
+        <div class="root-menu-item">Configuración</div>
+    </div>
+
+    <div class="user-menu" ng-class="{ close: !$root.menu.userMenuStatus, open: $root.menu.userMenuStatus }">
+        <div class="user-menu-item" ng-click="vm.toogleUserMenu()">Return</div>
+        <div class="user-menu-item">
+            <div class="avatar">.user</div>
+            <div class="avatar-username">User name</div>
+        </div>
+        <div class="user-menu-item">some menu</div>
+        <div class="user-menu-item">Some</div>
+    </div>
+
+    <div class="screen mobile transaction" >
+        <transactions-page current="config" data="data.transactions" currency="data.currency" users="data.users" wallets="data.wallets" categories="data.categories" ></transactions-page>
+    </div>
+    
+    <div class="screen mobile">
+        <header-bar title="Home" action-func="vm.toogleRootMenu()" config-func="vm.toogleUserMenu()" ></header-bar>
         <hero-screen config="config" current-temporality="$root.currentTemporality" temporality="vm.temporality"  data="vm.transactionsFiltered"></hero-screen>
         <collection-transactions config="config" data="vm.transactionsFiltered"></collection-transactions>
 
@@ -19,7 +89,7 @@
                 <img src="/resources/svg/plus.svg" alt="" class="icon">
             </button>
         </div>
-    </div>
+    </div> -->
     
  <!-- monedas -->
  <!-- <currency-page ng-if="data.currency" data="data.currency"></currency-page>  -->

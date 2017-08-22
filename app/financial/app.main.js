@@ -11,11 +11,11 @@ function config($routeprovider) {
 			controller:'financiero.homeController',
 			controllerAs:'vm'
 		})
-		// .when('/home',  {
-		// 	templateUrl:'views/home/home.html',
-		// 	controller:'financiero.homeController',
-		// 	controllerAs:'vm'
-		// })
+		.when('/home',  {
+			templateUrl:'views/home/home.html',
+			controller:'financiero.homeController',
+			controllerAs:'vm'
+		})
 		// .when('/login',  {
 		// 	templateUrl:'views/login/login.html',
 		// 	controller:'financiero.loginController',
@@ -35,6 +35,9 @@ config.$inject = ['$routeProvider'];
 var app = angular.module(moduleName, [
 	'ngRoute', 
 	'ngMessages',
+	'ngMaterial',
+	'ngAnimate',
+	'ngAria',
 	// servicesModuleName, 
 	controllerModuleName,
 	directivesModuleName,

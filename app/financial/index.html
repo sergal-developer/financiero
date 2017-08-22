@@ -3,16 +3,18 @@
 <head>
 	<title>Financiero</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/libs/angular-material/angular-material.css"/>
 	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" href="resources/design/design.css"/>
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> -->
+	
 </head>
 <body>
 	<div class="financiero-app" ng-controller="financiero.mainController">
 		<div class="view-container" ng-view="">
-			<!--Dinamic Content-->
+	
 		</div>
 	</div>
 	<script src="/libs/traceur/traceur.js"></script>
@@ -23,12 +25,14 @@
 
 	<!-- <script src="/libs/jquery/dist/jquery.js"></script> -->
 	<script src="/libs/angular/angular.js"></script>
-	 
 	<script src="/libs/angular-route/angular-route.js"></script>
 	<script src="/libs/angular-messages/angular-messages.js"></script>
-	<script src="/libs/angular-resource/angular-resource.js"></script>
-	<script src="/libs/chartjs/dist/Chart.js"></script>
-  	<!-- <script src="/libs/angular-chartjs-directive/chartjs-directive.js"></script>   -->
+	<script src="/libs/angular-animate/angular-animate.js"></script>
+	<script src="/libs/angular-aria/angular-aria.js"></script>
+	<!-- <script src="/libs/angular-resource/angular-resource.js"></script> -->
+	<script src="/libs/angular-material/angular-material.js"></script>
+
+	<script src="/libs/moment/moment.js"></script>
 	<script type="module" src="app.js"></script>
 </body>
 </html>

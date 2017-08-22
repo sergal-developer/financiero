@@ -89,12 +89,12 @@ button {
 
 // #root-menu
 .root-menu {
-    width: 100vw;
-    height: 100vh;
-    background: #333;
+    width: 50px;
+    height: 100%;
+    position: fixed;
+    background: #333742;
     color: #fff;
-    position: absolute;
-
+    
     &.close {
         left: -100vw;
     }
@@ -108,4 +108,187 @@ button {
         font-weight: 300;
         box-sizing: border-box;
     }
+
+    .root-item-logo {
+        background: #414550;
+        border-bottom: 1px solid #333;
+        
+        font-size: 20px;
+        height: 50px;
+    }
+}
+
+// #root-status-bar
+.root-status-bar {
+    width: calc(100vw - 50px);
+    height: 50px;
+    max-height: 50px;
+    position: absolute;
+    top: 0;
+    margin-left: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+    
+    background: #fff;
+    color: #333;
+    border-bottom: 1px solid #E5EBEE;
+    
+    .root-status--title {
+        float: left;
+        width: 40%;
+        font-size: 20px;
+        box-sizing: border-box;
+        height: 34px;
+        line-height: 34px;
+    }
+
+    .root-status-bar--actions {
+        float: right;
+        width: 60%;
+
+        .root-status-bar-item {
+            float: right;
+            height: 34px;
+            width: 34px;
+            text-align: center;
+            line-height: 34px;
+            font-size: 14px;
+            &.automatic {
+                width: auto;
+                padding: 0 10px;
+            }
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            font-size: 18px;
+            line-height: 34px;
+        }
+    }
+}
+
+
+// #root-contents
+.root-contents {
+    width: calc(100% - 50px);
+    max-width: calc(100% - 50px);
+    height: auto;
+    position: absolute;
+    top: 51px;
+    overflow: hidden;
+    
+    margin-left: 50px;
+    background: #fff;
+    color: #333;
+}
+
+// #panel-component
+.panel-component {
+    float: left;
+    // padding: 15px;
+    box-sizing: border-box;
+    &.panel-graph {
+        width: calc(100% - 300px);
+        background: #BAC9D1;
+    }
+
+    .panel-component-title {
+        font-size: 15px;
+        width: 100%;
+        border-bottom: 1px solid #A6B5BD;
+        padding: 0 0 10px 0;
+        margin: 15px;
+
+    }
+    .panel-component-status {
+        height: 35px;
+        padding: 20px 0;
+        margin: 0 15px;
+        .panel-component-status--summary {
+            float: left;
+            background: #fff;
+            box-shadow: 0 0 20px;
+            
+            .panel-component-status--summary-item {
+                float: left;
+                border-left: 1px solid #DDE6EB;
+                padding: 10px;
+                &:first-child {
+                    border: none;
+                }
+            }
+        }
+        
+        .panel-component-status--filter {
+            float: right;
+            background: #fff;
+            border-left: 1px solid #DDE6EB;
+            .panel-component-status--filter-item {
+                float: left;
+                color: #333;
+                text-align: center;
+                padding: 10px;
+                font-size: 14px;
+                &.active {
+                    background: #05AAE8;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .panel-component-graph {
+        margin: 15px;
+        height: 400px;
+        background: #9EAEB8;
+    }
+} 
+
+.history-component {
+    width: 300px;
+    background: #fff;
+    float: left;
+}
+
+.transactions-history-component {
+    width: 100%;
+    background: #C6C5C5;
+    float: left; 
+    height: 1000px;
+}
+
+
+// #user-menu
+.user-menu {
+    width: 150px;
+    height: auto;
+    color: #333;
+    background: #f3f3f3;
+    position: absolute;
+    right: -100vw;
+
+    &.close {
+        right: -100vw;
+    }
+    &.open {
+        right: 0;
+    }
+
+    .user-menu-item {
+        width: 100%;
+        padding: 15px;
+        font-size: 15px;
+        font-weight: 300;
+        box-sizing: border-box;
+    }
+}
+
+// #avatar
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: gray;
+    border-radius: 40px;
+    line-height: 40px;
+    text-align: center;
 }

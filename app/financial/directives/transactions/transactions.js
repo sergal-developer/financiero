@@ -5,11 +5,12 @@ export default () => {
         restrict: 'E',
         templateUrl: 'directives/transactions/transactions.html', 
         scope: {
+            current: '=',
             data: '=',
             currency: "=",
             users: "=",
             wallets: "=",
-            categories: "="
+            categories: "=",
         },
         link: function(scope) {},
         controller: transactionsDirective,
@@ -25,6 +26,10 @@ class transactionsDirective {
     }
 
     setupForm() {
+        if(this.current)
+            return;
+
+        console.log("config: ", this.current);
         this.transactionsTemp = {
             description: "", 
             value: 0, 
@@ -68,7 +73,8 @@ class transactionsDirective {
     }
 
     create(data) {
-        data.update = new Date().toJSON();
+        data.update = moment(data.update) != "Invalid date" ? moment(data.update).format() : new Date().toJSON();
+        console.log('data.update: ', data.update);
         if(this._validate(data)) {
            apiService.call("/data/transactions", "POST", data).then((res) => {
                 if(res) {
