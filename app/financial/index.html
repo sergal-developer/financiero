@@ -11,11 +11,50 @@
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> -->
 	
 </head>
-<body>
+<body >
 	<div class="financiero-app" ng-controller="financiero.mainController">
-		<div class="view-container" ng-view="">
-	
+		<div class="root-top-bar">
+			<div class="page-container">
+				<div class="logo-sys">Budexp</div>
+				<div class="root-top-bar-options">
+					<div class="root-top-bar-menu">
+						<div class="root-top-bar-menu-item">Soporte</div>
+						<div class="root-top-bar-menu-item">Comentarios</div>
+						<div class="root-top-bar-menu-item">Comparte</div>
+					</div>
+					<div class="root-top-bar-user">
+						<div class="avatar">.a</div> 
+						<div class="avatar-name">sergio gallegos</div>
+					</div>
+
+				</div>
+			</div>
 		</div>
+
+		<div class="page-container">
+				<div class="root-menu">
+					<div class="root-menu-group">
+						<div class="root-menu-tittle">dashboard</div>
+						<a href="home"><div class="root-menu-item active"><i class="fa fa-home"></i> resumen general</div></a>
+						<a href="budget-view"><div class="root-menu-item"> <i class="fa fa-area-chart"></i> vista presupuesto</div></a>
+					</div>
+					<div class="root-menu-group">
+						<div class="root-menu-tittle">gastos</div>
+						<div class="root-menu-item"> <i class="fa fa-plus-circle"></i> agregar gasto</div>
+						<div class="root-menu-item"> <i class="fa fa-plus-circle"></i> crear plan</div>
+					</div>
+					<div class="root-menu-group">
+						<div class="root-menu-tittle">Configuración</div>
+						<a href="category-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> categorias</div></a>
+						<a href="money-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> monedas</div></a>
+						<a href="users-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> usuarios</div></a>
+					</div>
+				</div>
+				<div class="root-view-container" ng-view="">
+					
+				</div>
+		</div>
+
 	</div>
 	<script src="/libs/traceur/traceur.js"></script>
 	<script>
@@ -31,6 +70,8 @@
 	<script src="/libs/angular-aria/angular-aria.js"></script>
 	<!-- <script src="/libs/angular-resource/angular-resource.js"></script> -->
 	<script src="/libs/angular-material/angular-material.js"></script>
+	<script src="/libs/chart.js/dist/Chart.js"></script>
+	<script src="/libs/angular-chart.js/dist/angular-chart.js"></script>
 
 	<script src="/libs/moment/moment.js"></script>
 	<script type="module" src="app.js"></script>

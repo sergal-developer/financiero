@@ -1,4 +1,4 @@
-<div class="general debug">
+<div class="general ">
         <div class="root-menu">
             <!-- <div class="root-menu-item" ng-click="vm.toogleRootMenu()">Return</div> -->
             <div class="root-menu-item root-item-logo" title="Home"> <i class="fa fa-eercast" aria-hidden="true"></i> </div>
@@ -37,17 +37,243 @@
                         <div class="panel-component-status--filter-item">Year</div>
                     </div>
                 </div>
-                <div class="panel-component-graph"></div>
-            </div>
-
-            <div class="history-component">
-                <div class="history-component-acctions">
-                    <button type="botton">Load more ...</button>
+                <div class="panel-component-graph">
+                    <canvas id="canvas"></canvas>
                 </div>
             </div>
 
+            <div class="panel-component panel-history">
+                <div class="panel-component-title">History</div>
+                <div class="panel-component-body">
+                   <div class="history-item"> Created transaction </div>
+                   <div class="history-item"> Deleted transaction </div>
+                   <div class="history-item"> Update transaction </div>
+                   <div class="history-item"> Plan Created</div>
+                </div>
+                <div class="panel-component-acctions">
+                        <button type="botton">Load more ...</button>
+                </div>
+            </div>
+            
+
             <div class="transactions-history-component">
-                .table transactions
+                
+                    <div class="table-responsive-vertical shadow-z-1">
+                        <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">
+                            <thead>
+                                <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Link</th>
+                                <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td data-title="ID">1</td>
+                                <td data-title="Name">Material Design Color Palette</td>
+                                <td data-title="Link">
+                                    <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
+                                </td>
+                                <td data-title="Status">Completed</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">2</td>
+                                <td data-title="Name">Material Design Iconic Font</td>
+                                <td data-title="Link">
+                                    <a href="https://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
+                                    <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
+                                </td>
+                                <td data-title="Status">Completed</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">3</td>
+                                <td data-title="Name">Material Design Hierarchical Display</td>
+                                <td data-title="Link">
+                                    <a href="https://codepen.io/zavoloklom/pen/eNaEBM" target="_blank">Codepen</a>
+                                    <a href="https://github.com/zavoloklom/material-design-hierarchical-display" target="_blank">GitHub</a>
+                                </td>
+                                <td data-title="Status">Completed</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">4</td>
+                                <td data-title="Name">Material Design Sidebar</td>
+                                <td data-title="Link"><a href="https://codepen.io/zavoloklom/pen/dIgco" target="_blank">Codepen</a></td>
+                                <td data-title="Status">Completed</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">5</td>
+                                <td data-title="Name">Material Design Tiles</td>
+                                <td data-title="Link">
+                                    <a href="https://codepen.io/zavoloklom/pen/wtApI" target="_blank">Codepen</a>
+                                </td>
+                                <td data-title="Status">Completed</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">6</td>
+                                <td data-title="Name">Material Design Typography</td>
+                                <td data-title="Link">
+                                    <a href="https://codepen.io/zavoloklom/pen/IkaFL" target="_blank">Codepen</a>
+                                    <a href="https://github.com/zavoloklom/material-design-typography" target="_blank">GitHub</a>
+                                </td>
+                                <td data-title="Status">Completed</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">7</td>
+                                <td data-title="Name">Material Design Buttons</td>
+                                <td data-title="Link">
+                                    <a href="https://codepen.io/zavoloklom/pen/Gubja" target="_blank">Codepen</a>
+                                </td>
+                                <td data-title="Status">In progress</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">8</td>
+                                <td data-title="Name">Material Design Form Elements</td>
+                                <td data-title="Link">
+                                    <a href="https://codepen.io/zavoloklom/pen/yaozl" target="_blank">Codepen</a>
+                                </td>
+                                <td data-title="Status">In progress</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">9</td>
+                                <td data-title="Name">Material Design Email Template</td>
+                                <td data-title="Link">
+                                    <a href="https://codepen.io/zavoloklom/pen/qEVqzx" target="_blank">Codepen</a>
+                                </td>
+                                <td data-title="Status">Completed</td>
+                                </tr>
+                                <tr>
+                                <td data-title="ID">10</td>
+                                <td data-title="Name">Material Design Animation Timing (old one)</td>
+                                <td data-title="Link">
+                                    <a href="https://codepen.io/zavoloklom/pen/Jbrho" target="_blank">Codepen</a>
+                                </td>
+                                <td data-title="Status">Completed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <md-content layout-padding ng-cloak>
+                            <div layout-gt-xs="row">
+                              <div flex-gt-xs>
+                                <h4>Standard date-picker</h4>
+                                <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date"></md-datepicker>
+                              </div>
+                          
+                              <div flex-gt-xs>
+                                <h4>Disabled date-picker</h4>
+                                <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date" disabled></md-datepicker>
+                              </div>
+                            </div>
+                          
+                            <div layout-gt-xs="row">
+                              <div flex-gt-xs>
+                                <h4>Opening the calendar when the input is focused</h4>
+                                <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                              </div>
+                          
+                              <div flex-gt-xs>
+                                <h4>Date-picker that goes straight to the year view</h4>
+                                <md-datepicker ng-model="vm.myDate" md-current-view="year" md-placeholder="Enter date"></md-datepicker>
+                              </div>
+                            </div>
+                          
+                            <div layout-gt-xs="row">
+                              <div flex-gt-xs>
+                                <h4>Custom calendar trigger</h4>
+                                <md-datepicker ng-model="vm.myDate" md-placeholder="Enter date" md-is-open="vm.isOpen"></md-datepicker>
+                                <md-button class="md-primary md-raised" ng-click="vm.isOpen = true">Open</md-button>
+                              </div>
+                            </div>
+                    </md-content>
+
+                    <div class="md-padding" ng-cloak layout="column">
+                            
+                        <p>
+                        The <code>&lt;md-select&gt;</code> component can be used within a
+                        <code>&lt;md-input-container&gt;</code> or as a stand alone component by using the
+                        <code>md-no-underline</code> class.
+                        </p>
+                    
+                        <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                            <span class="md-headline">Account Preferences</span>
+                            <span class="md-subhead">Tell us a little about you.</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    
+                        <md-card-content>
+                            <div layout="row">
+                            <md-input-container>
+                                <label>Street Name</label>
+                                <input>
+                            </md-input-container>
+                    
+                            <md-input-container>
+                                <label>City</label>
+                                <input>
+                            </md-input-container>
+                    
+                            <md-input-container>
+                                <label>State</label>
+                                <md-select ng-model="vm.userState">
+                                <md-option><em>None</em></md-option>
+                                <md-option ng-repeat="state in vm.states" ng-value="state.abbrev" ng-disabled="$index === 1">
+                                    {{state.abbrev}}
+                                </md-option>
+                                </md-select>
+                            </md-input-container>
+                            </div>
+                        </md-card-content>
+                        </md-card>
+                    
+                        <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                            <span class="md-headline">Battle Preferences</span>
+                            <span class="md-subhead">Choose wisely if you want to win.</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    
+                        <md-card-content>
+                            <div layout="row" layout-align="space-between center">
+                            <span>What is your favorite weapon?</span>
+                            <md-select ng-model="weapon" placeholder="Weapon" class="md-no-underline">
+                                <md-option value="axe">Axe</md-option>
+                                <md-option value="sword">Sword</md-option>
+                                <md-option value="wand">Wand</md-option>
+                                <md-option value="pen">Pen?</md-option>
+                            </md-select>
+                            </div>
+                    
+                            <div layout="row" layout-align="space-between center">
+                            <span>What armor do you wear?</span>
+                            <md-select ng-model="armor" placeholder="Armor" class="md-no-underline" required md-no-asterisk="false">
+                                <md-option value="cloth">Cloth</md-option>
+                                <md-option value="leather">Leather</md-option>
+                                <md-option value="chain">Chainmail</md-option>
+                                <md-option value="plate">Plate</md-option>
+                            </md-select>
+                            </div>
+                    
+                            <div layout="row" layout-align="space-between center">
+                            <span>How do you refresh your magic?</span>
+                            <md-select ng-model="drink" placeholder="Drink" class="md-no-underline">
+                                <md-option value="water">Water</md-option>
+                                <md-option value="juice">Juice</md-option>
+                                <md-option value="milk">Milk</md-option>
+                                <md-option value="wine">Wine</md-option>
+                                <md-option value="mead">Mead</md-option>
+                            </md-select>
+                            </div>
+                        </md-card-content>
+                        </md-card>
+                    
+                    </div>
             </div>
     
         </div>    

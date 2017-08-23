@@ -9,12 +9,22 @@
 @include font-face("Merriweather", "../fonts/Merriweather/Merriweather", 500, normal, ttf);
 @include font-face("PT_Sans", "../fonts/PT_Sans/PT_Sans", 500, normal, ttf);
 
+
+@include font-face("OpenSans", "../fonts/OpenSans/OpenSans-Regular", 500, normal, ttf);
+@include font-face("OpenSansSemi", "../fonts/OpenSans/OpenSans-SemiBold", 500, normal, ttf);
+@include font-face("OpenSansLight", "../fonts/OpenSans/OpenSans-Light", 500, normal, ttf);
+@include font-face("OpenSansBold", "../fonts/OpenSans/OpenSans-Bold", 500, normal, ttf);
+@include font-face("OpenSansBoldExtra", "../fonts/OpenSans/OpenSans-ExtraBold", 500, normal, ttf);
+@include font-face("OpenSansItalic", "../fonts/OpenSans/OpenSans-Italic", 500, normal, ttf);
+
+
 html, body  {
     // background: #e3e3e3;
     margin: 0;
     padding: 0;
-    font-family: 'PT_Sans', sans-serif;
+    font-family: 'OpenSans', sans-serif;
     font-size: 12px;
+    background: #EAF0F5;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -43,6 +53,119 @@ h1, h2, h3, h4, h5, h6 {
 	-moz-animation:scaleUp 0.5s both ease-in;
 	animation:scaleUp 0.5s both ease-in;    
 }
+
+
+// #root-top-bar   
+.root-top-bar {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 25px;
+    background: #fff;
+
+    -webkit-box-shadow: 0px 5px 30px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 5px 30px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 5px 30px 0px rgba(0,0,0,0.5);
+
+
+    .logo-sys {
+        float: left;
+        font-size: 24px;
+        font-family: 'OpenSansBold', sans-serif;
+        line-height: 60px;
+    }
+    .root-top-bar-options {
+        float: right;
+
+        .root-top-bar-menu {
+            font-size: 12px;
+            line-height: 60px;
+            float: left;
+
+            .root-top-bar-menu-item {
+                float: left;
+                padding: 0 10px;
+                &::before {
+                    content: '•';
+                    position: absolute;
+                    font-family: 'FontAwesome';
+                    margin-left: -15px;
+                    font-size: 22px;
+                    line-height: 60px;
+                }
+
+                &:first-child {
+                    &::before {
+                        content: '';
+                    }
+                }
+            }
+        }
+
+        .root-top-bar-user {
+            float: left;
+            padding: 10px;
+            margin-left: 30px;
+            .avatar-name, .avatar{
+                float: left;
+            }
+
+            .avatar-name {
+                font-size: 12.5px;
+                line-height: 40px;
+                padding: 0 0 0 10px;
+            }
+        }
+    }
+}
+
+.page-container {
+    width: 1200px; 
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.root-menu {
+    width: 200px;
+    float: left;
+    padding-top: 60px;
+    .root-menu-group {
+        margin-bottom: 40px;
+    }
+
+    .root-menu-tittle, .root-menu-item {
+        font-size: 13px;
+        color: #494949;
+        text-transform: uppercase;
+        font-family: 'OpenSansBold', sans-serif;
+        margin-bottom: 10px;
+    }
+
+    .root-menu-item {
+        font-family: 'OpenSans', sans-serif;
+        text-transform: capitalize;
+        padding: 5px 0;
+        margin-bottom: 0px;
+        &.active {
+            color: #05A7B2;
+            font-family: 'OpenSansBold', sans-serif;
+        }
+        &:hover {
+            color: #05A7B2;
+        }
+    }
+
+    a {
+        color: #494949;
+        text-decoration: none;
+    }
+}
+
+.root-view-container {
+    width: calc(100% - 200px);
+    float: left;
+    
+}
+
 
 /*
 .field {

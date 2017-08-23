@@ -1,7 +1,7 @@
 // imports
 import MainController from './views/main.controller';
 import GeneralController from './views/general/general.controller';
-import HomeController from './views/home/home.controller';
+import HomeController from './views/home-new/home.controller';
 
 var moduleName = "financiero.controllers";
 

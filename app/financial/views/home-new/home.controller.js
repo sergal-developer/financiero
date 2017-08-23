@@ -9,22 +9,23 @@ window.chartColors = {
 	orange: 'rgb(255, 159, 64)',
 	yellow: 'rgb(255, 205, 86)',
 	green: 'rgb(75, 192, 192)',
-	blue: 'rgb(54, 162, 235)',
+    blue: 'rgb(54, 162, 235)',
+    clearBlue: 'rgb(0, 203, 217)',
+    clearYellow: 'rgb(255, 187, 68)',
 	purple: 'rgb(153, 102, 255)',
 	grey: 'rgb(201, 203, 207)'
 };
 
 function chartSetup() {
 
-    var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
     var config = {
         type: 'bar', //'line',
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: MONTHS,
             datasets: [{
-                label: "Expenses",
-                backgroundColor: window.chartColors.blue,
-                borderColor: window.chartColors.blue,
+                backgroundColor: window.chartColors.clearBlue,
+                borderColor: window.chartColors.clearBlue,
                 data: [
                     randomScalingFactor(),
                     randomScalingFactor(),
@@ -41,9 +42,8 @@ function chartSetup() {
                 ],
                 fill: false,
             }, {
-                label: "Expenses",
-                backgroundColor: window.chartColors.green,
-                borderColor: window.chartColors.green,
+                backgroundColor: window.chartColors.clearYellow,
+                borderColor: window.chartColors.clearYellow,
                 data: [
                     randomScalingFactor(),
                     randomScalingFactor(),
@@ -60,10 +60,62 @@ function chartSetup() {
                 ],
                 fill: false,
             },{
-                type: 'line',
-                label: "Expenses Old",
-                backgroundColor: window.chartColors.yellow,
-                borderColor: window.chartColors.yellow,
+                backgroundColor: window.chartColors.clearBlue,
+                borderColor: window.chartColors.clearBlue,
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+                ],
+                fill: false,
+            }, {
+                backgroundColor: window.chartColors.clearYellow,
+                borderColor: window.chartColors.clearYellow,
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+                ],
+                fill: false,
+            },{
+                backgroundColor: window.chartColors.clearBlue,
+                borderColor: window.chartColors.clearBlue,
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+                ],
+                fill: false,
+            }, {
+                backgroundColor: window.chartColors.clearYellow,
+                borderColor: window.chartColors.clearYellow,
                 data: [
                     randomScalingFactor(),
                     randomScalingFactor(),
@@ -84,7 +136,7 @@ function chartSetup() {
         options: {
             responsive: true,
             title:{
-                display:true,
+                display:false,
                 text:'Expenses'
             },
             tooltips: {
@@ -97,19 +149,20 @@ function chartSetup() {
             },
             scales: {
                 xAxes: [{
-                    stacked: true,
+                    stacked: false,
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Month'
-                    }
+                        labelString: 'Mes',
+                    },
+                    // colorName: window.chartColors.grey
                 }],
                 yAxes: [{
-                    stacked: true,
+                    stacked: false,
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Value'
+                        labelString: 'Expenses'
                     }
                 }]
             }
