@@ -7,27 +7,37 @@ var moduleName = 'financieroApp';
 function config($routeprovider) {
 	$routeprovider
 		.when('/',  {
-			templateUrl:'views/home-new/home.html',
-			controller:'financiero.homeController',
+			templateUrl:'views/dashboard/dashboard.html',
+			controller:'financiero.DashboardController',
 			controllerAs:'vm'
 		})
-		.when('/home',  {
-			templateUrl:'views/home/home.html',
-			controller:'financiero.homeController',
-			controllerAs:'vm'
-		})
-		// .when('/login',  {
-		// 	templateUrl:'views/login/login.html',
-		// 	controller:'financiero.loginController',
+		// .when('/home',  {
+		// 	templateUrl:'views/dashboard/dashboard.html',
+		// 	controller:'financiero.DashboardController',
 		// 	controllerAs:'vm'
 		// })
-		// .when('/category',  {
-		// 	templateUrl:'views/category/category.html',
-		// 	controller:'financiero.categoryController',
+		// .when('/budget-view',  {
+		// 	templateUrl:'views/budget-view/budget-view.html',
+		// 	controller:'financiero.BudgetViewController',
+		// 	controllerAs:'vm'
+		// })
+		// .when('/category-admin',  {
+		// 	templateUrl:'views/category-admin/category-admin.html',
+		// 	controller:'financiero.CategoryAdminController',
+		// 	controllerAs:'vm'
+		// })
+		// .when('/money-admin',  {
+		// 	templateUrl:'views/money-admin/money-admin.html',
+		// 	controller:'financiero.MoneyAdminController',
+		// 	controllerAs:'vm'
+		// })
+		// .when('/users-admin',  {
+		// 	templateUrl:'views/users-admin/users-admin.html',
+		// 	controller:'financiero.UserAdminController',
 		// 	controllerAs:'vm'
 		// })
 		.otherwise({redirectTo:'/'});
-	//$locationProvider.html5Mode(true);
+	// $locationProvider.html5Mode(true);
 }
 
 config.$inject = ['$routeProvider'];
