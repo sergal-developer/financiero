@@ -1,33 +1,70 @@
-<div class="home-view ">
-    <div class="header">
+<div class="screen-view-overlapse debug"></div>
+<div class="screen-view">
+    <div class="screen-view-header">
+        <div class="screen-view-header--title">Agregar Gasto</div>
+        <div class="screen-view-header--close"> <div class="circle-button"><i class="fa fa-close"></i></div></div>
+    </div>
+
+    <div class="form">
+        <div class="field">
+            <div class="label">Cantidad de tu gasto?</div>
+            <div class="text-box">
+                <span>MXN</span>
+                <input type="text" placeholder="0.00" >
+            </div>
+        </div>
+        <div class="field">
+            <div class="label">Comentario adicional (opcional)</div>
+            <div class="text-box">
+                <input type="text" placeholder="escribe tu comentario ...">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="label">Categoria</div>
+            <div class="text-box">
+                <input type="text" placeholder="buscar ...">
+            </div>
+            <div class="tiles-list">
+
+            </div>
+        </div>
+
+        <div class="field">
+                
+            </div>
+    </div>
+</div>
+<div class="home-view">
+    <div class="header" ng-click="vm.updateDebug()">
         <div class="text">Resumen general</div>
         <div class="summary">
-            Balance <b>12,000.00 <span>MXN</span></b>
+            Balance <b>{{ vm.rootBalance }} <span>MXN</span></b>
         </div>
     </div>
 
     <div class="stats">
         <div class="stats-item">
             <div class="stats-item-icon">
-                <i class="fa fa-delicious"></i>
+                <i class="fa fa-archive"></i>
             </div>
             <div class="stats-item-content">
-                <div class="stats-item-content-title">30</div>
+                <div class="stats-item-content-title">{{ vm.transactionsFiltered.length }}</div>
                 <div class="stats-item-content-description">Transacciones Agregadas</div>
             </div>
         </div>
         <div class="stats-item">
             <div class="stats-item-icon">
-                <i class="fa fa-delicious"></i>
+                <i class="fa fa-credit-card"></i>
             </div>
             <div class="stats-item-content">
-                <div class="stats-item-content-title">$10k <span>MXN</span></div>
+                <div class="stats-item-content-title"> {{ vm.formatMoney(vm.rootBalance) }} <span>MXN</span></div>
                 <div class="stats-item-content-description">Gastos Registrados</div>
             </div>
         </div>
         <div class="stats-item">
             <div class="stats-item-icon">
-                <i class="fa fa-delicious"></i>
+                <i class="fa fa-envira"></i>
             </div>
             <div class="stats-item-content">
                 <div class="stats-item-content-title">$3k <span>MXN</span></div>
@@ -36,7 +73,7 @@
         </div>
         <div class="stats-item">
             <div class="stats-item-icon">
-                <i class="fa fa-delicious"></i>
+                <i class="fa fa-briefcase"></i>
             </div>
             <div class="stats-item-content">
                 <div class="stats-item-content-title">15</div>
@@ -45,7 +82,57 @@
         </div>
     </div>
 
+    <div class="sub-header">
+        <div class="text">Promedio de costos</div>
+        <div class="options">
+            <md-input-container>
+                <md-select ng-if="config.temporalityID" ng-model="config.temporalityID" aria-label="temporality" md-on-close="vm.updateTransactions()">
+                    <md-option value="{{ t.id }}" ng-repeat="t in vm.temporality">{{ t.name }}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        
+    </div>
     <div class="graph-component">
         <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="label-notification-bar">
+        <div class="text">14 resultados para la categoria Salario, valor 0 MXN to 35001MXN</div>
+        <div class="close-button"> <i class="fa fa-close"></i> </div>
+    </div>
+
+    <div class="expenses-list-component">
+        <table class="flat-table ">
+            <thead>
+                <tr>
+                    <th colspan="6" class="header-status">{{ vm.transactionsFiltered.length }} GASTOS REGISTRADOS 
+                        <span class="amount">{{ vm.rootBalance }} MXN</span></th>
+                </tr>
+                <tr>
+                    <th><md-checkbox ng-model="data.cb1" aria-label="select all"></md-checkbox> </th>
+                    <th>Fecha de pago</th>
+                    <th>Cantidad</th>
+                    <th>Status</th>
+                    <th>Categoria</th>
+                    <th>Comentario</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in vm.transactionsFilteredTable">
+                    <td><md-checkbox ng-model="t.selected" aria-label="select ID{{t.id}}"></md-checkbox></td>
+                    <td>{{ vm.dateFormat(t.update) }}</td>
+                    <td class="amount">{{ t.value.toFixed(2) }} MXN</td>
+                    <td class="status">
+                        <span ng-if="t.isbudget">Presupuesto ,</span>
+                        <span ng-if="t.ispaied">Pagado</span>
+                        <span ng-if="!t.ispaied">Pendiente</span>
+                    </td>
+                    <td>{{ t.idcategory }}</td>
+                    <td>{{ vm.cutCharacters(t.description) }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

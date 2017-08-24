@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Financiero</title>
+	<base href="/">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/libs/angular-material/angular-material.css"/>
 	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.css">
@@ -35,8 +36,8 @@
 				<div class="root-menu">
 					<div class="root-menu-group">
 						<div class="root-menu-tittle">dashboard</div>
-						<a href="/#/home"><div class="root-menu-item active"><i class="fa fa-home"></i> resumen general</div></a>
-						<a href="/#/budget-view"><div class="root-menu-item"> <i class="fa fa-area-chart"></i> vista presupuesto</div></a>
+						<a href="/home"><div class="root-menu-item active"><i class="fa fa-home"></i> resumen general</div></a>
+						<a href="/budget-view"><div class="root-menu-item"> <i class="fa fa-area-chart"></i> vista presupuesto</div></a>
 					</div>
 					<div class="root-menu-group">
 						<div class="root-menu-tittle">gastos</div>
@@ -45,9 +46,9 @@
 					</div>
 					<div class="root-menu-group">
 						<div class="root-menu-tittle">Configuración</div>
-						<a href="#/category-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> categorias</div></a>
-						<a href="#/money-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> monedas</div></a>
-						<a href="#/users-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> usuarios</div></a>
+						<a href="category-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> categorias</div></a>
+						<a href="money-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> monedas</div></a>
+						<a href="users-admin"><div class="root-menu-item"> <i class="fa fa-plus-circle"></i> usuarios</div></a>
 					</div>
 				</div>
 				<div class="root-view-container" ng-view="">

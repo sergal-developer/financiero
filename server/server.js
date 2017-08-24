@@ -18,10 +18,12 @@ function createApp(app) {
         res.header('Access-Control-Allow-Headers', config.server.apiConfig.cords.headers);
         next();
     });
+    
     app.use(config.server.appUrl, express.static(__dirname + '/../app/financial/'));
 	app.use(config.server.appLibs, express.static(__dirname + '/../bower_components/'));
 	app.use("/database", express.static(__dirname + '/database/'));
     app.use('/data', require('./database/api-routes.js'));
+    // app.use(config.server.appUrl + "*", express.static(__dirname + '/../app/financial/'));
 }
 
 module.exports = createApp(app);

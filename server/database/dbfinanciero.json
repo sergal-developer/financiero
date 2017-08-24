@@ -1,10 +1,888 @@
 {
-  "config": {},
-  "users": [],
-  "currency": [],
-  "wallets": [],
+  "users": [
+    {
+      "id": 1,
+      "username": "Root",
+      "password": "1234",
+      "givenname": "Sergio",
+      "middlename": "Antonio",
+      "familyname": "Gallegos",
+      "email": "saga@live.com.mx",
+      "gender": "M",
+      "birthdate": "13-06-1988"
+    }
+  ],
+  "currency": [
+    {
+      "id": 1,
+      "name": "Pesos",
+      "symbol": "MXN",
+      "prefix": "$"
+    },
+    {
+      "id": 2,
+      "name": "Dollars",
+      "symbol": "DLS",
+      "prefix": "$"
+    },
+    {
+      "id": 3,
+      "name": "fhfhtrhtr",
+      "symbol": "EUhtrhR",
+      "prefix": "rthtrh"
+    }
+  ],
+  "wallets": [
+    {
+      "id": 1,
+      "name": "Default",
+      "balance": 0,
+      "idcurrency": 1,
+      "iduser": 1
+    }
+  ],
   "temporality": [],
-  "categories": [],
-  "transactions": [],
-  "plans": []
+  "categories": [
+    {
+      "id": 1,
+      "name": "Vehiculo",
+      "icon": "Vehiculo",
+      "isentry": false
+    },
+    {
+      "id": 2,
+      "name": "Alimentos",
+      "icon": "Alimentos",
+      "isentry": false
+    },
+    {
+      "id": 3,
+      "name": "Familia y Personal",
+      "icon": "Familia y Personal",
+      "isentry": false
+    },
+    {
+      "id": 4,
+      "name": "Facturas",
+      "icon": "Facturas",
+      "isentry": false
+    },
+    {
+      "id": 5,
+      "name": "Entrenamiento",
+      "icon": "Entrenamiento",
+      "isentry": false
+    },
+    {
+      "id": 6,
+      "name": "Hogar",
+      "icon": "Hogar",
+      "isentry": false
+    },
+    {
+      "id": 7,
+      "name": "Servicios",
+      "icon": "Servicios",
+      "isentry": false
+    },
+    {
+      "id": 8,
+      "name": "Compras",
+      "icon": "Compras",
+      "isentry": false
+    },
+    {
+      "id": 9,
+      "name": "Salud",
+      "icon": "Salud",
+      "isentry": false
+    },
+    {
+      "id": 10,
+      "name": "Ropa",
+      "icon": "Ropa",
+      "isentry": false
+    },
+    {
+      "id": 11,
+      "name": "Transporte",
+      "icon": "Transporte",
+      "isentry": false
+    },
+    {
+      "id": 12,
+      "name": "Educacion",
+      "icon": "Educacion",
+      "isentry": false
+    },
+    {
+      "id": 13,
+      "name": "Salario",
+      "icon": "Salario",
+      "isentry": true
+    },
+    {
+      "id": 14,
+      "name": "Negocios",
+      "icon": "Negocios",
+      "isentry": true
+    },
+    {
+      "id": 15,
+      "name": "Regalos",
+      "icon": "Regalos",
+      "isentry": true
+    },
+    {
+      "id": 16,
+      "name": "Prestamo",
+      "icon": "Prestamo",
+      "isentry": true
+    },
+    {
+      "id": 17,
+      "name": "Ingreso Extra",
+      "icon": "Ingreso Extra",
+      "isentry": true
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 145,
+      "update": "2017-08-24T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 2,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 2545,
+      "update": "2017-08-24T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 3,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 231,
+      "update": "2017-08-24T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 4,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 41,
+      "update": "2017-08-24T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 5,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 154,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 6,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 178,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 7,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 8,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 154,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 9,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 21,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 10,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 454,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 11,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 200,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 12,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 645,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 13,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 8478,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 14,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 40,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 15,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 16,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 50,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 17,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 41,
+      "update": "2017-08-26T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 18,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-08-27T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 19,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 54,
+      "update": "2017-08-27T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 20,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 454,
+      "update": "2017-08-10T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 21,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 200,
+      "update": "2017-08-11T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 22,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 645,
+      "update": "2017-08-12T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 23,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 8478,
+      "update": "2017-08-13T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 24,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 40,
+      "update": "2017-08-14T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 25,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-08-15T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 26,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 50,
+      "update": "2017-08-16T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 27,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 41,
+      "update": "2017-08-17T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 28,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-08-18T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 29,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 54,
+      "update": "2017-08-19T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 30,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 145,
+      "update": "2017-08-08T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 31,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 145,
+      "update": "2017-08-01T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 32,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 2545,
+      "update": "2017-08-02T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 33,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 231,
+      "update": "2017-08-03T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 34,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 41,
+      "update": "2017-08-04T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 35,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 154,
+      "update": "2017-08-05T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 36,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 178,
+      "update": "2017-08-06T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 37,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-08-08T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 38,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 154,
+      "update": "2017-08-08T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 39,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 21,
+      "update": "2017-08-09T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 40,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 454,
+      "update": "2017-08-10T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 41,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 200,
+      "update": "2017-08-11T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 42,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 645,
+      "update": "2017-08-12T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 43,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 8478,
+      "update": "2017-08-13T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 44,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 40,
+      "update": "2017-08-14T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 45,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-08-15T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 46,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 50,
+      "update": "2017-08-16T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 47,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 41,
+      "update": "2017-08-17T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 48,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-08-18T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 49,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 54,
+      "update": "2017-08-19T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 50,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 454,
+      "update": "2017-09-10T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 51,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 200,
+      "update": "2017-09-11T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 52,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 645,
+      "update": "2017-09-12T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 53,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 8478,
+      "update": "2017-09-13T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 54,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 40,
+      "update": "2017-09-14T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 55,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-09-15T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 56,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 50,
+      "update": "2017-09-16T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 57,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 41,
+      "update": "2017-09-17T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 58,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 10,
+      "update": "2017-09-18T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    },
+    {
+      "id": 59,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque elit, euismod cursus turpis non, congue porttitor nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In tempus eu turpis vitae lacinia. ",
+      "value": 54,
+      "update": "2017-09-19T00:00:02.059Z",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 1,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": false
+    }
+  ],
+  "plans": [],
+  "config": {
+    "current": {
+      "currency": {
+        "id": 1,
+        "name": "Pesos",
+        "symbol": "MXN",
+        "prefix": "$"
+      },
+      "user": {
+        "id": 1,
+        "username": "Root",
+        "password": "1234",
+        "givenname": "Sergio",
+        "middlename": "Antonio",
+        "familyname": "Gallegos",
+        "email": "saga@live.com.mx",
+        "gender": "M",
+        "birthdate": "13-06-1988"
+      },
+      "wallet": {
+        "id": 1,
+        "name": "Default",
+        "balance": 0,
+        "idcurrency": 1,
+        "iduser": 1
+      }
+    }
+  }
 }

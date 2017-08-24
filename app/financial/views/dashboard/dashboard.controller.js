@@ -223,7 +223,106 @@ function chartSetup() {
 
 }
 
-class HomeController {
+function setupChart() {}
+
+function updateChart(data, temporality) {
+    if(!temporality) {
+        return;
+    }
+    window.chartExpenses = null;
+    var MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+    var MONTH = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20","21", "22", "23", "24", "25", "26", "27", "28", "29", "30"];
+    var WEEK = ["LUN", "MAR", "MIE", "JUE", 'VIE', 'SAB', 'DOM'];
+    var LABELS = temporality == 1 ? WEEK : 
+                    temporality == 2 ? MONTH : 
+                        temporality == 3 ? MONTHS : WEEK;
+
+    var config = {
+        type: 'bar', //'line',
+        data: {
+            labels: LABELS,
+            datasets: [{
+                backgroundColor: window.chartColors.clearBlue,
+                borderColor: window.chartColors.clearBlue,
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+                ],
+                fill: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            title:{
+                display:false,
+                text:'Expenses'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                display: false
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true,
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    stacked: false,
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Mes',
+                    },
+                    // colorName: window.chartColors.grey
+                }],
+                yAxes: [{
+                    stacked: false,
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Expenses'
+                    }
+                }]
+            }
+        }
+    };
+    // window.onload = function() {
+    var ctx = document.getElementById("canvas").getContext("2d");
+    
+    window.chartExpenses = new Chart(ctx, config);
+}
+
+class DashboardController {
     constructor($timeout, $scope, $rootScope) {
         this.scope = $scope;
         this.scope.config = null;
@@ -241,35 +340,14 @@ class HomeController {
             rootMenuStatus: false, 
             userMenuStatus: false  
         }
-        this.rootScope.currentTemporality = 1;
-
         this.temporality = [
-            { id: 1, name: "Monthly" },
-            { id: 2, name: "Weekly" },
-            { id: 3, name: "Annually" },
+            { id: 1, name: "Semana actual" },
+            { id: 2, name: "Mensual" },
+            { id: 3, name: "Anual" },
         ];
-
         this.transactionsFiltered = null;
 
         this.getData();
-
-        chartSetup();
-
-        this.myDate = new Date();
-        this.isOpen = false;
-        
-        this.userState = '';
-        this.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-            'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-            'WY').split(' ').map(function (state) { return { abbrev: state }; });
-
-        // this.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-        // this.series = ['Series A', 'Series B'];
-        
-        // this.data = [
-        //     [65, 59, 80, 81, 56, 55, 40],
-        //     [28, 48, 40, 19, 86, 27, 90]
-        // ];
     }
 
     // New functions
@@ -306,6 +384,14 @@ class HomeController {
                     this.scope.$apply();
                 }
             });
+            apiService.call("/data/config").then((data) => {
+                if(data) {
+                    this.scope.config = data;
+                    this.scope.config.temporalityID = 1;
+                    this.scope.$apply();
+                }
+            });
+
             apiService.call("/data/transactions").then((data) => {
                 if(data) {
                     this.scope.data.transactions = data;
@@ -313,40 +399,22 @@ class HomeController {
                     this.scope.$apply();
                 }
             });
-            apiService.call("/data/config").then((data) => {
-                if(data) {
-                    this.scope.config = data;
-                    // console.log('this.scope.config: ', this.scope.config);
-                    this.scope.config.temporality = { id: 1, name: "Monthly" };
-                    this.scope.$apply();
-                }
-            });
-        }
-
-        
-    }
-
-    toogleRootMenu() {
-        if(this.rootScope.menu.rootMenuStatus) {
-            this.rootScope.menu.rootMenuStatus = false;
-        } else{
-            this.rootScope.menu.rootMenuStatus = true;
+            
         }
     }
 
-    toogleUserMenu() {
-        if(this.rootScope.menu.userMenuStatus) {
-            this.rootScope.menu.userMenuStatus = false;
-        } else{
-            this.rootScope.menu.userMenuStatus = true;
-        }
+    updateDebug() {
+        console.log('this.scope.data: ', this.scope.data);
+        console.log('this.scope.config: ', this.scope.config);
+        console.log('this.transactionsFiltered: ', this.transactionsFiltered);
     }
 
     updateTransactions() {
         if(this.scope.data.transactions) {
             var min = new Date();
             var max = new Date();
-            var temporality = this.rootScope.currentTemporality;
+            
+            var temporality = this.scope.config.temporalityID;
             if(temporality) {        
                 var d = temporality == 1 ? 7 : 
                             temporality == 2 ? 30 : 
@@ -358,13 +426,51 @@ class HomeController {
             this.transactionsFiltered = this.scope.data.transactions.filter((item) => {
                 return new Date(item.update) <= max && new Date(item.update) >= min;
             });
+
+            this.transactionsFilteredTable = this.transactionsFiltered;
+
+            this.getBalance();
+
+            updateChart(this.transactionsFiltered, this.scope.config.temporalityID);
         } else {
             this.transactionsFiltered = null;
         }
-        // console.log('this.transactionsFiltered: ', this.transactionsFiltered);
+    }
+
+    getBalance() {
+        this.rootBalance = 0;
+        if(this.transactionsFiltered) {
+            for(var i in this.transactionsFiltered) {
+                this.rootBalance += this.transactionsFiltered[i].value;
+            }
+        }
+        this.rootBalance = this.rootBalance.toFixed(2);
+    }
+
+    dateFormat(value) {
+        var date = new Date(value);
+        var day = date.getDate();
+        var month = date.getMonth();
+        var year = date.getFullYear();
+      
+        return `${day}/${month}/${year}`;
+    }
+
+    cutCharacters(text) {
+        if(text && text.length >= 75) {
+            var x = text.substring(0, 75);
+            return x + "...";
+        }
+    }
+
+    formatMoney(value) {
+        if(value >= 1000) {
+            var result = (value / 1000).toFixed(1);
+            return result + "k";
+        }
     }
 }
 
-HomeController.$inject = ['$timeout', '$scope', '$rootScope'];
+DashboardController.$inject = ['$timeout', '$scope', '$rootScope'];
 
-export default HomeController;
+export default DashboardController;
