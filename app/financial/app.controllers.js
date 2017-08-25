@@ -15,7 +15,7 @@ import SettingsController from './views/settings/settings.controller';
 var moduleName = "financiero.controllers";
 
 angular.module(moduleName, [])
-    .controller("financiero.mainController", MainController)
+    .controller("financiero.MainController", MainController)
     .controller("financiero.BudgetViewController", BudgetViewController)
     .controller("financiero.CategoryAdminController", CategoryAdminController)
     .controller("financiero.DashboardController", DashboardController)

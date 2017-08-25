@@ -12,8 +12,8 @@
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> -->
 	
 </head>
-<body >
-	<div class="financiero-app" ng-controller="financiero.mainController">
+<body class="financiero-app">
+	<div ng-controller="financiero.MainController as vm">
 		<div class="root-top-bar">
 			<div class="page-container">
 				<div class="logo-sys">Budexp</div>
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 
-		<div class="page-container">
+		<div class="page-container" ng-class="{'lock': $root.Menu.lookPrincipal }">
 				<div class="root-menu">
 					<div class="root-menu-group">
 						<div class="root-menu-tittle">dashboard</div>
@@ -41,7 +41,7 @@
 					</div>
 					<div class="root-menu-group">
 						<div class="root-menu-tittle">gastos</div>
-						<div class="root-menu-item"> <i class="fa fa-plus-circle"></i> agregar gasto</div>
+						<div class="root-menu-item" ng-click="vm.openTransacionNew()"> <i class="fa fa-plus-circle"></i> agregar gasto</div>
 						<div class="root-menu-item"> <i class="fa fa-plus-circle"></i> crear plan</div>
 					</div>
 					<div class="root-menu-group">

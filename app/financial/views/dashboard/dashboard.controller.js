@@ -16,213 +16,6 @@ window.chartColors = {
 	grey: 'rgb(201, 203, 207)'
 };
 
-function chartSetup() {
-
-    var MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
-    var config = {
-        type: 'bar', //'line',
-        data: {
-            labels: MONTHS,
-            datasets: [{
-                backgroundColor: window.chartColors.clearBlue,
-                borderColor: window.chartColors.clearBlue,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ],
-                fill: false,
-            }, {
-                backgroundColor: window.chartColors.clearYellow,
-                borderColor: window.chartColors.clearYellow,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ],
-                fill: false,
-            },{
-                backgroundColor: window.chartColors.clearBlue,
-                borderColor: window.chartColors.clearBlue,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ],
-                fill: false,
-            }, {
-                backgroundColor: window.chartColors.clearYellow,
-                borderColor: window.chartColors.clearYellow,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ],
-                fill: false,
-            },{
-                backgroundColor: window.chartColors.clearBlue,
-                borderColor: window.chartColors.clearBlue,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ],
-                fill: false,
-            }, {
-                backgroundColor: window.chartColors.clearYellow,
-                borderColor: window.chartColors.clearYellow,
-                data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor()
-                ],
-                fill: false,
-            }]
-        },
-        options: {
-            responsive: true,
-            title:{
-                display:false,
-                text:'Expenses'
-            },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            },
-            scales: {
-                xAxes: [{
-                    stacked: false,
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Mes',
-                    },
-                    // colorName: window.chartColors.grey
-                }],
-                yAxes: [{
-                    stacked: false,
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Expenses'
-                    }
-                }]
-            }
-        }
-    };
-    // window.onload = function() {
-    var ctx = document.getElementById("canvas").getContext("2d");
-    
-    window.myLine = new Chart(ctx, config);
-    // };
-    
-    // document.getElementById('randomizeData').addEventListener('click', function() {
-    //     config.data.datasets.forEach(function(dataset) {
-    //         dataset.data = dataset.data.map(function() {
-    //             return randomScalingFactor();
-    //         });
-    //     });
-    //     window.myLine.update();
-    // });
-    // var colorNames = Object.keys(window.chartColors);
-    // document.getElementById('addDataset').addEventListener('click', function() {
-    //     var colorName = colorNames[config.data.datasets.length % colorNames.length];
-    //     var newColor = window.chartColors[colorName];
-    //     var newDataset = {
-    //         label: 'Dataset ' + config.data.datasets.length,
-    //         backgroundColor: newColor,
-    //         borderColor: newColor,
-    //         data: [],
-    //         fill: false
-    //     };
-    //     for (var index = 0; index < config.data.labels.length; ++index) {
-    //         newDataset.data.push(randomScalingFactor());
-    //     }
-    //     config.data.datasets.push(newDataset);
-    //     window.myLine.update();
-    // });
-    // document.getElementById('addData').addEventListener('click', function() {
-    //     if (config.data.datasets.length > 0) {
-    //         var month = MONTHS[config.data.labels.length % MONTHS.length];
-    //         config.data.labels.push(month);
-    //         config.data.datasets.forEach(function(dataset) {
-    //             dataset.data.push(randomScalingFactor());
-    //         });
-    //         window.myLine.update();
-    //     }
-    // });
-    // document.getElementById('removeDataset').addEventListener('click', function() {
-    //     config.data.datasets.splice(0, 1);
-    //     window.myLine.update();
-    // });
-    // document.getElementById('removeData').addEventListener('click', function() {
-    //     config.data.labels.splice(-1, 1); // remove the label first
-    //     config.data.datasets.forEach(function(dataset, datasetIndex) {
-    //         dataset.data.pop();
-    //     });
-    //     window.myLine.update();
-    // });
-
-}
-
 function setupChart() {}
 
 function updateChart(data, temporality) {
@@ -336,8 +129,8 @@ class DashboardController {
         };
 
         this.rootScope = $rootScope;
-        this.rootScope.menu = { 
-            rootMenuStatus: false, 
+        this.rootScope.Menu = { 
+            addTransactionScreen: false, 
             userMenuStatus: false  
         }
         this.temporality = [
@@ -346,7 +139,7 @@ class DashboardController {
             { id: 3, name: "Anual" },
         ];
         this.transactionsFiltered = null;
-
+        this.currentWalet = 1;
         this.getData();
     }
 
@@ -468,6 +261,11 @@ class DashboardController {
             var result = (value / 1000).toFixed(1);
             return result + "k";
         }
+    }
+
+    closeTransactionScreen() {
+        this.rootScope.Menu.addTransactionScreen = false;
+        this.rootScope.Menu.lookPrincipal = false;
     }
 }
 

@@ -1,49 +1,41 @@
 class MainController {
-    constructor($rootScope) {
-        this.$rootScope = $rootScope;
-        
+    constructor($timeout, $scope, $rootScope) {
+        this.rootScope = $rootScope;
+        this.scope = $scope;
+
+        this.scope.test = "test";
         //Global Variables
-        this.$rootScope.user = {};
-        this.$rootScope.searchCriteria = "";
-
-        this.$rootScope.user  = this.getCurrentUser();
-    }
-
-    getCurrentUser() {
-        let user = {
-            id: '_0012',
-            userName: "gabrant1988",
-            givenName: "Sergio",
-            middleName: "Antonio",
-            familyName: "Gallegos",
-            title: "Profesor",
-            email: "sergio.gallegos@live.com.mx",
-            password: "4Ntoni0",
-            gender: "M",
-            birthDate: "",
-            jobtitle: "Developer",
-            departament: "Web UI",
-            company: "Glo",
-            street: "12, 385",
-            city: "Ne",
-            zipCode: "54334",
-            coutry: "",
-            mobilePhone: "5516322613",
-            webPage: "http://www.sergiogallegos.com",
-            isAvailable: true,
-            avatar: {
-                isAvailable: true, 
-                urlImage: "./assets/avatars/user-21312.png"
-            }
+        this.rootScope.Menu = { 
+            lookPrincipal: false,
+            addTransactionScreen: false, 
+            userMenuStatus: false  
         }
 
-        this.$rootScope.user = user;
-        return user;
+        this.controllerTest = "test controller";    
+        
     }
 
+    openTransacionNew() {
+        // if(this.rootScope.Menu.addTransactionScreen) {
+        //     this.rootScope.Menu.addTransactionScreen = false;
+        //     this.rootScope.Menu.lookPrincipal = false;
+        // } else {
+            this.rootScope.Menu.addTransactionScreen = true;
+            this.rootScope.Menu.lookPrincipal = true;
+        // }
+    }
 
+    closeTransactionScreen() {
+        // if(this.rootScope.Menu.addTransactionScreen) {
+        //     this.rootScope.Menu.addTransactionScreen = false;
+        //     this.rootScope.Menu.lookPrincipal = false;
+        // } else {
+            this.rootScope.Menu.addTransactionScreen = false;
+            this.rootScope.Menu.lookPrincipal = false;
+        // }
+    }
 }
 
-MainController.$inject = ['$rootScope'];
+MainController.$inject = ['$timeout', '$scope', '$rootScope'];
 
 export default MainController;
