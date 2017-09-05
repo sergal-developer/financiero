@@ -19,7 +19,17 @@ function createApp(app) {
         next();
     });
     
+    
+    // app.use(config.server.appUrl,  require('./server-router.js'));
+    
     app.use(config.server.appUrl, express.static(__dirname + '/../app/financial/'));
+    app.use(config.server.appUrl + "home", express.static(__dirname + '/../app/financial/'));
+    app.use(config.server.appUrl + "budget-view", express.static(__dirname + '/../app/financial/'));
+    app.use(config.server.appUrl + "settings", express.static(__dirname + '/../app/financial/'));
+    app.use(config.server.appUrl + "admin", express.static(__dirname + '/../app/financial/'));
+    app.use(config.server.appUrl + "error", express.static(__dirname + '/../app/financial/'));
+    
+
 	app.use(config.server.appLibs, express.static(__dirname + '/../bower_components/'));
 	app.use("/database", express.static(__dirname + '/database/'));
     app.use('/data', require('./database/api-routes.js'));

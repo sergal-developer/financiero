@@ -15,24 +15,14 @@ function routesConfig($routeProvider, $locationProvider) {
 			controller:'financiero.BudgetViewController',
 			controllerAs:'vm'
 		})
-		.when('/category-admin',  {
-			templateUrl:'views/category-admin/category-admin.html',
-			controller:'financiero.CategoryAdminController',
-			controllerAs:'vm'
-		})
-		.when('/money-admin',  {
-			templateUrl:'views/money-admin/money-admin.html',
-			controller:'financiero.MoneyAdminController',
-			controllerAs:'vm'
-		})
-		.when('/users-admin',  {
-			templateUrl:'views/users-admin/users-admin.html',
-			controller:'financiero.UsersAdminController',
-			controllerAs:'vm'
-		})
 		.when('/settings',  {
 			templateUrl:'views/settings/settings.html',
 			controller:'financiero.SettingsController',
+			controllerAs:'vm'
+		})
+		.when('/admin',  {
+			templateUrl:'views/administrator-view/administrator-view.html',
+			controller:'financiero.AdministratorController',
 			controllerAs:'vm'
 		})
 		.when('/error',  {

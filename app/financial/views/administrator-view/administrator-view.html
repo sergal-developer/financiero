@@ -1,0 +1,201 @@
+<div class="admin-view view" ng-if="$root.data">
+    <div class="header">
+        <div class="text">Administración</div>
+    </div>
+
+    <div class="group-content">
+            <div class="sub-header">
+                <div class="text">Monedas</div>
+            </div>
+            
+            <div class="table-container">
+                <!-- <div class="label-notification-bar inactive">
+                    <div class="text">14 resultados para la categoria Salario, valor 0 MXN to 35001MXN</div>
+                    <div class="close-button"> <i class="fa fa-close"></i> </div>
+                </div> -->
+                <table class="flat-table">
+                    <thead>
+                        <tr>
+                            <th colspan="6" class="header-status"> 
+                                <div class="header-status--item">{{ $root.data.currency.length }} Registros encontrados </div>
+                                <div class="header-status--item actions">
+                                    <md-button class="md-raised">Predeterminar</md-button>
+                                </div>
+                                <div class="header-status--item options">
+                                    <md-button class="md-raised" ng-click="vm.deleteCurrencues()">Eliminar</md-button>
+                                    <md-switch ng-model="vm.currencyEdit" aria-label="Switch 1">
+                                        Edición <span ng-if="!vm.currencyEdit">Bloqueada</span> <span ng-if="vm.currencyEdit">Habilitada</span> 
+                                    </md-switch>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th><md-checkbox ng-model="data.cb1" aria-label="select all"></md-checkbox> </th>
+                            <th>Nombre</th>
+                            <th>Simbolo</th>
+                            <th>Prefijo</th>
+                            <th>Status</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="t in $root.data.currency" ng-if="$root.data.currency" ng-class="{ 'isDefault': t.isDefault }">
+                            <td>
+                                <md-checkbox ng-model="t.selected" 
+                                aria-label="select ID{{t.id}}" 
+                                ng-click="vm.toogleSelect(t.id, vm.currencySelected)"
+                                ></md-checkbox></td>
+                            <td> 
+                                <div ng-if="!vm.currencyEdit"> {{ t.name }}</div>
+                                <div class="textbox" ng-if="vm.currencyEdit">
+                                    <input type="text" placeholder="Nombre" ng-model="t.name">
+                                </div>
+                            </td>
+                            <td class="status"> 
+                                <div ng-if="!vm.currencyEdit"> {{ t.symbol }} </div>
+                                <div class="textbox" ng-if="vm.currencyEdit">
+                                    <input type="text" placeholder="Simbolo" ng-model="t.symbol">
+                                </div>
+                            </td>
+                            <td> 
+                                <div ng-if="!vm.currencyEdit"> {{ t.prefix }} </div>
+                                <div class="textbox" ng-if="vm.currencyEdit">
+                                    <input type="text" placeholder="Prefijo" ng-model="t.prefix">
+                                </div>
+                            </td>
+                            <td class="status"> <span ng-if="t.isDefault">Predeterminada</span> </td>
+                        </tr>
+
+                        <tr class="footer-item">
+                            <td class="status">
+                                Nuevo
+                            </td>
+                            <td> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Nombre" ng-model="vm.currencyTemp.name">
+                                </div>
+                            </td>
+                            <td class="status"> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Simbolo" ng-model="vm.currencyTemp.symbol">
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Prefijo" ng-model="vm.currencyTemp.prefix">
+                                </div>
+                            </td>
+                            <td>
+                                <md-button class="md-raised theme-fn button green" aria-label="Use Android" ng-click="vm.addCurrency()">
+                                    Guardar
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+    <div class="group-content">
+            <div class="sub-header">
+                <div class="text">Carteras</div>
+            </div>
+            
+            <div class="table-container">
+                <!-- <div class="label-notification-bar inactive">
+                    <div class="text">14 resultados para la categoria Salario, valor 0 MXN to 35001MXN</div>
+                    <div class="close-button"> <i class="fa fa-close"></i> </div>
+                </div> -->
+                <table class="flat-table">
+                    <thead>
+                        <tr>
+                            <th colspan="6" class="header-status">
+                                <div class="header-status--item">{{ $root.data.wallets.length }} Registros encontrados </div>
+                                <div class="header-status--item actions">
+                                    <md-button class="md-fab md-mini theme-fn button green" aria-label="Use Android">
+                                        <md-icon md-svg-src="/resources/svg/add.svg"></md-icon>
+                                    </md-button>
+                                </div>
+                                <div class="header-status--item options">
+                                    <md-button class="md-raised">Eliminar</md-button>
+                                    <md-button class="md-raised">Edición bloqueada</md-button>
+                                    <md-button class="md-raised">Predeterminar</md-button>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th><md-checkbox ng-model="data.cb1" aria-label="select all"></md-checkbox> </th>
+                            <th>Nombre</th>
+                            <th>Balance</th>
+                            <th>Moneda</th>
+                            <th>Usuario</th>
+                            <th>Status</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="t in $root.data.wallets" ng-class="{ 'isDefault': t.isDefault }">
+                            <td><md-checkbox ng-model="t.selected" aria-label="select ID{{t.id}}"></md-checkbox></td>
+                            <td> {{t.name }} </td>
+                            <td class="status"> {{t.balance }} </td>
+                            <td> {{t.idcurrency }} </td>
+                            <td> {{t.iduser }} </td>
+                            <td class="status"> <span ng-if="t.isDefault">Predeterminada</span> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+    <div class="group-content">
+            <div class="sub-header">
+                <div class="text">Categorias</div>
+            </div>
+            
+            <div class="table-container">
+                <!-- <div class="label-notification-bar inactive">
+                    <div class="text">14 resultados para la categoria Salario, valor 0 MXN to 35001MXN</div>
+                    <div class="close-button"> <i class="fa fa-close"></i> </div>
+                </div> -->
+                <table class="flat-table ">
+                    <thead>
+                        <tr>
+                            <th colspan="6" class="header-status">
+                                <div class="header-status--item">{{ $root.data.categories.length }} Registros encontrados </div>
+                                <div class="header-status--item actions">
+                                    <md-button class="md-fab md-mini theme-fn button green" aria-label="Use Android">
+                                        <md-icon md-svg-src="/resources/svg/add.svg"></md-icon>
+                                    </md-button>
+                                </div>
+                                <div class="header-status--item options">
+                                    <md-button class="md-raised">Eliminar</md-button>
+                                    <md-button class="md-raised">Edición bloqueada</md-button>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th><md-checkbox ng-model="data.cb1" aria-label="select all"></md-checkbox> </th>
+                            <th>Nombre</th>
+                            <th>Icono</th>
+                            <th>Tipo</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="t in $root.data.categories">
+                            <td><md-checkbox ng-model="t.selected" aria-label="select ID{{t.id}}"></md-checkbox></td>
+                            <td> {{ t.name }} </td>
+                            <td> <i class="fa fa-{{ t.icon }}"></i>  </td>
+                            <td class="status"> 
+                                <span ng-if="t.isentry" class="entry">Ingreso</span> 
+                                <span ng-if="!t.isentry" class="budget">Gasto</span> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    
+
+  
+</div>

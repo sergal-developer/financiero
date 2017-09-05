@@ -1,19 +1,6 @@
 .home-view  {
 
     .header {
-        width: 100%;
-        height: 45px;
-        margin-bottom: 20px;
-        overflow: hidden;
-        .text {
-            font-size: 24px;
-            line-height: 45px;
-            color: #4D5664;
-            float: left;
-            margin-right: 30px;
-            text-transform: capitalize;
-            // margin-left: 30px;
-        }
         .summary {
             line-height: 45px;
             float: left;
@@ -95,27 +82,6 @@
         margin: 0 10px 30px;
     }
 
-    .label-notification-bar {
-        background: #D5E2ED;
-        color: #4D5664;
-        height: 40px;
-        width: 100%;
-        font-size: 14px;
-        line-height: 40px;
-        .text {
-            float: left;
-            width: calc(100% - 40px);
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        .close-button {
-            float: right;
-            width: 40px;
-            text-align: center;
-            cursor: pointer;
-        }
-    }
-
     .expenses-list-component {
         margin: 20px 10px 30px;
     }
@@ -125,85 +91,19 @@
     }
 }
 
-.flat-table {
-    width: 100%;
-    margin-bottom: 20px;
-    border-collapse:collapse;
-    border: none;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    th, td {
-        box-shadow: inset 0 -1px rgba(0,0,0,0.25), 
-        inset 0 1px rgba(0,0,0,0.25);
-        height: 40px;
-        font-size: 13px;
-        padding: 0 15px;
-        text-align: center;
-        line-height: 30px;
-        box-sizing: border-box;
-        color: #4D5664;
-    }
-
-    th {
-        font-weight: normal;
-        -webkit-font-smoothing: antialiased;
-        color: rgba(0,0,0,0.45);
-        text-shadow: 0 0 1px rgba(0,0,0,0.1);
-        text-transform: uppercase;
-        font-size: 12px;
-        &.header-status {
-            height: 50px;
-            line-height: 50px;
-            font-size: 14px;
-            font-family: 'OpenSansSemi', sans-serif;
-            text-align: left;
-            .amount {
-                color: #B0B8C5;
-            }
-        }
-    }
-    td {
-        text-shadow: 0 0 1px rgba(255,255,255,0.1);
-        &.amount{
-            color: #E97B28;
-            font-family: 'OpenSansBold', sans-serif;
-            text-shadow: 0 0 1px rgba(77,86,100,0.1);
-        }
-        &.status{
-            font-family: 'OpenSansBold', sans-serif;
-            text-transform: capitalize;
-        }
-    }
-    tr {
-        -webkit-transition: background 0.3s, box-shadow 0.3s;
-        -moz-transition: background 0.3s, box-shadow 0.3s;
-        transition: background 0.3s, box-shadow 0.3s;
-    }
-    tbody {
-        tr:nth-child(odd) {
-            background: #eee;
-        }
-    }
-
-    md-checkbox {
-        margin: 5px 0px;
-    }
-}
-
 .screen-view {
     background: #979B9F;
     -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.5);
     box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.5);
 
-    position: fixed;
+    position: absolute;
     color: #4D5664;
     width: 320px;
     padding: 30px;
-    height: 100vh;
+    height: calc(100vh - 120px);
     top: 60px;
-    z-index: 100;
+    z-index: 50;
 
     // transition: all 400ms ease-out;
     
@@ -332,14 +232,46 @@
         .tiles-list {
             height: calc(80px * 3);
             margin-top: 20px;
+            overflow: auto;
+            width: 111%;
+            margin-left: -15px;
+
+            // margin-left: 30px;
+            // float: left;
+            // height: 300px;
+            // width: 65px;
+            // background: #F5F5F5;
+            overflow-y: scroll;
+            // margin-bottom: 25px;
+
+            &::-webkit-scrollbar-track
+            {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 8px;
+                background-color: #979B9F;
+            }
+            
+            &::-webkit-scrollbar
+            {
+                width: 10px;
+                background-color: #979B9F;
+            }
+            
+            &::-webkit-scrollbar-thumb
+            {
+                border-radius: 2px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                background-color: #4D5664;
+            }
+
             .tile-item {
-                width: 62px;
-                height: 62px;
+                width: 70px;
+                height: 70px;
                 background: inherit;
                 float: left;
                 color: #fff;
-                margin-left: 10px;
-                margin-bottom: 10px;
+                margin-left: 5px;
+                margin-bottom: 5px;
                 border: 1px solid #fff;
                 &:hover { background: #2C7D83; }
                 &.active { background: #05A7B2; }
@@ -352,9 +284,13 @@
                 }
                 .tile--label {
                     
-                    font-size: 12px;
+                    font-size: 11px;
                     width: 100%;
+                    max-width: 100%;
+                    height: 18px;
                     text-align: center;
+                    text-overflow: ellipsis;
+                    word-break: break-word;
                 }
             }
         }
@@ -369,6 +305,7 @@
     background: rgba(0,0,0,0.4);
     top: 60px;
     z-index: 90;
+    display: none;
 
     transition: all 100ms ease-in-out 150ms;
 
@@ -381,16 +318,16 @@
 
 .circle-button {}
 
-.button {
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    &.create {
-        width: 100px;
-        text-align: center;
-        margin: 0 auto;
-        background: #05A7B2;
-        text-transform: uppercase;
-        color: #fff;
-    }
-}
+// .button {
+//     padding: 10px 20px;
+//     font-size: 14px;
+//     cursor: pointer;
+//     &.create {
+//         width: 100px;
+//         text-align: center;
+//         margin: 0 auto;
+//         background: #05A7B2;
+//         text-transform: uppercase;
+//         color: #fff;
+//     }
+// }

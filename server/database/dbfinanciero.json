@@ -17,7 +17,8 @@
       "id": 1,
       "name": "Pesos",
       "symbol": "MXN",
-      "prefix": "$"
+      "prefix": "$",
+      "isdefault": true
     },
     {
       "id": 2,
@@ -26,10 +27,10 @@
       "prefix": "$"
     },
     {
-      "id": 3,
-      "name": "fhfhtrhtr",
-      "symbol": "EUhtrhR",
-      "prefix": "rthtrh"
+      "id": 5,
+      "name": "Bit Coin",
+      "symbol": "BC",
+      "prefix": "B"
     }
   ],
   "wallets": [
@@ -38,7 +39,8 @@
       "name": "Default",
       "balance": 0,
       "idcurrency": 1,
-      "iduser": 1
+      "iduser": 1,
+      "isDefault": true
     }
   ],
   "temporality": [],
@@ -46,103 +48,103 @@
     {
       "id": 1,
       "name": "Vehiculo",
-      "icon": "Vehiculo",
+      "icon": "car",
       "isentry": false
     },
     {
       "id": 2,
       "name": "Alimentos",
-      "icon": "Alimentos",
+      "icon": "shopping-basket",
       "isentry": false
     },
     {
       "id": 3,
       "name": "Familia y Personal",
-      "icon": "Familia y Personal",
+      "icon": "group",
       "isentry": false
     },
     {
       "id": 4,
       "name": "Facturas",
-      "icon": "Facturas",
+      "icon": "print",
       "isentry": false
     },
     {
       "id": 5,
       "name": "Entrenamiento",
-      "icon": "Entrenamiento",
+      "icon": "trophy",
       "isentry": false
     },
     {
       "id": 6,
       "name": "Hogar",
-      "icon": "Hogar",
+      "icon": "home",
       "isentry": false
     },
     {
       "id": 7,
       "name": "Servicios",
-      "icon": "Servicios",
+      "icon": "life-saver",
       "isentry": false
     },
     {
       "id": 8,
       "name": "Compras",
-      "icon": "Compras",
+      "icon": "shopping-cart",
       "isentry": false
     },
     {
       "id": 9,
       "name": "Salud",
-      "icon": "Salud",
+      "icon": "user-md",
       "isentry": false
     },
     {
       "id": 10,
       "name": "Ropa",
-      "icon": "Ropa",
+      "icon": "shopping-bag",
       "isentry": false
     },
     {
       "id": 11,
       "name": "Transporte",
-      "icon": "Transporte",
+      "icon": "bus",
       "isentry": false
     },
     {
       "id": 12,
       "name": "Educacion",
-      "icon": "Educacion",
+      "icon": "graduation-cap",
       "isentry": false
     },
     {
       "id": 13,
       "name": "Salario",
-      "icon": "Salario",
+      "icon": "money",
       "isentry": true
     },
     {
       "id": 14,
       "name": "Negocios",
-      "icon": "Negocios",
+      "icon": "briefcase",
       "isentry": true
     },
     {
       "id": 15,
       "name": "Regalos",
-      "icon": "Regalos",
+      "icon": "gift",
       "isentry": true
     },
     {
       "id": 16,
       "name": "Prestamo",
-      "icon": "Prestamo",
+      "icon": "institution",
       "isentry": true
     },
     {
       "id": 17,
       "name": "Ingreso Extra",
-      "icon": "Ingreso Extra",
+      "icon": "money",
       "isentry": true
     }
   ],

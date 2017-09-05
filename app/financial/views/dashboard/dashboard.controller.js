@@ -118,125 +118,47 @@ function updateChart(data, temporality) {
 class DashboardController {
     constructor($timeout, $scope, $rootScope) {
         this.scope = $scope;
-        this.scope.config = null;
-        this.scope.current = null;
-        this.scope.data = {
-            currency: null,
-            categories: null,
-            users: null,
-            wallets: null,
-            transactions: null
-        };
 
         this.rootScope = $rootScope;
-        this.rootScope.Menu = { 
-            addTransactionScreen: false, 
-            userMenuStatus: false  
-        }
+
         this.temporality = [
             { id: 1, name: "Semana actual" },
             { id: 2, name: "Mensual" },
             { id: 3, name: "Anual" },
         ];
-        this.transactionsFiltered = null;
-        this.currentWalet = 1;
-        this.getData();
-    }
 
-    // New functions
-    getData(source) {
-        if(source) {
-                apiService.call("/data/" + source).then((data) => {
-                if(data) {
-                    this.scope.data[source] = data;
-                    this.scope.$apply();
-                }
-            });
-        } else {
-            apiService.call("/data/currency").then((data) => {
-                if(data) {
-                    this.scope.data.currency = data;
-                    this.scope.$apply();
-                }
-            });
-            apiService.call("/data/categories").then((data) => {
-                if(data) {
-                    this.scope.data.categories = data;
-                    this.scope.$apply();
-                }
-            });
-            apiService.call("/data/users").then((data) => {
-                if(data) {
-                    this.scope.data.users = data;
-                    this.scope.$apply();
-                }
-            });
-            apiService.call("/data/wallets").then((data) => {
-                if(data) {
-                    this.scope.data.wallets = data;
-                    this.scope.$apply();
-                }
-            });
-            apiService.call("/data/config").then((data) => {
-                if(data) {
-                    this.scope.config = data;
-                    this.scope.config.temporalityID = 1;
-                    this.scope.$apply();
-                }
-            });
-
-            apiService.call("/data/transactions").then((data) => {
-                if(data) {
-                    this.scope.data.transactions = data;
-                    this.updateTransactions();
-                    this.scope.$apply();
-                }
-            });
-            
-        }
+        this.transactionsFilteredTable = this.rootScope.data.transactionsFiltered;
+        this.getBalance();
+        
     }
 
     updateDebug() {
-        console.log('this.scope.data: ', this.scope.data);
-        console.log('this.scope.config: ', this.scope.config);
-        console.log('this.transactionsFiltered: ', this.transactionsFiltered);
+        
+        console.log('this.rootScope: ', this.rootScope);
+        // console.log('this.scope.data: ', this.scope.data);
+        // console.log('this.scope.config: ', this.scope.config);
+        // console.log('this.transactionsFiltered: ', this.transactionsFiltered);
     }
 
     updateTransactions() {
-        if(this.scope.data.transactions) {
-            var min = new Date();
-            var max = new Date();
-            
-            var temporality = this.scope.config.temporalityID;
-            if(temporality) {        
-                var d = temporality == 1 ? 7 : 
-                            temporality == 2 ? 30 : 
-                                temporality == 3 ? 365 : 7;
-
-                min.setDate(max.getDate() - d);
-            }
-
-            this.transactionsFiltered = this.scope.data.transactions.filter((item) => {
-                return new Date(item.update) <= max && new Date(item.update) >= min;
-            });
-
-            this.transactionsFilteredTable = this.transactionsFiltered;
-
+        this.scope.$parent.vm.updateTransactions(() => {
+            this.transactionsFilteredTable = this.rootScope.data.transactionsFiltered;
             this.getBalance();
-
-            updateChart(this.transactionsFiltered, this.scope.config.temporalityID);
-        } else {
-            this.transactionsFiltered = null;
-        }
+            updateChart(this.rootScope.data.transactionsFiltered, this.rootScope.data.defaults.temporality);
+        });
     }
 
     getBalance() {
         this.rootBalance = 0;
-        if(this.transactionsFiltered) {
-            for(var i in this.transactionsFiltered) {
-                this.rootBalance += this.transactionsFiltered[i].value;
+        if(this.rootScope.data.transactionsFiltered) {
+            for(var i in this.rootScope.data.transactionsFiltered) {
+                this.rootBalance += this.rootScope.data.transactionsFiltered[i].value;
             }
         }
+        else {
+            this.rootBalance = 0.00;
+        }
+
         this.rootBalance = this.rootBalance.toFixed(2);
     }
 

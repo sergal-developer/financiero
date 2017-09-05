@@ -36,30 +36,10 @@
                             <input type="text" placeholder="buscar ...">
                         </div>
                         <div class="tiles-list">
-                            <div class="tile-item">
-                                <div class="tile--icon"><i class="fa fa-car"></i></div>
-                                <div class="tile--label">Transporte</div>
+                            <div class="tile-item" ng-repeat="c in data.categories">
+                                <div class="tile--icon"><i class="fa fa-{{ c.icon }}"></i></div>
+                                <div class="tile--label">{{ c.name }}</div>
                             </div>
-            
-                            <div class="tile-item">
-                                    <div class="tile--icon"><i class="fa fa-car"></i></div>
-                                    <div class="tile--label">Transporte</div>
-                                </div>
-            
-                                <div class="tile-item">
-                                        <div class="tile--icon"><i class="fa fa-car"></i></div>
-                                        <div class="tile--label">Transporte</div>
-                                    </div>
-            
-                                    <div class="tile-item">
-                                            <div class="tile--icon"><i class="fa fa-car"></i></div>
-                                            <div class="tile--label">Transporte</div>
-                                        </div>
-            
-                                        <div class="tile-item">
-                                                <div class="tile--icon"><i class="fa fa-car"></i></div>
-                                                <div class="tile--label">Transporte</div>
-                                            </div>
                         </div>
                     </div>
             
@@ -69,7 +49,7 @@
                 </div>
     </div>
 </div>
-<div class="home-view">
+<div class="home-view view" ng-if="$root.data">
     <div class="header" ng-click="vm.updateDebug()">
         <div class="text">Resumen general</div>
         <div class="summary">
@@ -83,7 +63,7 @@
                 <i class="fa fa-archive"></i>
             </div>
             <div class="stats-item-content">
-                <div class="stats-item-content-title">{{ vm.transactionsFiltered.length }}</div>
+                <div class="stats-item-content-title">{{ $root.data.transactionsFiltered.length }}</div>
                 <div class="stats-item-content-description">Transacciones Agregadas</div>
             </div>
         </div>
@@ -120,7 +100,7 @@
         <div class="text">Promedio de costos</div>
         <div class="options">
             <md-input-container>
-                <md-select ng-if="config.temporalityID" ng-model="config.temporalityID" aria-label="temporality" md-on-close="vm.updateTransactions()">
+                <md-select ng-if="$root.data.defaults" ng-model="$root.data.defaults.temporality" aria-label="temporality" md-on-close="vm.updateTransactions()">
                     <md-option value="{{ t.id }}" ng-repeat="t in vm.temporality">{{ t.name }}</md-option>
                 </md-select>
             </md-input-container>
@@ -140,7 +120,7 @@
         <table class="flat-table ">
             <thead>
                 <tr>
-                    <th colspan="6" class="header-status">{{ vm.transactionsFiltered.length }} GASTOS REGISTRADOS 
+                    <th colspan="6" class="header-status">{{ $root.data.transactionsFiltered.length }} GASTOS REGISTRADOS 
                         <span class="amount">{{ vm.rootBalance }} MXN</span></th>
                 </tr>
                 <tr>
