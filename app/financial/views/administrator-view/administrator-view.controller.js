@@ -36,14 +36,16 @@ class AdministratorViewController {
 
     deleteCurrencues() {
         console.log('this.currencySelected : ', this.currencySelected );
-        if(this.currencySelected.length) {
+        if(this.currencySelected.length == 1) {
             this.delete(this.currencySelected[0]);
             this.currencySelected = []
             console.log('this.currencySelected : ', this.currencySelected );
+        } else if(this.currencySelected.length > 1) {
+            this.deleteBatch(this.currencySelected);
         }
     }
 
-    _validate(id) {
+    _validate(object) {
         var valid = [];
         if(object) {
             for(var key in object) {
@@ -70,7 +72,7 @@ class AdministratorViewController {
         if(this._validate(data)) {
            apiService.call("/data/currency", "POST", data).then((res) => {
                 if(res) {
-                    // this.clean(data);
+                    this.clean(data);
                     this.updateSourceData();
                 }
             });
@@ -83,6 +85,18 @@ class AdministratorViewController {
     delete(id) {
         if(id) {
             var url = "/data/currency/" + id;
+            apiService.call(url, "DELETE").then((res) => {
+                if(res) {
+                    console.log('res: ', res);
+                    this.updateSourceData();
+                }
+            });
+        }
+    }
+
+    deleteBatch(array) {
+        if(id) {
+            var url = "/data/currency/" + array;
             console.log('url: ', url);
             apiService.call(url, "DELETE").then((res) => {
                 if(res) {
@@ -94,7 +108,7 @@ class AdministratorViewController {
     }
 
     updateSourceData() {
-        console.log('updating ');
+        this.rootScope.data.currency = [];
         this.scope.$parent.vm.getData('currency');
     }
 

@@ -22,6 +22,7 @@ var config = require('./controllers/config-controller')
     router.post('/currency', currency.add);
     router.put('/currency/:id', currency.update);
     router.delete('/currency/:id', currency.deleteById);
+    router.delete('/currency/batch/:array', currency.deleteBatch);
 //#endregion Router-Currency-Data
 
 //#region Router-categories-Data

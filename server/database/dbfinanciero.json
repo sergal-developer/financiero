@@ -9,7 +9,8 @@
       "familyname": "Gallegos",
       "email": "saga@live.com.mx",
       "gender": "M",
-      "birthdate": "13-06-1988"
+      "birthdate": "13-06-1988",
+      "lastdateaccess": "2017-09-6T00:00:02.059Z"
     }
   ],
   "currency": [
@@ -19,18 +20,6 @@
       "symbol": "MXN",
       "prefix": "$",
       "isdefault": true
-    },
-    {
-      "id": 2,
-      "name": "Dollars",
-      "symbol": "DLS",
-      "prefix": "$"
-    },
-    {
-      "id": 5,
-      "name": "Bit Coin",
-      "symbol": "BC",
-      "prefix": "B"
     }
   ],
   "wallets": [
@@ -40,10 +29,11 @@
       "balance": 0,
       "idcurrency": 1,
       "iduser": 1,
-      "isDefault": true
+      "isdefault": true,
+      "currency": "Pesos",
+      "username": "Root"
     }
   ],
-  "temporality": [],
   "categories": [
     {
       "id": 1,
@@ -159,7 +149,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 2,
@@ -171,7 +165,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 3,
@@ -183,7 +181,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 4,
@@ -195,7 +197,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 5,
@@ -207,7 +213,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 6,
@@ -219,7 +229,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 7,
@@ -231,7 +245,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 8,
@@ -243,7 +261,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 9,
@@ -255,7 +277,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 10,
@@ -267,7 +293,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 11,
@@ -279,7 +309,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 12,
@@ -291,7 +325,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 13,
@@ -303,7 +341,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 14,
@@ -315,7 +357,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 15,
@@ -327,7 +373,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 16,
@@ -339,7 +389,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 17,
@@ -351,7 +405,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 18,
@@ -363,7 +421,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 19,
@@ -375,7 +437,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 20,
@@ -387,7 +453,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 21,
@@ -399,7 +469,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 22,
@@ -411,7 +485,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 23,
@@ -423,7 +501,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 24,
@@ -435,7 +517,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 25,
@@ -447,7 +533,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 26,
@@ -459,7 +549,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 27,
@@ -471,7 +565,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 28,
@@ -483,7 +581,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 29,
@@ -495,7 +597,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 30,
@@ -507,7 +613,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 31,
@@ -519,7 +629,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 32,
@@ -531,7 +645,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 33,
@@ -543,7 +661,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 34,
@@ -555,7 +677,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 35,
@@ -567,7 +693,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 36,
@@ -579,7 +709,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 37,
@@ -591,7 +725,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 38,
@@ -603,7 +741,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 39,
@@ -615,7 +757,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 40,
@@ -627,7 +773,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 41,
@@ -639,7 +789,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 42,
@@ -651,7 +805,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 43,
@@ -663,7 +821,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 44,
@@ -675,7 +837,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 45,
@@ -687,7 +853,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 46,
@@ -699,7 +869,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 47,
@@ -711,7 +885,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 48,
@@ -723,7 +901,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 49,
@@ -735,7 +917,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 50,
@@ -747,7 +933,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 51,
@@ -759,7 +949,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 52,
@@ -771,7 +965,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 53,
@@ -783,7 +981,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 54,
@@ -795,7 +997,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 55,
@@ -807,7 +1013,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 56,
@@ -819,7 +1029,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 57,
@@ -831,7 +1045,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 58,
@@ -843,7 +1061,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     },
     {
       "id": 59,
@@ -855,7 +1077,11 @@
       "idcategory": 1,
       "idplan": null,
       "isbudget": false,
-      "ispaied": false
+      "ispaied": false,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Vehiculo",
+      "plan": ""
     }
   ],
   "plans": [],
@@ -886,5 +1112,6 @@
         "iduser": 1
       }
     }
-  }
+  },
+  "temporality": []
 }

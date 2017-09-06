@@ -1,13 +1,14 @@
 var user = {
-    "id": 1,
-    "username": "username", 
-	"password": "password", 
-	"givenname": "givenname", 
-	"middlename": "middlename", 
-	"familyname": "familyname", 
-	"email": "email@live.com.mx", 
-	"gender": "M", 
-	"birthdate" : "01-01-1988"
+    "id": 0,
+    "username": "",
+	"password": "",
+	"givenname": "",
+	"middlename": "",
+	"familyname": "",
+	"email": "",
+	"gender": "",
+	"birthdate" : "",
+	"lastdateaccess": "",
 }
 
 module.exports = user;

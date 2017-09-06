@@ -171,11 +171,104 @@ var Currency = {
             }
         })
     },
+    removeBatch: (arrayId) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                arrayId.forEach(function(element) {
+                    db.get(Currency.modelName)
+                    .remove({ id: element })
+                    .write();
+                }, this);
+
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+};
+
+var Wallets = {
+    modelName: 'wallets',
+    all: () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Wallets.modelName)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(Helper.List.Wallets(result));
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    allFilter: (filter) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Wallets.modelName)
+                    .find(filter)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(Helper.List.Wallets(result));
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    add: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // assing item into model
+                item = ParseToModel(item, models.wallet);
+                // validate if exist item
+                var valid = db.get(Wallets.modelName)
+                    .map('name')
+                    .filter({ name: item.name })
+                    .value();
+                // save object
+                if(valid.length == 0) {    
+                    // generate new identified
+                    item.id = identity(Wallets.modelName);
+                    var post = db.get(Wallets.modelName)
+                        .push(item)
+                        .write();
+
+                    resolve(post);
+                } else {
+                    resolve("[]");
+                }
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    update: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // save object
+                db.get(Wallets.modelName)
+                    .find({ id: item.id })
+                    .assign(item)
+                    .write();
+
+                resolve(item);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
     remove: (value) => {
         return new Promise(function (resolve, reject) {
             try {
                 // remove object
-                db.get(Currency.modelName)
+                db.get(Wallets.modelName)
                     .remove({ id: value })
                     .write();
                 resolve(true);
@@ -266,96 +359,6 @@ var Users = {
             try {
                 // remove object
                 db.get(Users.modelName)
-                    .remove({ id: value })
-                    .write();
-                resolve(true);
-            } catch (error) {
-                reject(error);
-            }
-        })
-    }
-};
-
-var Wallets = {
-    modelName: 'wallets',
-    all: () => {
-        return new Promise(function (resolve, reject) {
-            try {
-                var result = db.get(Wallets.modelName)
-                    .value();
-
-                if(typeof result == "undefined")
-                    result = [];
-
-                resolve(result);
-            } catch (error) {
-                reject(error);
-            }
-        })
-    },
-    allFilter: (filter) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                var result = db.get(Wallets.modelName)
-                    .find(filter)
-                    .value();
-
-                if(typeof result == "undefined")
-                    result = [];
-
-                resolve(result);
-            } catch (error) {
-                reject(error);
-            }
-        })
-    },
-    add: (item) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                // assing item into model
-                item = ParseToModel(item, models.wallet);
-                // validate if exist item
-                var valid = db.get(Wallets.modelName)
-                    .map('name')
-                    .filter({ name: item.name })
-                    .value();
-                // save object
-                if(valid.length == 0) {    
-                    // generate new identified
-                    item.id = identity(Wallets.modelName);
-                    var post = db.get(Wallets.modelName)
-                        .push(item)
-                        .write();
-
-                    resolve(post);
-                } else {
-                    resolve("[]");
-                }
-            } catch (error) {
-                reject(error);
-            }
-        });
-    },
-    update: (item) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                // save object
-                db.get(Wallets.modelName)
-                    .find({ id: item.id })
-                    .assign(item)
-                    .write();
-
-                resolve(item);
-            } catch (error) {
-                reject(error);
-            }
-        })
-    },
-    remove: (value) => {
-        return new Promise(function (resolve, reject) {
-            try {
-                // remove object
-                db.get(Wallets.modelName)
                     .remove({ id: value })
                     .write();
                 resolve(true);
@@ -467,7 +470,7 @@ var Transactions = {
                 if(typeof result == "undefined")
                     result = [];
 
-                resolve(result);
+                resolve(Helper.List.Transactions(result));
             } catch (error) {
                 reject(error);
             }
@@ -483,7 +486,7 @@ var Transactions = {
                 if(typeof result == "undefined")
                     result = [];
 
-                resolve(result);
+                resolve(Helper.List.Transactions(result));
             } catch (error) {
                 reject(error);
             }
@@ -536,6 +539,38 @@ var Transactions = {
     }
 };
 
+// functions
+var Helper = {
+    List: {
+        Wallets: (data) => {
+            return data.filter((item) => {
+                var currency = db.get(Currency.modelName).find({ id: item.idcurrency }).value();
+                var user = db.get(Users.modelName).find({ id: item.iduser }).value();
+                item.currency = currency ? currency.name : "";
+                item.username = user ? user.username : "";
+                return item;
+                //return new Date(item.update) <= max && new Date(item.update) >= min;
+            });
+        },
+        Transactions: (data) => {
+            return data.filter((item) => {
+                var currency = db.get(Currency.modelName).find({ id: item.idcurrency }).value();
+                var wallet = db.get(Wallets.modelName).find({ id: item.idwallet }).value();
+                var category = db.get(Categories.modelName).find({ id: item.idcategory }).value();
+                var plan = null;
+                // var plan = db.get(Users.modelName).find({ id: item.iduser }).value();
+
+                item.currency = currency ? currency.name : "";
+                item.wallet = wallet ? wallet.name : "";
+                item.category = category ? category.name : "";
+                item.plan = plan ? plan.name : "";
+                return item;
+                //return new Date(item.update) <= max && new Date(item.update) >= min;
+            });
+        }
+    }
+}
+
 module.exports = {
     startDataBase: startDataBase,
     //config
@@ -549,6 +584,7 @@ module.exports = {
     addCurrency: Currency.add,
     updateCurrency: Currency.update,
     deleteCurrency: Currency.remove,
+    deleteBatchCurrency: Currency.removeBatch,
     //Users
     getUsers: Users.all,
     getUsersFilter: Users.allFilter,

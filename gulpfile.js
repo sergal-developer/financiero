@@ -29,7 +29,6 @@ gulp.task('advanced-sass',() => {
         .pipe(gulp.dest(config.server.gulpbuildPath));
 });
 
-
 gulp.task('build',() => {
     runSequence('advanced-sass');
 });
@@ -48,6 +47,24 @@ gulp.task('browser-sync',() => {
     ];
     browserSync.init(null, {
         proxy: "http://localhost:" + config.server.aplicationStart,
+        files: files,
+        // browser: "Google Chrome",
+        browser: "chrome",
+        port: config.server.browserSyncPort,
+        open: true,
+    });
+});
+
+gulp.task('browser-sync-api',() => {
+    var files = [
+        'app/**/*.html',
+        'app/**/*.css',
+        'app/**/*.js',
+        '!app/**/*.spec.js',
+        'app/**/*.scss',
+    ];
+    browserSync.init(null, {
+        proxy: "http://localhost:" + config.server.aplicationStart + "/data",
         files: files,
         // browser: "Google Chrome",
         browser: "chrome",
@@ -75,6 +92,16 @@ gulp.task('develop',() => {
 gulp.task('develop-s',() => {
     runSequence('build', 'watchers-design');
     server.run(['server/server.js']);
+});
+
+gulp.task('api',() => {
+    runSequence('browser-sync-api');
+    // server.run(['server/server.js']);
+    nodemon({
+        script: 'server/server.js'
+        , ext: 'js html'
+        , env: { 'NODE_ENV': 'development' }
+    })
 });
 
 

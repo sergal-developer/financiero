@@ -2,7 +2,7 @@ var categories = {
     "id": 1,
     "name": "name",
     "icon": "icon",
-    "isentry": 1
+    "isentry": false
 }
 
 module.exports = categories;
