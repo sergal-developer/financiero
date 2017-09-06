@@ -171,6 +171,20 @@ var Currency = {
             }
         })
     },
+    remove: (id) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                db.get(Currency.modelName)
+                .remove({ id: id })
+                .write();
+            
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
     removeBatch: (arrayId) => {
         return new Promise(function (resolve, reject) {
             try {

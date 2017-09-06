@@ -36,10 +36,10 @@ class AdministratorViewController {
 
     deleteCurrencues() {
         console.log('this.currencySelected : ', this.currencySelected );
+
         if(this.currencySelected.length == 1) {
             this.delete(this.currencySelected[0]);
             this.currencySelected = []
-            console.log('this.currencySelected : ', this.currencySelected );
         } else if(this.currencySelected.length > 1) {
             this.deleteBatch(this.currencySelected);
         }
@@ -95,8 +95,9 @@ class AdministratorViewController {
     }
 
     deleteBatch(array) {
-        if(id) {
-            var url = "/data/currency/" + array;
+        if(array.length) {
+            var url = "/data/currency/" + encodeURI(JSON.stringify(array));
+            // url = encodeURI(url);
             console.log('url: ', url);
             apiService.call(url, "DELETE").then((res) => {
                 if(res) {

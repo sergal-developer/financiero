@@ -19,10 +19,10 @@
                             <th colspan="6" class="header-status"> 
                                 <div class="header-status--item">{{ $root.data.currency.length }} Registros encontrados </div>
                                 <div class="header-status--item actions">
-                                    <md-button class="md-raised">Predeterminar</md-button>
+                                    <md-button class="md-raised" ng-if="vm.currencySelected.length == 1" >Predeterminar</md-button>
                                 </div>
                                 <div class="header-status--item options">
-                                    <md-button class="md-raised" ng-click="vm.deleteCurrencues()">Eliminar</md-button>
+                                    <md-button class="md-raised" ng-click="vm.deleteCurrencues()" ng-if="vm.currencySelected.length >= 1">Eliminar <span ng-if="vm.currencySelected.length > 1">{{ vm.currencySelected.length }} Elementos</span></md-button>
                                     <md-switch ng-model="vm.currencyEdit" aria-label="Switch 1">
                                         Edición <span ng-if="!vm.currencyEdit">Bloqueada</span> <span ng-if="vm.currencyEdit">Habilitada</span> 
                                     </md-switch>
@@ -44,6 +44,7 @@
                                 <md-checkbox ng-model="t.selected" 
                                 aria-label="select ID{{t.id}}" 
                                 ng-click="vm.toogleSelect(t.id, vm.currencySelected)"
+                                ng-checked="vm.exists(t.id, vm.currencySelected)"
                                 ></md-checkbox></td>
                             <td> 
                                 <div ng-if="!vm.currencyEdit"> {{ t.name }}</div>
@@ -66,7 +67,7 @@
                             <td class="status"> <span ng-if="t.isDefault">Predeterminada</span> </td>
                         </tr>
 
-                        <tr class="footer-item">
+                        <tr class="footer-item" ng-if="!vm.currencyEdit">
                             <td class="status">
                                 Nuevo
                             </td>

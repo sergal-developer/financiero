@@ -20,6 +20,41 @@
       "symbol": "MXN",
       "prefix": "$",
       "isdefault": true
+    },
+    {
+      "id": 2,
+      "name": "Dollars",
+      "symbol": "DLS",
+      "prefix": "$",
+      "isdefault": null
+    },
+    {
+      "id": 3,
+      "name": "wefwefw",
+      "symbol": "efwefwe",
+      "prefix": "fwef",
+      "isdefault": null
+    },
+    {
+      "id": 4,
+      "name": "wefwef",
+      "symbol": "wefwe",
+      "prefix": "fwefwe",
+      "isdefault": null
+    },
+    {
+      "id": 5,
+      "name": "wefwef",
+      "symbol": "wefwef",
+      "prefix": "wefwef",
+      "isdefault": null
+    },
+    {
+      "id": 6,
+      "name": "wefwefwe",
+      "symbol": "wefwef",
+      "prefix": "wefwef",
+      "isdefault": null
     }
   ],
   "wallets": [
