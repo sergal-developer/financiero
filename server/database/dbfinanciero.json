@@ -27,34 +27,6 @@
       "symbol": "DLS",
       "prefix": "$",
       "isdefault": null
-    },
-    {
-      "id": 3,
-      "name": "wefwefw",
-      "symbol": "efwefwe",
-      "prefix": "fwef",
-      "isdefault": null
-    },
-    {
-      "id": 4,
-      "name": "wefwef",
-      "symbol": "wefwe",
-      "prefix": "fwefwe",
-      "isdefault": null
-    },
-    {
-      "id": 5,
-      "name": "wefwef",
-      "symbol": "wefwef",
-      "prefix": "wefwef",
-      "isdefault": null
-    },
-    {
-      "id": 6,
-      "name": "wefwefwe",
-      "symbol": "wefwef",
-      "prefix": "wefwef",
-      "isdefault": null
     }
   ],
   "wallets": [
@@ -83,24 +55,6 @@
       "isentry": false
     },
     {
-      "id": 3,
-      "name": "Familia y Personal",
-      "icon": "group",
-      "isentry": false
-    },
-    {
-      "id": 4,
-      "name": "Facturas",
-      "icon": "print",
-      "isentry": false
-    },
-    {
-      "id": 5,
-      "name": "Entrenamiento",
-      "icon": "trophy",
-      "isentry": false
-    },
-    {
       "id": 6,
       "name": "Hogar",
       "icon": "home",
@@ -125,12 +79,6 @@
       "isentry": false
     },
     {
-      "id": 10,
-      "name": "Ropa",
-      "icon": "shopping-bag",
-      "isentry": false
-    },
-    {
       "id": 11,
       "name": "Transporte",
       "icon": "bus",
@@ -152,24 +100,6 @@
       "id": 14,
       "name": "Negocios",
       "icon": "briefcase",
-      "isentry": true
-    },
-    {
-      "id": 15,
-      "name": "Regalos",
-      "icon": "gift",
-      "isentry": true
-    },
-    {
-      "id": 16,
-      "name": "Prestamo",
-      "icon": "institution",
-      "isentry": true
-    },
-    {
-      "id": 17,
-      "name": "Ingreso Extra",
-      "icon": "money",
       "isentry": true
     }
   ],

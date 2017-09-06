@@ -64,8 +64,6 @@ function deleteById(req, res) {
 function deleteBatch(req, res) {
     if(req.params.array) {
         var arr = JSON.parse(req.params.array);
-        console.log('arr: ', typeof arr);
-
         databaseCore.deleteBatchCurrency(arr).then((data) => {
             res.send(data);
         }, (error) => {
@@ -73,8 +71,6 @@ function deleteBatch(req, res) {
         });
     }
 }
-
-
 
 module.exports = {
     findAll: findAll,

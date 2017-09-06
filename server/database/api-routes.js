@@ -32,6 +32,8 @@ var config = require('./controllers/config-controller')
     router.post('/categories', categories.add);
     router.put('/categories/:id', categories.update);
     router.delete('/categories/:id', categories.deleteById);
+    router.delete('/categories/batch/:array', categories.deleteBatch);
+    // router.delete('/currency/batch/:array', currency.deleteBatch);
 //#endregion Router-categories-Data
 
 //#region Router-users-Data
@@ -50,6 +52,7 @@ var config = require('./controllers/config-controller')
     router.post('/wallets', wallet.add);
     router.put('/wallets/:id', wallet.update);
     router.delete('/wallets/:id', wallet.deleteById);
+    router.delete('/wallets/batch/:array', wallet.deleteBatch);
 //#endregion Router-Wallets-Data
 
 //#region Router-transactions-Data
@@ -59,6 +62,7 @@ var config = require('./controllers/config-controller')
     router.post('/transactions', transaction.add);
     router.put('/transactions/:id', transaction.update);
     router.delete('/transactions/:id', transaction.deleteById);
+    router.delete('/transactions/batch/:array', transaction.deleteBatch);
 //#endregion Router-Wallets-Data
 
 //#region Router-plans-Data

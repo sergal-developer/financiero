@@ -159,6 +159,7 @@ var Currency = {
     update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
+                item = ParseToModel(item, models.currency);
                 // save object
                 db.get(Currency.modelName)
                     .find({ id: item.id })
@@ -240,6 +241,9 @@ var Wallets = {
         return new Promise(function (resolve, reject) {
             try {
                 // assing item into model
+                item.idcurrency = Number(item.idcurrency);
+                item.iduser = Number(item.iduser);
+                item.balance = Number(item.balance);
                 item = ParseToModel(item, models.wallet);
                 // validate if exist item
                 var valid = db.get(Wallets.modelName)
@@ -266,6 +270,7 @@ var Wallets = {
     update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
+                item = ParseToModel(item, models.wallet);
                 // save object
                 db.get(Wallets.modelName)
                     .find({ id: item.id })
@@ -285,6 +290,22 @@ var Wallets = {
                 db.get(Wallets.modelName)
                     .remove({ id: value })
                     .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    removeBatch: (arrayId) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                arrayId.forEach(function(element) {
+                    db.get(Wallets.modelName)
+                    .remove({ id: element })
+                    .write();
+                }, this);
+
                 resolve(true);
             } catch (error) {
                 reject(error);
@@ -356,6 +377,7 @@ var Users = {
     update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
+                item = ParseToModel(item, models.user);
                 // save object
                 db.get(Users.modelName)
                     .find({ id: item.id })
@@ -446,6 +468,7 @@ var Categories = {
     update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
+                item = ParseToModel(item, models.categories);
                 // save object
                 db.get(Categories.modelName)
                     .find({ id: item.id })
@@ -465,6 +488,22 @@ var Categories = {
                 db.get(Categories.modelName)
                     .remove({ id: value })
                     .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    removeBatch: (arrayId) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                arrayId.forEach(function(element) {
+                    db.get(Categories.modelName)
+                    .remove({ id: element })
+                    .write();
+                }, this);
+
                 resolve(true);
             } catch (error) {
                 reject(error);
@@ -526,6 +565,7 @@ var Transactions = {
     update: (item) => {
         return new Promise(function (resolve, reject) {
             try {
+                item = ParseToModel(item, models.transaction);
                 // save object
                 db.get(Transactions.modelName)
                     .find({ id: item.id })
@@ -550,6 +590,22 @@ var Transactions = {
                 reject(error);
             }
         })
+    },
+    removeBatch: (arrayId) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                arrayId.forEach(function(element) {
+                    db.get(Transactions.modelName)
+                    .remove({ id: element })
+                    .write();
+                }, this);
+
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
     }
 };
 
@@ -563,7 +619,6 @@ var Helper = {
                 item.currency = currency ? currency.name : "";
                 item.username = user ? user.username : "";
                 return item;
-                //return new Date(item.update) <= max && new Date(item.update) >= min;
             });
         },
         Transactions: (data) => {
@@ -611,17 +666,20 @@ module.exports = {
     addWallets: Wallets.add,
     updateWallets: Wallets.update,
     deleteWallets: Wallets.remove,
+    deleteBatchWallets: Wallets.removeBatch,
     //Categories
     getCategories: Categories.all,
     getCategoriesFilter: Categories.allFilter,
     addCategories: Categories.add,
     updateCategories: Categories.update,
     deleteCategories: Categories.remove,
+    deleteBatchCategories: Categories.removeBatch,
     //Transactions
     getTransactions: Transactions.all,
     getTransactionsFilter: Transactions.allFilter,
     addTransactions: Transactions.add,
     updateTransactions: Transactions.update,
     deleteTransactions: Transactions.remove,
+    deleteBatchTransactions: Transactions.removeBatch,
 
 };

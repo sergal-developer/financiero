@@ -1,4 +1,9 @@
 .admin-view {
+
+    .group-content {
+        margin-bottom: 60px;
+    }
+
     .textbox {
         background: inherit;
         // background: blue;
@@ -12,6 +17,7 @@
             font-size: 13px;
             border: none;
             background: inherit;
+            border: 1px solid #AFB4B8;
             // background: white;
         }
     }

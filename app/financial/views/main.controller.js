@@ -1,4 +1,7 @@
 import apiService from '../../resources/services/api';
+import CurrencyServices from '../../resources/services/currency-service';
+import WalletServices from '../../resources/services/wallet-service';
+import CategoryServices from '../../resources/services/category-service';
 
 class MainController {
     constructor($timeout, $scope, $rootScope) {
@@ -68,30 +71,28 @@ class MainController {
                 }
             });
         } else {
-            apiService.call("/data/currency").then((data) => {
-                if(data) {
-                    this.rootScope.data.currency = data;
-                    this.rootScope.$apply();
-                }
+            CurrencyServices.getAll((data) => {
+                this.rootScope.data.currency = data;
+                this.rootScope.$apply();
             });
-            apiService.call("/data/categories").then((data) => {
-                if(data) {
-                    this.rootScope.data.categories = data;
-                    this.rootScope.$apply();
-                }
+
+            CategoryServices.getAll((data) => {
+                this.rootScope.data.categories = data;
+                this.rootScope.$apply();
             });
+
             apiService.call("/data/users").then((data) => {
                 if(data) {
                     this.rootScope.data.users = data;
                     this.rootScope.$apply();
                 }
             });
-            apiService.call("/data/wallets").then((data) => {
-                if(data) {
-                    this.rootScope.data.wallets = data;
-                    this.rootScope.$apply();
-                }
+
+            WalletServices.getAll((data) => {
+                this.rootScope.data.wallets = data;
+                this.rootScope.$apply();
             });
+            
             apiService.call("/data/config").then((data) => {
                 if(data) {
                     this.rootScope.data.config = data;
@@ -105,9 +106,6 @@ class MainController {
                     this.updateTransactions();
                     this.rootScope.$apply();
                     this.rootScope.Status.dataLoaded = true;
-                    console.log('this.rootScope: ', this.rootScope.data);
-
-
                 }
             });
             
