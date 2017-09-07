@@ -53,10 +53,13 @@
 			</div>
 
 			<!-- sub menus -->
-			<div class="screen-view-overlapse" ng-class="{'open': $root.Menu.addTransactionScreen, 'close': !$root.Menu.addTransactionScreen }" ng-if="$root.Menu.addTransactionScreen"></div>
-			<div class="screen-view close" ng-class="{'open': $root.Menu.addTransactionScreen, 'close': !$root.Menu.addTransactionScreen }" >
+			<div class="screen-view" ng-class="{'open': $root.Menu.addTransactionScreen }" >
+				<div class="screen-view-options">
+					<div class="screen-view-options-item" ng-click="vm.closeTransactionScreen()"> <i class="fa fa-close"></i> </div>
+					<div class="screen-view-options-item confirm-item">Save</div>
+				</div>
 				<div class="screen-view-content">
-						<div class="screen-view-header">
+					<div class="screen-view-header">
 								<div class="screen-view-header--title">Agregar Gasto</div>
 								<div class="screen-view-header--options">
 									<md-input-container>
@@ -65,7 +68,6 @@
 										</md-select>
 									</md-input-container>
 								</div>
-								<div class="screen-view-header--close" ng-click="vm.closeTransactionScreen()"> <div class="circle-button"><i class="fa fa-close"></i></div></div>
 							</div>
 						
 							<div class="form">
