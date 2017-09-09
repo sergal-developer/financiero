@@ -12,7 +12,7 @@ var express = require('express'),
    
 function reditect(req, res) {
     var source = path.join(__dirname, '../', '/app/financial/index.html');
-    
+    app.use(config.server.appUrl, express.static(__dirname + '/app/financial/'));
     fs.readFile(source, 'utf8', function(err, text){
         res.send(text);
     });
