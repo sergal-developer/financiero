@@ -1,7 +1,9 @@
 import apiService from '../../resources/services/api';
+import helper from '../../resources/services/helpers';
 import CurrencyServices from '../../resources/services/currency-service';
 import WalletServices from '../../resources/services/wallet-service';
 import CategoryServices from '../../resources/services/category-service';
+import TransactionServices from '../../resources/services/transaction-service';
 
 class MainController {
     constructor($timeout, $scope, $rootScope) {
@@ -30,8 +32,8 @@ class MainController {
             defaults: {
                 currency: 1,
                 categories: 1,
-                users: 0,
-                wallets: 0,
+                users: 1,
+                wallets: 1,
                 temporality: 1,
             }
         };
@@ -40,6 +42,22 @@ class MainController {
         this.rootScope.$on("updateTransactions", this.updateTransactions);
 
         this.getData();
+
+
+        // Separar estas funciones en nuevas directivas 
+        // $root.data.defaults.wallets
+        // $root.data.defaults.currency
+        this.transactionTemp = {
+            description: "",
+            value: "",
+            update: Date(),
+            idcurrency: this.rootScope.data.defaults.currency,
+            idwallet: this.rootScope.data.defaults.wallets,
+            idcategory: 0,
+            idplan: null,
+            isbudget: false,
+            ispaied: true,
+        }
     }
 
     openTransacionNew() {
@@ -60,6 +78,18 @@ class MainController {
             this.rootScope.Menu.addTransactionScreen = false;
             this.rootScope.Menu.lookPrincipal = false;
         // }
+
+        this.transactionTemp = {
+            description: "",
+            value: "",
+            update: Date(),
+            idcurrency: this.rootScope.data.defaults.currency,
+            idwallet: this.rootScope.data.defaults.wallets,
+            idcategory: 0,
+            idplan: null,
+            isbudget: false,
+            ispaied: true,
+        }
     }
 
     getData(source) {
@@ -100,14 +130,12 @@ class MainController {
                 }
             });
 
-            apiService.call("/data/transactions").then((data) => {
-                if(data) {
-                    this.rootScope.data.transactions = data;
-                    this.updateTransactions();
-                    this.rootScope.$apply();
-                    this.rootScope.Status.dataLoaded = true;
-                }
-            });
+            TransactionServices.getAll((data) => {
+                this.rootScope.data.transactions = data;
+                this.updateTransactions();
+                this.rootScope.$apply();
+                this.rootScope.Status.dataLoaded = true;
+            })
             
         }
     }
@@ -137,6 +165,35 @@ class MainController {
         } else {
             this.rootScope.data.transactionsFiltered = null;
         }
+    }
+
+    // separar un una directiva nueva
+    selectCategory(object, list) {
+        console.log('object: ', this.transactionTemp);
+        list.forEach(function(l) {
+            l.active = false;
+        }, this);
+        
+        this.transactionTemp.idcategory = object.id;
+        object.active = true; 
+        
+    }
+
+    createTransaction() {
+        TransactionServices.create(this.transactionTemp, (d) => {
+            this.updateTransactionSource();
+            // helper.cleanObject(this.transactionTemp);
+            this.closeTransactionScreen();
+        });
+    }
+
+    updateTransactionSource() {
+        this.isLoading = true;
+        TransactionServices.getAll((d) => {
+            this.rootScope.data.transactions = d;
+            this.isLoading = false; 
+            this.scope.$apply();
+        });
     }
 }
 

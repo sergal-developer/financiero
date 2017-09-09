@@ -12,7 +12,7 @@ class HelperService {
         var valid = [];
         if(object) {
             for(var key in object) {
-                if((object[key] != undefined || object[key] != null) && object[key] != "") {
+                if((object[key] != undefined || object[key] != null) || object[key] != "" || object[key] == false) {
                     valid.push(true);
                 }
                 else {
@@ -32,6 +32,30 @@ class HelperService {
         }
         return object;  
     }
+
+    dateFormat(value) {
+        var date = new Date(value);
+        var day = date.getDate();
+        var month = date.getMonth();
+        var year = date.getFullYear();      
+        return `${day}/${month}/${year}`;
+    }
+
+    cutCharacters(text) {
+        if(text && text.length >= 75) {    
+            var x = text.substring(0, 75);
+            return x + "...";
+        } 
+        return text;
+    }
+
+    formatMoney(value) {
+        if(value >= 1000) {
+            var result = (value / 1000).toFixed(1);
+            return result + "k";
+        }
+    }
+
 }
 
 export default new HelperService();

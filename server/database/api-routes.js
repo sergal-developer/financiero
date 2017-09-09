@@ -10,9 +10,12 @@ var config = require('./controllers/config-controller')
 
 //#region Router-config-Data
     router.get('/config', config.findAll);
+    router.get('/source', config.source);
     router.post('/config', config.add);
     router.put('/config/:id', config.update);
     router.delete('/config/:id', config.deleteById);
+    
+    
 //#endregion Router-config-Data
 
 //#region Router-Currency-Data

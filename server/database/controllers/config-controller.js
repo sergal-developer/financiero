@@ -9,6 +9,14 @@ function findAll(req, res) {
     });
 }
 
+function source(req, res) {
+    databaseCore.source().then((data) => {
+        res.send(data);
+    }, (error) => {
+        console.error('error: ', error);
+    });
+}
+
 function add(req, res) {
     if(req.body) {
         databaseCore.addConfig(req.body).then((data) => {
@@ -45,5 +53,6 @@ module.exports = {
     findAll: findAll,
     add: add,
     update: update,
-    deleteById: deleteById
+    deleteById: deleteById,
+    source: source
 }

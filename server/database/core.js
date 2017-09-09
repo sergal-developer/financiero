@@ -30,11 +30,20 @@ function ParseToModel(item, model) {
     var result = {};
     for(var key in model) {
         if(item[key] != undefined || item[key] != null)
-            result[key] = item[key];
+            result[key] = DetectTypeAndConvert(item[key], model[key]);
         else if(!(result[key] != undefined || result[key] != null))
             result[key] = null
     }
     return result;
+}
+
+function DetectTypeAndConvert(item, base) {
+    switch (typeof base) {
+        case "number":
+            return Number(item);
+        default:
+            return item;
+    }
 }
 
 var Config = {
@@ -92,7 +101,21 @@ var Config = {
             } catch (error) {
                 reject(error);
             }
-        })
+        });
+    },
+    source: () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.getState();
+
+                if(typeof result == "undefined")
+                    result = {};
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        });
     }
 };
 
@@ -632,6 +655,7 @@ var Helper = {
                 item.currency = currency ? currency.name : "";
                 item.wallet = wallet ? wallet.name : "";
                 item.category = category ? category.name : "";
+                item.isentry = category ? category.isentry : "";
                 item.plan = plan ? plan.name : "";
                 return item;
                 //return new Date(item.update) <= max && new Date(item.update) >= min;
@@ -647,6 +671,7 @@ module.exports = {
     addConfig: Config.add,
     updateConfig: Config.update,
     deleteConfig: Config.remove,
+    source: Config.source,
     //Currencies
     getCurrency: Currency.all,
     getCurrencyFilter: Currency.allFilter,
