@@ -75,9 +75,9 @@ gulp.task('browser-sync-api',() => {
 
 gulp.task('develop',() => {
     runSequence('build', 'watchers-design', 'browser-sync');
-    //server.run(['server/server.js']);
+    //server.run(['./server.js']);
     nodemon({
-        script: 'server/server.js'
+        script: './server.js'
         , ext: 'js html'
         , env: { 'NODE_ENV': 'development' }
     })
@@ -85,14 +85,14 @@ gulp.task('develop',() => {
 
 gulp.task('develop-s',() => {
     runSequence('build', 'watchers-design');
-    server.run(['server/server.js']);
+    server.run(['./server.js']);
 });
 
 gulp.task('api',() => {
     runSequence('browser-sync-api');
-    // server.run(['server/server.js']);
+    // server.run(['./server.js']);
     nodemon({
-        script: 'server/server.js'
+        script: './server.js'
         , env: { 'NODE_ENV': 'development' }
     })
 });
