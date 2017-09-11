@@ -21,6 +21,14 @@ class BudgetViewController {
             ispaied: false,
         }
         this.transactionSelected = [];
+
+        this.headersTransaction = [
+            { title: "Fecha", field: "update", type: "date" },
+            { title: "Cantidad", field: "value", type: "number" },
+            { title: "Status", field: "isentry", type: "boolean" },
+            { title: "Categoria", field: "category", type: "string" },
+            { title: "Comentario", field: "description", type: "string"}
+        ];
     }
 
     // # Transaction actions 

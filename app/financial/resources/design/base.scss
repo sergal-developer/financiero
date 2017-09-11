@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
             float: left;
             padding: 10px;
             margin-left: 30px;
-            .avatar-name, .avatar{
+            /*.avatar-name, .avatar{
                 float: left;
             }
 
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
                 font-size: 12.5px;
                 line-height: 40px;
                 padding: 0 0 0 10px;
-            }
+            }*/
         }
     }
 }
@@ -184,12 +184,12 @@ h1, h2, h3, h4, h5, h6 {
     -moz-transition: all 400ms;
     transition: all 400ms;
 
-    &.screen-view-active {
-        overflow: hidden;
-        position: absolute;
-        left: 475px;
-        opacity: 0.5;
-    }
+    // &.screen-view-active {
+    //     overflow: hidden;
+    //     position: absolute;
+    //     left: 475px;
+    //     opacity: 0.5;
+    // }
 }
 
 .view {
@@ -631,8 +631,7 @@ h1, h2, h3, h4, h5, h6 {
                 height: calc(80px * 3);
                 overflow: auto;
                 width: 100%;
-                overflow-y: scroll;
-                // margin-bottom: 25px;
+                overflow-y: auto;
     
                 &::-webkit-scrollbar-track {
                     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

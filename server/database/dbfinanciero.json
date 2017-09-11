@@ -10,7 +10,8 @@
       "email": "saga@live.com.mx",
       "gender": "M",
       "birthdate": "13-06-1988",
-      "lastdateaccess": "2017-09-6T00:00:02.059Z"
+      "lastdateaccess": "2017-09-6T00:00:02.059Z",
+      "avatarimage": "/resources/images/avatars/avatar1.png"
     }
   ],
   "currency": [
@@ -248,6 +249,40 @@
       "idcurrency": 1,
       "idwallet": 1,
       "idcategory": 2,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": true,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Alimentos",
+      "isentry": false,
+      "plan": ""
+    },
+    {
+      "id": 10,
+      "description": "comida",
+      "value": 1000,
+      "update": "Mon Sep 11 2017 11:27:29 GMT-0500 (Central Daylight Time (Mexico))",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 6,
+      "idplan": null,
+      "isbudget": false,
+      "ispaied": true,
+      "currency": "Pesos",
+      "wallet": "Default",
+      "category": "Hogar",
+      "isentry": false,
+      "plan": ""
+    },
+    {
+      "id": 11,
+      "description": "desayuno",
+      "value": 350,
+      "update": "Mon Sep 11 2017 11:28:06 GMT-0500 (Central Daylight Time (Mexico))",
+      "idcurrency": 1,
+      "idwallet": 1,
+      "idcategory": 0,
       "idplan": null,
       "isbudget": false,
       "ispaied": true

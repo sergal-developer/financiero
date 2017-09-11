@@ -11,7 +11,7 @@
 </head>
 <body class="financiero-app" ng-controller="financiero.MainController as vm" ng-class="{'popupactive-body': $root.Menu.lookPrincipal }">
 	<div  >
-		<div class="root-top-bar">
+		<div class="root-top-bar debug">
 			<div class="page-container">
 				<div class="logo-sys">Budexp</div>
 				<div class="root-top-bar-options">
@@ -21,8 +21,7 @@
 						<div class="root-top-bar-menu-item">Comparte</div>
 					</div>
 					<div class="root-top-bar-user">
-						<div class="avatar">.a</div> 
-						<div class="avatar-name">sergio gallegos</div>
+						<avatar user="$root.data.users[0]"></avatar>
 					</div>
 
 				</div>
