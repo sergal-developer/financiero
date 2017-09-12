@@ -14,8 +14,6 @@ var config = require('./controllers/config-controller')
     router.post('/config', config.add);
     router.put('/config/:id', config.update);
     router.delete('/config/:id', config.deleteById);
-    
-    
 //#endregion Router-config-Data
 
 //#region Router-Currency-Data
@@ -69,12 +67,12 @@ var config = require('./controllers/config-controller')
 //#endregion Router-Wallets-Data
 
 //#region Router-plans-Data
-    // router.get('/plans', plan.findAll);
-    // router.get('/plans/:name', plan.findAnyName);
-    // router.get('/plan/:id', plan.findById);
-    // router.post('/plan', plan.add);
-    // router.put('/plan/:id', plan.update);
-    // router.delete('/plan/:id', plan.deleteById);
+    router.get('/plans', plan.findAll);
+    router.get('/plans/:name', plan.findAnyName);
+    router.get('/plans/:id', plan.findById);
+    router.post('/plans', plan.add);
+    router.put('/plans/:id', plan.update);
+    router.delete('/plans/:id', plan.deleteById);
 //#endregion Router-Wallets-Data
 
 module.exports = router;

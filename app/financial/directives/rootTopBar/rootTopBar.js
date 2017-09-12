@@ -1,17 +1,19 @@
 export default () => {
     return {
         restrict: 'E',
-        templateUrl: 'directives/itemTransaction/itemTransaction.html', 
-        scope: {},
+        templateUrl: 'directives/rootTopBar/rootTopBar.html', 
+        scope: {
+            user: '='
+        },
         link: function(scope) {},
-        controller: itemTransactionDirective,
+        controller: headerBarDirective,
         controllerAs: 'vm',
         bindToController: true
     };
 }
 
-class itemTransactionDirective {
-    constructor($timeout) {
+class headerBarDirective {
+    constructor($timeout, $scope) {
         this.screenSize = "small";
     }
 
@@ -35,4 +37,4 @@ class itemTransactionDirective {
 
 }
 
-itemTransactionDirective.$inject = ['$timeout'];
+headerBarDirective.$inject = ['$timeout', '$scope'];

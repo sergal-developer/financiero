@@ -9,24 +9,9 @@
 	<link rel="stylesheet" href="resources/design/design.css"/>
 	
 </head>
-<body class="financiero-app" ng-controller="financiero.MainController as vm" ng-class="{'popupactive-body': $root.Menu.lookPrincipal }">
-	<div  >
-		<div class="root-top-bar debug">
-			<div class="page-container">
-				<div class="logo-sys">Budexp</div>
-				<div class="root-top-bar-options">
-					<div class="root-top-bar-menu">
-						<div class="root-top-bar-menu-item">Soporte</div>
-						<div class="root-top-bar-menu-item">Comentarios</div>
-						<div class="root-top-bar-menu-item">Comparte</div>
-					</div>
-					<div class="root-top-bar-user">
-						<avatar user="$root.data.users[0]"></avatar>
-					</div>
-
-				</div>
-			</div>
-		</div>
+<body class="financiero-app debug" ng-controller="financiero.MainController as vm" ng-class="{'popupactive-body': $root.Menu.lookPrincipal }">
+	<div >
+		<root-top-bar user="$root.data.users[0]"></root-top-bar>
 
 		<div class="page-container" ng-class="{'lock': $root.Menu.lookPrincipal }">
 			<!-- Menu -->
@@ -48,6 +33,9 @@
 				</div>
 			</div>
 
+			<!-- <screen-panel title="Transactions" subtitle="New Transaction">
+				Some contentrfgwerferfefer
+			</screen-panel> -->
 			<!-- sub menus -->
 			<div class="screen-view" ng-class="{'open': $root.Menu.addTransactionScreen }" >
 				<div class="screen-view-options">

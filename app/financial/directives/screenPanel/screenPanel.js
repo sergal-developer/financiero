@@ -1,17 +1,22 @@
 export default () => {
     return {
         restrict: 'E',
-        templateUrl: 'directives/itemTransaction/itemTransaction.html', 
-        scope: {},
+        templateUrl: 'directives/screenPanel/screenPanel.html', 
+        transclude: true,
+        scope: {
+            title: '@',
+            subtitle: '@'
+        },
         link: function(scope) {},
-        controller: itemTransactionDirective,
+        controller: PanelController,
         controllerAs: 'vm',
         bindToController: true
     };
 }
 
-class itemTransactionDirective {
+class PanelController {
     constructor($timeout) {
+        //this.getTypes();     
         this.screenSize = "small";
     }
 
@@ -35,4 +40,4 @@ class itemTransactionDirective {
 
 }
 
-itemTransactionDirective.$inject = ['$timeout'];
+PanelController.$inject = ['$timeout'];

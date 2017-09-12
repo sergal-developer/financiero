@@ -20,15 +20,32 @@ class BudgetViewController {
             isbudget: false,
             ispaied: false,
         }
+        console.log('this.rootScope.data: ', this.rootScope.data);
         this.transactionSelected = [];
+        this.updateListTransactions();
+    }
 
-        this.headersTransaction = [
-            { title: "Fecha", field: "update", type: "date" },
-            { title: "Cantidad", field: "value", type: "number" },
-            { title: "Status", field: "isentry", type: "boolean" },
-            { title: "Categoria", field: "category", type: "string" },
-            { title: "Comentario", field: "description", type: "string"}
-        ];
+    updateListTransactions(next) {
+        if(this.rootScope.data.transactions) {    
+            
+            var min = new Date();
+            var max = new Date();
+
+            var x = this.rootScope.data.transactions.filter((item) => {
+                item.update = new Date(item.update)
+                return item;
+                // return new Date(item.update) <= max && new Date(item.update) >= min;
+            });
+
+            console.log('x: ', x);
+
+            if(next) {
+                next();
+            }
+
+        } else {
+            // this.rootScope.data.transactionsFiltered = null;
+        }
     }
 
     // # Transaction actions 

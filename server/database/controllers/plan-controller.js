@@ -2,7 +2,7 @@ var databaseCore = require('../core');
 
 
 function findAll(req, res) {
-    databaseCore.getTransactions().then((data) => {
+    databaseCore.getPlans().then((data) => {
         res.send(data);
     }, (error) => {
         console.error('error: ', error);
@@ -12,7 +12,7 @@ function findAll(req, res) {
 function findById(req, res) {    
     if(req.params.id) {
         var id = Number(req.params.id);
-        databaseCore.getTransactionsFilter({ id: id }).then((data) => {
+        databaseCore.getPlansFilter({ id: id }).then((data) => {
             res.send(data);
         }, (error) => {
             console.error('error: ', error);
@@ -22,7 +22,7 @@ function findById(req, res) {
 
 function findAnyName(req, res) {    
     if(req.params.name) {
-        databaseCore.getTransactionsFilter({ name: req.params.name }).then((data) => {
+        databaseCore.getPlansFilter({ name: req.params.name }).then((data) => {
             res.send(data);
         }, (error) => {
             console.error('error: ', error);
@@ -32,7 +32,7 @@ function findAnyName(req, res) {
 
 function add(req, res) {
     if(req.body) {
-        databaseCore.addTransactions(req.body).then((data) => {
+        databaseCore.addPlans(req.body).then((data) => {
             res.send(data);
         }, (error) => {
             console.error('error: ', error);
@@ -43,7 +43,7 @@ function add(req, res) {
 function update(req, res) {
     if(req.params.id && req.body) {
         req.body.id = Number(req.params.id);
-        databaseCore.updateTransactions(req.body).then((data) => {
+        databaseCore.updatePlans(req.body).then((data) => {
             res.send(data);
         }, (error) => {
             console.error('error: ', error);
@@ -54,7 +54,7 @@ function update(req, res) {
 function deleteById(req, res) {
     if(req.params.id) {
         var id = Number(req.params.id);
-        databaseCore.deleteTransactions(id).then((data) => {
+        databaseCore.deletePlans(id).then((data) => {
             res.send(data);
         }, (error) => {
             console.error('error: ', error);

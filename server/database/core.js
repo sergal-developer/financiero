@@ -632,6 +632,103 @@ var Transactions = {
     }
 };
 
+var Plans = {
+    modelName: 'plans',
+    all: () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Plans.modelName)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    allFilter: (filter) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                var result = db.get(Plans.modelName)
+                    .find(filter)
+                    .value();
+
+                if(typeof result == "undefined")
+                    result = [];
+
+                resolve(result);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    add: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // assing item into model
+                item = ParseToModel(item, models.plan);
+                // generate new identified
+                item.id = identity(Plans.modelName);
+                var post = db.get(Plans.modelName)
+                    .push(item)
+                    .write();
+
+                resolve(post);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    update: (item) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                item = ParseToModel(item, models.plan);
+                // save object
+                db.get(Plans.modelName)
+                    .find({ id: item.id })
+                    .assign(item)
+                    .write();
+
+                resolve(item);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    remove: (value) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                db.get(Plans.modelName)
+                    .remove({ id: value })
+                    .write();
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    removeBatch: (arrayId) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // remove object
+                arrayId.forEach(function(element) {
+                    db.get(Plans.modelName)
+                    .remove({ id: element })
+                    .write();
+                }, this);
+
+                resolve(true);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+};
+
 // functions
 var Helper = {
     List: {
@@ -706,5 +803,12 @@ module.exports = {
     updateTransactions: Transactions.update,
     deleteTransactions: Transactions.remove,
     deleteBatchTransactions: Transactions.removeBatch,
+    //Plans
+    getPlans: Plans.all,
+    getPlansFilter: Plans.allFilter,
+    addPlans: Plans.add,
+    updatePlans: Plans.update,
+    deletePlans: Plans.remove,
+    deleteBatchPlans: Plans.removeBatch,
 
 };

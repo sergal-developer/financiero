@@ -5,9 +5,10 @@
 // import categoriesPage from './directives/categories/categories';
 // import transactionsPage from './directives/transactions/transactions';
 // import usersPage from './directives/users/users';
-
+import rootTopBarDirective from './directives/rootTopBar/rootTopBar';
 import avatarDirective from './directives/avatar/avatar';
 import gridTableDirective from './directives/gridtable/gridtable';
+import screenPanelDirective from './directives/screenPanel/screenPanel';
 
 // # COMPONENTS
 // import balanceChartDirective from './directives/balanceChart/balanceChart';
@@ -19,8 +20,11 @@ import gridTableDirective from './directives/gridtable/gridtable';
 var moduleName = "financiero.directives";
 
 angular.module(moduleName, [])
+    
+    .directive('rootTopBar', rootTopBarDirective)    
     .directive('avatar', avatarDirective)
-    .directive('gridTable', gridTableDirective);
+    .directive('gridTable', gridTableDirective)
+    .directive('screenPanel', screenPanelDirective);
 
     // .directive('currencyPage', currencyPage)
     // .directive('usersPage', usersPage)
