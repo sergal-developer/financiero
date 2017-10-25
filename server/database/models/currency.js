@@ -2,7 +2,8 @@ var currency = {
     "id": 1,
     "name": "",
     "symbol": "",
-    "prefix": ""
+    "prefix": "",
+    "isdefault": false
 }
 
 module.exports = currency;

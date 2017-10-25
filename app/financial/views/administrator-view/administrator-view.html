@@ -1,0 +1,315 @@
+<div class="admin-view view" ng-if="$root.data">
+    <div class="header">
+        <div class="text">Administración</div>
+    </div>
+
+    <div class="group-content">
+        <div class="sub-header">
+            <div class="text">Monedas</div>
+        </div>
+        
+        <div class="table-container">
+            <table class="flat-table" ng-class="{ 'updating': vm.isLoading }">
+                <thead>
+                    <tr>
+                        <th colspan="10" class="header-status"> 
+                            <div class="header-status--item">{{ $root.data.currency.length }} Registros encontrados </div>
+                            <div class="header-status--item actions">
+                                <md-button class="md-raised" ng-if="vm.currencySelected.length == 1" ng-click="vm.defaultCurrency()">Predeterminar</md-button>
+                            </div>
+                            <div class="header-status--item options">
+                                <md-button class="md-raised" ng-click="vm.removeCurrency()" ng-if="vm.currencySelected.length >= 1">Eliminar <span ng-if="vm.currencySelected.length > 1">{{ vm.currencySelected.length }} Elementos</span></md-button>
+                                <md-switch ng-model="vm.currencyEdit" aria-label="Switch 1" ng-if="vm.currencyEdit">
+                                    Edición <span ng-if="!vm.currencyEdit">Bloqueada</span> <span ng-if="vm.currencyEdit">Habilitada</span> 
+                                </md-switch>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="notification">
+                        <th colspan="10">   
+                            Elemento Creado
+                        </th>  
+                    </tr>
+                    <tr class="footer-item" ng-if="!vm.currencyEdit">
+                            <th class="status">
+                                Nuevo
+                            </th>
+                            <th> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Nombre" ng-model="vm.currencyTemp.name">
+                                </div>
+                            </th>
+                            <th class="status"> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Simbolo" ng-model="vm.currencyTemp.symbol">
+                                </div>
+                            </th>
+                            <th> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Prefijo" ng-model="vm.currencyTemp.prefix">
+                                </div>
+                            </th>
+                            <th>
+                                <md-button class="md-raised theme-fn button green" aria-label="Use Android" ng-click="vm.createCurrency()">
+                                    Guardar
+                                </md-button>
+                            </th>
+                        </tr>
+                    <tr>
+                        <th><md-checkbox ng-model="data.cb1" aria-label="select all"></md-checkbox> </th>
+                        <th>Nombre</th>
+                        <th>Simbolo</th>
+                        <th>Prefijo</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="t in $root.data.currency" ng-if="$root.data.currency" ng-class="{ 'isDefault': t.isdefault }">
+                        <td>
+                            <md-checkbox ng-model="t.selected" 
+                            aria-label="select ID{{t.id}}" 
+                            ng-click="vm.toogleSelect(t.id, vm.currencySelected)"
+                            ng-checked="vm.exists(t.id, vm.currencySelected)"
+                            ></md-checkbox></td>
+                        <td> 
+                            <div ng-if="!vm.currencyEdit"> {{ t.name }}</div>
+                            <div class="textbox" ng-if="vm.currencyEdit">
+                                <input type="text" placeholder="Nombre" ng-model="t.name">
+                            </div>
+                        </td>
+                        <td class="status"> 
+                            <div ng-if="!vm.currencyEdit"> {{ t.symbol }} </div>
+                            <div class="textbox" ng-if="vm.currencyEdit">
+                                <input type="text" placeholder="Simbolo" ng-model="t.symbol">
+                            </div>
+                        </td>
+                        <td> 
+                            <div ng-if="!vm.currencyEdit"> {{ t.prefix }} </div>
+                            <div class="textbox" ng-if="vm.currencyEdit">
+                                <input type="text" placeholder="Prefijo" ng-model="t.prefix">
+                            </div>
+                        </td>
+                        <td class="status"> <span ng-if="t.isdefault">Predeterminada</span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="group-content">
+        <div class="sub-header">
+            <div class="text">Carteras</div>
+        </div>
+        
+        <div class="table-container">
+            <table class="flat-table" ng-class="{ 'updating': vm.isLoading }">
+                <thead>
+                    <tr>
+                        <th colspan="10" class="header-status"> 
+                            <div class="header-status--item">{{ $root.data.wallets.length }} Registros encontrados </div>
+                            <div class="header-status--item actions">
+                                <md-button class="md-raised" ng-if="vm.walletSelected.length == 1" ng-click="vm.defaultWallet()">Predeterminar</md-button>
+                            </div>
+                            <div class="header-status--item options">
+                                <md-button class="md-raised" ng-click="vm.removeWallet()" ng-if="vm.walletSelected.length >= 1">Eliminar <span ng-if="vm.walletSelected.length > 1">{{ vm.walletSelected.length }} Elementos</span></md-button>
+                                <md-switch ng-model="vm.walletEdit" aria-label="Switch 1" ng-if="vm.walletEdit">
+                                    Edición <span ng-if="!vm.walletEdit">Bloqueada</span> <span ng-if="vm.walletEdit">Habilitada</span> 
+                                </md-switch>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="notification">
+                        <th colspan="10">   
+                            Elemento Creado
+                        </th>  
+                    </tr>
+                    <tr class="footer-item" ng-if="!vm.walletEdit">
+                            <th class="status">
+                                Nuevo
+                            </th>
+                            <th> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Nombre Cartera" ng-model="vm.walletTemp.name">
+                                </div>
+                            </th>
+                            <th class="status"> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Balance" ng-model="vm.walletTemp.balance">
+                                </div>
+                            </th>
+                            <th> 
+                                <div class="dropdown">
+                                    <md-input-container>
+                                        <md-select ng-if="$root.data.currency" ng-model="vm.walletTemp.idcurrency" aria-label="user">
+                                            <md-option value="{{ t.id }}" ng-repeat="t in $root.data.currency">{{ t.name }}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </th>
+                            <th> 
+                                <div class="dropdown">
+                                    <md-input-container>
+                                        <md-select ng-if="$root.data.users" ng-model="vm.walletTemp.iduser" aria-label="user">
+                                            <md-option value="{{ t.id }}" ng-repeat="t in $root.data.users">{{ t.username }}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                            </th>
+                            <th>
+                                <md-button class="md-raised theme-fn button green" aria-label="Use Android" ng-click="vm.createWallet()">
+                                    Guardar
+                                </md-button>
+                            </th>
+                        </tr>
+                    <tr>
+                        <th><md-checkbox ng-model="data.cb2" aria-label="select all"></md-checkbox> </th>
+                        <th>Cartera</th>
+                        <th>Balance</th>
+                        <th>Moneda</th>
+                        <th>Usuario</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="t in $root.data.wallets" ng-if="$root.data.wallets" ng-class="{ 'isDefault': t.isdefault }">
+                        <td>
+                            <md-checkbox ng-model="t.selected" 
+                            aria-label="select ID{{t.id}}" 
+                            ng-click="vm.toogleSelect(t.id, vm.walletSelected)"
+                            ng-checked="vm.exists(t.id, vm.walletSelected)"
+                            ></md-checkbox></td>
+                        <td> 
+                            <div ng-if="!vm.walletEdit"> {{ t.name }}</div>
+                            <div class="textbox" ng-if="vm.walletEdit">
+                                <input type="text" placeholder="Nombre" ng-model="t.name">
+                            </div>
+                        </td>
+                        <td class="status"> 
+                            <div ng-if="!vm.walletEdit"> {{ t.balance }} </div>
+                            <div class="textbox" ng-if="vm.walletEdit">
+                                <input type="text" placeholder="balance" ng-model="t.balance">
+                            </div>
+                        </td>
+                        <td> 
+                            <div ng-if="!vm.walletEdit"> {{ t.currency }} </div>
+                                <div class="textbox" ng-if="vm.walletEdit">
+                                    <input type="text" placeholder="currency" ng-model="t.currency">
+                                </div>
+                            </td>
+                        <td> 
+                            <div ng-if="!vm.walletEdit"> {{ t.username }} </div>
+                            <div class="textbox" ng-if="vm.walletEdit">
+                                <input type="text" placeholder="Username" ng-model="t.username">
+                            </div>
+                        </td>
+                        <td class="status"> <span ng-if="t.isdefault">Predeterminada</span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="group-content">
+        <div class="sub-header">
+            <div class="text">Categorias</div>
+        </div>
+        
+        <div class="table-container">
+            <table class="flat-table" ng-class="{ 'updating': vm.isLoading }">
+                <thead>
+                    <tr>
+                        <th colspan="10" class="header-status"> 
+                            <div class="header-status--item">{{ $root.data.categories.length }} Registros encontrados </div>
+                            <div class="header-status--item actions">
+                                <md-button class="md-raised" ng-if="vm.categorySelected.length == 1" ng-click="vm.defaultCategory()">Predeterminar</md-button>
+                            </div>
+                            <div class="header-status--item options">
+                                <md-button class="md-raised" ng-click="vm.removeCategory()" ng-if="vm.categorySelected.length >= 1">Eliminar <span ng-if="vm.categorySelected.length > 1">{{ vm.categorySelected.length }} Elementos</span></md-button>
+                                <md-switch ng-model="vm.categoryEdit" aria-label="Switch 1" ng-if="vm.categoryEdit">
+                                    Edición <span ng-if="!vm.categoryEdit">Bloqueada</span> <span ng-if="vm.categoryEdit">Habilitada</span> 
+                                </md-switch>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="notification">
+                        <th colspan="10">   
+                            Elemento Creado
+                        </th>  
+                    </tr>
+                    <tr class="footer-item" ng-if="!vm.categoryEdit">
+                            <th class="status">
+                                Nuevo
+                            </th>
+                            <th> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Categoria" ng-model="vm.categoryTemp.name">
+                                </div>
+                            </th>
+                            <th class="status"> 
+                                <div class="textbox">
+                                    <input type="text" placeholder="Icono" ng-model="vm.categoryTemp.icon">
+                                </div>
+                            </th>
+                            <th> 
+                                <div class="switch">
+                                        <md-switch ng-model="vm.categoryTemp.isentry" aria-label="Switch 2">
+                                            <span ng-if="vm.categoryTemp.isentry" class="entry">Ingreso</span> 
+                                            <span ng-if="!vm.categoryTemp.isentry" class="budget">Gasto</span>  
+                                        </md-switch>
+                                </div>
+                            </th>
+                            <th>
+                                <md-button class="md-raised theme-fn button green" aria-label="Use Android" ng-click="vm.createCategory()">
+                                    Guardar
+                                </md-button>
+                            </th>
+                        </tr>
+
+                    <tr>
+                        <th><md-checkbox ng-model="data.cb3" aria-label="select all"></md-checkbox> </th>
+                        <th>Nombre</th>
+                        <th colspan="2">Icono</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="t in $root.data.categories" ng-if="$root.data.categories" ng-class="{ 'isDefault': t.isdefault }">
+                        <td>
+                            <md-checkbox ng-model="t.selected" 
+                            aria-label="select ID{{t.id}}" 
+                            ng-click="vm.toogleSelect(t.id, vm.categorySelected)"
+                            ng-checked="vm.exists(t.id, vm.categorySelected)"
+                            ></md-checkbox></td>
+                        <td> 
+                            <div ng-if="!vm.categoryEdit"> {{ t.name }}</div>
+                            <div class="textbox" ng-if="vm.categoryEdit">
+                                <input type="text" placeholder="Nombre" ng-model="t.name">
+                            </div>
+                        </td>
+                        <td colspan="2"> 
+                            <div ng-if="!vm.categoryEdit"> <i class="fa fa-{{ t.icon }}"></i> </div>
+                            <div class="textbox" ng-if="vm.categoryEdit">
+                                <input type="text" placeholder="icon" ng-model="t.icon">
+                            </div>
+                        </td>
+                        <td class="status"> 
+                            <div ng-if="!vm.categoryEdit"> 
+                                <span ng-if="t.isentry" class="entry">Ingreso</span> 
+                                <span ng-if="!t.isentry" class="budget">Gasto</span>  
+                            </div>
+                            <div class="textbox" ng-if="vm.categoryEdit">
+                                <input type="text" placeholder="type" ng-model="t.isentry">
+                                <md-switch ng-model="t.isentry" aria-label="Switch 2">
+                                    <span ng-if="t.isentry" class="entry">Ingreso</span> 
+                                    <span ng-if="!t.isentry" class="budget">Gasto</span>  
+                                </md-switch>
+                            </div>
+                        </td>
+                    </tr>
+
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

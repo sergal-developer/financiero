@@ -1,12 +1,26 @@
 // imports
 import MainController from './views/main.controller';
-import GeneralController from './views/general/general.controller';
+// import GeneralController from './views/general/general.controller';
+// import HomeController from './views/home/home.controller';
+
+import BudgetViewController from './views/budget-view/budget-view.controller';
+import CategoryAdminController from './views/category-admin/category-admin.controller';
+import DashboardController from './views/dashboard/dashboard.controller';
+import ErrorController from './views/error/error.controller';
+import MoneyAdminController from './views/money-admin/money-admin.controller';
+import UserAdminController from './views/users-admin/users-admin.controller';
+import SettingsController from './views/settings/settings.controller';
+import AdministratorController from './views/administrator-view/administrator-view.controller';
 
 var moduleName = "financiero.controllers";
 
 angular.module(moduleName, [])
-    .controller("financiero.mainController", MainController)
-    .controller("financiero.generalController", GeneralController);
+    .controller("financiero.MainController", MainController)
+    .controller("financiero.BudgetViewController", BudgetViewController)
+    .controller("financiero.DashboardController", DashboardController)
+    .controller("financiero.ErrorController", ErrorController)
+    .controller("financiero.SettingsController", SettingsController)
+    .controller("financiero.AdministratorController", AdministratorController);
 
 export default moduleName;
 

@@ -1,9 +1,7 @@
 node_modules
 npm-debug.log
-<<<<<<< HEAD
 bower_components
 app/financial/resources/design/design.css
 app/financial/resources/js/common/
-=======
+server/database/dbfinanciero.json
 coverage
->>>>>>> 50cc16aea5586f52775e62d0fac035c0e102a7de

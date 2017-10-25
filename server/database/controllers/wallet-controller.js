@@ -32,6 +32,9 @@ function findAnyName(req, res) {
 
 function add(req, res) {
     if(req.body) {
+        // req.body.balance = Number(req.params.balance);
+        // req.body.idcurrency = Number(req.params.idcurrency);
+        // req.body.iduser = Number(req.params.iduser);
         databaseCore.addWallets(req.body).then((data) => {
             res.send(data);
         }, (error) => {
@@ -62,11 +65,23 @@ function deleteById(req, res) {
     }
 }
 
+function deleteBatch(req, res) {
+    if(req.params.array) {
+        var arr = JSON.parse(req.params.array);
+        databaseCore.deleteBatchWallets(arr).then((data) => {
+            res.send(data);
+        }, (error) => {
+            console.error('error: ', error);
+        });
+    }
+}
+
 module.exports = {
     findAll: findAll,
     findById: findById,
     findAnyName: findAnyName,
     add: add,
     update: update,
-    deleteById: deleteById
+    deleteById: deleteById,
+    deleteBatch: deleteBatch
 }

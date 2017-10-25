@@ -61,11 +61,23 @@ function deleteById(req, res) {
     }
 }
 
+function deleteBatch(req, res) {
+    if(req.params.array) {
+        var arr = JSON.parse(req.params.array);
+        databaseCore.deleteBatchCurrency(arr).then((data) => {
+            res.send(data);
+        }, (error) => {
+            console.error('error: ', error);
+        });
+    }
+}
+
 module.exports = {
     findAll: findAll,
     findById: findById,
     findAnyName: findAnyName,
     add: add,
     update: update,
-    deleteById: deleteById
+    deleteById: deleteById,
+    deleteBatch: deleteBatch
 }

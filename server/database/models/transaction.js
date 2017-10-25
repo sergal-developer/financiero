@@ -5,9 +5,10 @@ var transaction = {
 	"update": "update", 
 	"idcurrency": 1, 
 	"idwallet": 1, 
-	"idtype": 1, 
+	"idcategory": 1, 
 	"idplan": null,
-	"isbudget" : false
+	"isbudget" : false,
+	"ispaied" : false,
 }
 
 module.exports = transaction;

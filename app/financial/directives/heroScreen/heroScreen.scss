@@ -1,28 +1,63 @@
 .hero-screen {
     width: inherit;
-    height: 210px;
-    .hero-screen--title {
-        font-size: 16px;
-        text-align: center;
-        width: 100%;
-        margin-top: 20px;
-    }
-    .hero-screen--balance {
-        width: inherit;
-        overflow: hidden;
-        text-align: center;
-        padding: 0 25%;
-        .prefix, .value, .symbol { float: left; }
+    height: 220px;
+    padding: 15px;
+    
 
-        .prefix { font-size: 24px; }
-        .value { font-size: 56px; }
-        .symbol { font-size: 20px; }
+    .hero-screen-container {
+        background: #9E9E9E;
+        color: #333;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 210px;
+
+        .hero-screen--title {
+            font-size: 14px;
+            text-align: center;
+            width: auto;
+            padding: 5px;
+            text-transform: uppercase;
+            height: 20px;
+        }
+        .hero-screen--balance {
+            width: auto;
+            overflow: hidden;
+            text-align: center;
+            height: 35px;
+            .prefix, .value, .symbol { display: inline; }
+            .prefix { font-size: 15px; line-height: 30px; }
+            .value { font-size: 28px; line-height: 30px; margin: 0 5px;}
+            .symbol { font-size: 15px; line-height: 30px;}
+        }
+        .hero-screen--balance-status {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 11px; 
+            line-height: 25px;
+            height: 25px;
+            .time, .budget { float: left }
+            .time { }
+            .budget { }
+            .time-dropdown { 
+                float: left; 
+                margin-left: 20%;
+                margin-right: 10px;
+                img { margin-left: 5px; }
+             }
+        }
+
+        .balance-chart {
+            text-align: center;
+            line-height: 120px;
+            height: 120px;
+            font-size: 30px;
+            background: #616161;
+            color: #333;
+        }
     }
-    .hero-screen--balance-status {
-        text-align: center;
-        padding: 0 25%;
-        .time, .budget { float: left; }
-        .time { font-size: 15px; }
-        .budget { font-size: 16px; }
+
+    .hero-screen-more-details {
+        float: right;
+        padding: 5px;
     }
 }

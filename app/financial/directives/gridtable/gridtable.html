@@ -1,0 +1,83 @@
+<div class="grid-table-directive">
+    <div class="table-container" ng-if="vm.data">
+        <table class="flat-table" ng-class="{ 'updating': vm.isLoading }">
+            <thead>
+                <tr>
+                    <th colspan="10" class="header-status"> 
+                        <div class="header-status--item">{{ vm.data.length }} Registros encontrados </div>
+                        <div class="header-status--item actions">
+                            
+                        </div>
+                        <div class="header-status--item options">
+                            <md-button class="md-raised" ng-click="vm.removeTransaction()" ng-if="vm.transactionSelected.length >= 1">Eliminar <span ng-if="vm.transactionSelected.length > 1">{{ vm.transactionSelected.length }} Elementos</span></md-button>
+                            <md-switch ng-model="vm.transactionEdit" aria-label="Switch 1" ng-if="vm.transactionEdit">
+                                Edición <span ng-if="!vm.transactionEdit">Bloqueada</span> <span ng-if="vm.transactionEdit">Habilitada</span> 
+                            </md-switch>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th ng-repeat="h in vm.getHeaders()">
+                        {{ h }}
+                    </th>
+                </tr>
+                <!-- <tr class="notification">
+                    <th colspan="10">   
+                        Elemento Creado
+                    </th>  
+                </tr> -->
+                <!-- <tr>
+                    <th><md-checkbox aria-label="select all"></md-checkbox></th>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>Status</th>
+                    <th>Categoria</th>
+                    <th>Comentario</th>
+                </tr> -->
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in vm.filterData()" ng-if="vm.filterData()" ng-class="{ 'isDefault': t.isdefault }">
+                    <td ng-repeat="i in t">{{ i }}</td>
+                    <!-- <td>
+                        <md-checkbox ng-model="t.selected" 
+                        aria-label="select ID{{t.id}}" 
+                        ng-click="vm.toogleSelect(t.id, vm.transactionSelected)"
+                        ng-checked="vm.exists(t.id, vm.transactionSelected)"
+                        ></md-checkbox>
+                    </td>
+                    <td> 
+                        <div ng-if="!vm.transactionEdit"> {{ vm.helper.dateFormat(t.update) }}</div>
+                        <div class="textbox" ng-if="vm.transactionEdit">
+                            <input type="text" placeholder="fecha" ng-model="t.update">
+                        </div>
+                    </td>
+                    <td class="status"> 
+                        <div ng-if="!vm.transactionEdit"> {{ t.value.toFixed(2) }} </div>
+                        <div class="textbox" ng-if="vm.transactionEdit">
+                            <input type="text" placeholder="Valor" ng-model="t.value">
+                        </div>
+                    </td>
+                    
+                    <td class="status"> 
+                        <span ng-if="t.isbudget">Presupuesto ,</span>
+                        <span ng-if="t.ispaied && !t.isentry">Pagado</span>
+                        <span ng-if="!t.ispaied">Pendiente</span>    
+                        <span ng-if="t.isentry">Entrada</span>    
+                    </td>
+                    <td> 
+                        <div ng-if="!vm.transactionEdit"> {{ t.category }} </div>
+                        <div class="textbox" ng-if="vm.transactionEdit">
+                            <input type="text" placeholder="Categoria" ng-model="t.idcategory">
+                        </div>
+                    </td>
+                    <td> 
+                        <div ng-if="!vm.transactionEdit"> {{ vm.helper.cutCharacters(t.description) }} </div>
+                        <div class="textbox" ng-if="vm.transactionEdit">
+                            <input type="text" placeholder="Categoria" ng-model="t.description">
+                        </div>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

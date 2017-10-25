@@ -1,0 +1,11 @@
+<div class="avatar-directive {{ vm.only }}">
+    <div class="avatar-badge">
+        <div class="avatar-text" ng-if="!vm.user.avatarimage">{{ vm.getInitials() }}</div>
+        <div class="avatar-image" ng-if="vm.user.avatarimage">
+            <img ng-src="{{ vm.user.avatarimage }}" alt="">
+        </div>
+    </div>
+    <div class="avatar-username">
+        {{ vm.user.username }}
+    </div>
+</div>

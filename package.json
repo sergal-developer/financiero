@@ -4,6 +4,7 @@
   "description": "finanaciero app",
   "main": "index.html",
   "dependencies": {
+    "angular": "^1.6.6",
     "body-parser": "^1.10.1",
     "browser-sync": "^2.17.5",
     "express": "^4.15.2",
@@ -21,6 +22,7 @@
     "gulp-sourcemaps": "^1.9.1",
     "lowdb": "^0.16.2",
     "node-linq": "0.0.5",
+    "path": "^0.12.7",
     "request": "^2.81.0",
     "sqlite3": "^3.1.8",
     "underscore": "^1.7.0",
@@ -32,7 +34,9 @@
     "typescript": "^2.2.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "npm install bower -g && npm install gulp -g && npm install nodemon -g && npm install && bower install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp prod"
   },
   "repository": {
     "type": "git",

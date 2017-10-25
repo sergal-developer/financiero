@@ -1,0 +1,107 @@
+.home-view  {
+
+    .header {
+        .summary {
+            line-height: 45px;
+            float: left;
+            b {
+                font-family: 'OpenSansBold', sans-serif;
+                span {
+                    font-family: 'OpenSans', sans-serif;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+
+    .sub-header {
+        width: 100%;
+        height: 45px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        overflow: hidden;
+        .text {
+            font-size: 24px;
+            line-height: 45px;
+            color: #4D5664;
+            float: left;
+            margin-right: 20px;
+            text-transform: capitalize;
+            // margin-left: 30px;
+        }
+        .options {
+            font-size: 15px;
+            md-input-container {
+                margin: 7px 0;
+            }
+            .md-select-value,{
+                border: none;
+            }
+
+            
+        }
+    }
+
+    .stats {
+        width: 100%;
+        overflow: hidden;
+        .stats-item {
+            width: 240px;
+            background: #D5E2ED;
+            height: 100px;
+            float: left;
+            margin-left: 10px;
+            &:first-child {
+                margin-left: 0px;
+            }
+            .stats-item-icon {
+                width: 30%;
+                font-size: 50px;
+                text-align: center;
+                line-height: 100px;
+                height: inherit;
+                float: left;
+            }
+            .stats-item-content {
+                width: 70%;
+                height: 70%;
+                margin-top: 7%;
+                float: left;
+                .stats-item-content-title {
+                    font-size: 35px;
+                    span { font-size: 15px; }
+                }
+                .stats-item-content-description {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .graph-component {
+        margin: 0 10px 30px;
+    }
+
+    .expenses-list-component {
+        margin: 20px 10px 30px;
+    }
+
+    md-checkbox.md-default-theme.md-checked .md-ink-ripple, md-checkbox.md-checked .md-ink-ripple {
+        color: rgba(92, 16, 197, 0.87);
+    }
+}
+.circle-button {}
+
+// .button {
+//     padding: 10px 20px;
+//     font-size: 14px;
+//     cursor: pointer;
+//     &.create {
+//         width: 100px;
+//         text-align: center;
+//         margin: 0 auto;
+//         background: #05A7B2;
+//         text-transform: uppercase;
+//         color: #fff;
+//     }
+// }
