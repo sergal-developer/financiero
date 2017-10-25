@@ -3,6 +3,7 @@ module.exports = {
     server: {
         port: 3300, 
         browserSyncPort: 4400, 
+        serverFile: 'server/server.js',
         buildPath: '/build/',
 		base: 'app/',
         gulpbuildPath: 'app/',

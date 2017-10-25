@@ -1,81 +1,54 @@
-var gulp = require('gulp'),
-    config = require('./server/config/config.js'),
-    browserSync = require('browser-sync'),
-    server = require('gulp-express'),
-    nodemon = require('gulp-nodemon'),
+var config = require('./server/config/config.js'),
+    gulp = require('gulp'),
+    gls = require('gulp-live-server'),
     sass = require('gulp-sass'),
-    runSequence = require('gulp-run-sequence'),
     concat = require('gulp-concat'),
-    sourcemaps = require('gulp-sourcemaps'),
-    open = require('gulp-open'),
-    spawn = require('child_process').spawn,
-    node;
+    os = require('os'),
+    fs = require('fs'),
+    runSequence = require('gulp-run-sequence');
 
-gulp.task('server',() => {
-    if (node) node.kill()
-    node = spawn('node', 'server/**/*.js', { stdio: 'inherit' })
-    node.on('close',(code) => {
-        if (code === 8) {
-            gulp.log('Error detected, waiting for changes...');
-        }
-    });
-})
+var browser = os.platform() === 'linux' ? 'google-chrome' : (
+os.platform() === 'darwin' ? 'google chrome' : (
+os.platform() === 'win32' ? 'chrome' : 'firefox'));
 
-gulp.task('advanced-sass',() => {
-    gulp.src('app/**/*.scss')
-        .pipe(sourcemaps.init())
+gulp.task('compile-sass',() => {
+    return gulp.src('app/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat(config.server.cssConcatenated))
         .pipe(gulp.dest(config.server.gulpbuildPath));
 });
 
+gulp.task('open-browser', () => {
+    var options = {
+      uri: `localhost:${config.server.port}`,
+      app: browser
+    };
 
-gulp.task('build',() => {
-    runSequence('advanced-sass');
+    return gulp.src(`localhost:${config.server.port}`)
+            .pipe(open(options));
 });
 
-gulp.task('watchers-design',() => {
-    gulp.watch('app/**/*.scss', ['advanced-sass']);
-});
-
-gulp.task('browser-sync',() => {
-    var files = [
-        'app/**/*.html',
-        'app/**/*.css',
-        'app/**/*.js',
-        '!app/**/*.spec.js',
-        'app/**/*.scss',
-    ];
-    browserSync.init(null, {
-        proxy: "http://localhost:" + config.server.aplicationStart,
-        files: files,
-        // browser: "Google Chrome",
-        browser: "chrome",
-        port: config.server.browserSyncPort,
-        open: true,
+gulp.task('server', ['compile-sass'], () => {
+    // Generic watch tasks for SASS and Browserify
+    // gulp.watch('app/**/*.html', ['html']);
+    gulp.watch('app/**/*.scss',  ['compile-sass']);
+    // gulp.watch('app/**/*.js',  ['scripts']);
+  
+    // Start the app server.
+    var server = gls(config.server.serverFile, 
+        { stdio : 'inherit' });
+    server.start();
+  
+    // Reload server when backend files change.
+    gulp.watch([ 'server/**/*.js' ], function() {
+      server.start.bind(server)();
+    });
+  
+    // Notify server when frontend files change.
+    gulp.watch([ 'app/**/*.{scss}' ], function(file) {
+      server.notify(file);
     });
 });
 
-gulp.task('develop',() => {
-    runSequence('build', 'watchers-design', 'browser-sync');
-    server.run(['server/server.js']);
-    //nodemon({ script: 'server/server.js'})
+gulp.task('develop', ['server']);
 
-    /*var stream = nodemon({ script: 'server/server.js'});
-    stream
-        .on('restart', function () {
-        console.log('restarted!')
-        })
-        .on('crash', function() {
-        console.error('Application has crashed!\n')
-            stream.emit('restart', 10)  // restart the server in 10 seconds
-        });*/
-});
-
-gulp.task('develop-s',() => {
-    runSequence('build', 'watchers-design');
-    server.run(['server/server.js']);
-});
-
-
-gulp.task('default', ['develop']);
