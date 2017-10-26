@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="financieroApp">
 <head>
 	<title>Financiero</title>
 	<base href="/">
@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="resources/design/design.css"/>
 	
 </head>
-<body class="financiero-app debug" ng-controller="financiero.MainController as vm" ng-class="{'popupactive-body': $root.Menu.lookPrincipal }">
+<body class="financiero-app" ng-controller="financiero.MainController as vm" ng-class="{'popupactive-body': $root.Menu.lookPrincipal }">
 	<div >
 		<root-top-bar user="$root.data.users[0]"></root-top-bar>
 

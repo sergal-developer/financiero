@@ -1,10 +1,10 @@
 var express = require('express'),
     fs = require('fs'),
     path = require('path'),
-    config = require('./server/config/config.js'),
+    config = require('./config/config.js'),
 	bodyParser = require('body-parser');
     request = require('request'),
-    coreData = require('./server/database/core');
+    coreData = require('./database/core');
     app = express();
 
 function createApp(app) {
@@ -19,17 +19,17 @@ function createApp(app) {
         next();
     });
     
-    // app.use(config.server.appUrl,  require('./server/server-router.js'));
-    app.use(config.server.appUrl, express.static(__dirname + '/app/financial/'));
-    app.use(config.server.appUrl + "home", express.static(__dirname + '/app/financial/'));
-    app.use(config.server.appUrl + "budget-view", express.static(__dirname + '/app/financial/'));
-    app.use(config.server.appUrl + "settings", express.static(__dirname + '/app/financial/'));
-    app.use(config.server.appUrl + "admin", express.static(__dirname + '/app/financial/'));
-    app.use(config.server.appUrl + "error", express.static(__dirname + '/app/financial/'));
+    // app.use(config.server.appUrl,  require('.-router.js'));
+    app.use(config.server.appUrl, express.static('app/financial/'));
+    app.use(config.server.appUrl + "home", express.static('app/financial/'));
+    app.use(config.server.appUrl + "budget-view", express.static('app/financial/'));
+    app.use(config.server.appUrl + "settings", express.static('app/financial/'));
+    app.use(config.server.appUrl + "admin", express.static('app/financial/'));
+    app.use(config.server.appUrl + "error", express.static('app/financial/'));
     
-	app.use(config.server.appLibs, express.static(__dirname + '/bower_components/'));
-	app.use("/database", express.static(__dirname + '/database/'));
-    app.use('/data', require('./server/database/api-routes.js'));
+	app.use(config.server.appLibs, express.static('bower_components/'));
+	app.use("/database", express.static('database/'));
+    app.use('/data', require('./database/api-routes.js'));
 }
 
 module.exports = createApp(app);

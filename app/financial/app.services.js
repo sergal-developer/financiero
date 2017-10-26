@@ -1,5 +1,5 @@
 // imports
-import apiService from './resources/services/api';
+import apiService from './resources/services/api.js';
 
 var moduleName = 'financiero.services';
 

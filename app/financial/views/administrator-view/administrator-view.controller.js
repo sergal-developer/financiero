@@ -1,7 +1,7 @@
-import helper from '../../resources/services/helpers';
-import CurrencyServices from '../../resources/services/currency-service';
-import WalletServices from '../../resources/services/wallet-service';
-import CategoryServices from '../../resources/services/category-service';
+import helper from '../../resources/services/helpers.js';
+import CurrencyServices from '../../resources/services/currency-service.js';
+import WalletServices from '../../resources/services/wallet-service.js';
+import CategoryServices from '../../resources/services/category-service.js';
 
 class AdministratorViewController {
     constructor($timeout, $scope, $rootScope) {

@@ -1,4 +1,4 @@
-import apiService from '../../resources/services/api';
+import apiService from '../../resources/services/api.js';
 
 window.randomScalingFactor = function() {
 	return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);

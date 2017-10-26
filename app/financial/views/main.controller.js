@@ -1,9 +1,9 @@
-import apiService from '../../resources/services/api';
-import helper from '../../resources/services/helpers';
-import CurrencyServices from '../../resources/services/currency-service';
-import WalletServices from '../../resources/services/wallet-service';
-import CategoryServices from '../../resources/services/category-service';
-import TransactionServices from '../../resources/services/transaction-service';
+import apiService from '../../resources/services/api.js';
+import helper from '../../resources/services/helpers.js';
+import CurrencyServices from '../../resources/services/currency-service.js';
+import WalletServices from '../../resources/services/wallet-service.js';
+import CategoryServices from '../../resources/services/category-service.js';
+import TransactionServices from '../../resources/services/transaction-service.js';
 
 class MainController {
     constructor($timeout, $scope, $rootScope) {

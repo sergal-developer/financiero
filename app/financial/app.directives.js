@@ -5,10 +5,10 @@
 // import categoriesPage from './directives/categories/categories';
 // import transactionsPage from './directives/transactions/transactions';
 // import usersPage from './directives/users/users';
-import rootTopBarDirective from './directives/rootTopBar/rootTopBar';
-import avatarDirective from './directives/avatar/avatar';
-import gridTableDirective from './directives/gridtable/gridtable';
-import screenPanelDirective from './directives/screenPanel/screenPanel';
+import rootTopBarDirective from './directives/rootTopBar/rootTopBar.js';
+import avatarDirective from './directives/avatar/avatar.js';
+import gridTableDirective from './directives/gridtable/gridtable.js';
+import screenPanelDirective from './directives/screenPanel/screenPanel.js';
 
 // # COMPONENTS
 // import balanceChartDirective from './directives/balanceChart/balanceChart';

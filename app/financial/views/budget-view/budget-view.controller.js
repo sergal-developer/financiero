@@ -1,5 +1,5 @@
-import helper from '../../resources/services/helpers';
-import TransactionServices from '../../resources/services/transaction-service';
+import helper from '../../resources/services/helpers.js';
+import TransactionServices from '../../resources/services/transaction-service.js';
 
 class BudgetViewController {
     constructor($timeout, $scope, $rootScope) {
