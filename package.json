@@ -1,39 +1,39 @@
 {
-  "name": "financiero",
-  "version": "0.0.1",
-  "description": "finanaciero app",
-  "main": "index.html",
-  "dependencies": {
-    "body-parser": "^1.10.1",
-    "browser-sync": "^2.17.5",
-    "express": "^4.15.2",
-    "fs": "0.0.1-security",
-    "fs-extra": "^4.0.1",
-    "fs-promise": "^2.0.2",
-    "gulp": "^3.9.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-express": "^0.3.5",
-    "gulp-live-server": "0.0.31",
-    "gulp-open": "^2.0.0",
-    "gulp-run-sequence": "^0.3.2",
-    "gulp-sass": "^2.3.2",
-    "gulp-sourcemaps": "^1.9.1",
-    "lowdb": "^0.16.2",
-    "node-linq": "0.0.5",
-    "path": "^0.12.7",
-    "request": "^2.81.0",
-    "sqlite3": "^3.1.8",
-    "underscore": "^1.7.0",
-    "vinyl-source-stream": "^1.1.0"
-  },
+  "name": "financiero-ag",
+  "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp prod"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
-  "repository": {
-    "type": "git",
-    "url": "C:/Users/sergi/OneDrive/git-develop/financiero.git"
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~12.2.0",
+    "@angular/common": "~12.2.0",
+    "@angular/compiler": "~12.2.0",
+    "@angular/core": "~12.2.0",
+    "@angular/forms": "~12.2.0",
+    "@angular/platform-browser": "~12.2.0",
+    "@angular/platform-browser-dynamic": "~12.2.0",
+    "@angular/router": "~12.2.0",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~12.2.1",
+    "@angular/cli": "~12.2.1",
+    "@angular/compiler-cli": "~12.2.0",
+    "@types/jasmine": "~3.8.0",
+    "@types/node": "^12.11.1",
+    "jasmine-core": "~3.8.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.0.3",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "~1.7.0",
+    "typescript": "~4.3.5"
+  }
 }

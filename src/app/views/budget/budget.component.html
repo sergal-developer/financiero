@@ -1,0 +1,10 @@
+<div class="frame">
+    <div class="container">
+        <input type="text" [(ngModel)]="description">
+        <input type="number" [(ngModel)]="valueBudget" min="0">
+    </div>
+    <div class="actions">
+        <button (click)="saveBudget()"> Guardar </button>
+        <button (click)="cancel()"> Cancel </button>
+    </div>
+</div>
