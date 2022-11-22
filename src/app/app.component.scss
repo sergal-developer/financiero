@@ -1,0 +1,71 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    background: white;
+    height: 60px;
+    padding: 30px;
+}
+.main-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    background: rgba(255,255,255,0.5);
+    height: 60px;
+    backdrop-filter: blur(5px);
+    // border-top: 3px solid white;
+
+    .item {
+        width: 100%;
+        text-align: center;
+
+        svg {
+            width: 33px;
+            height: auto;
+        }
+    }
+}
+
+.frame {
+    margin-top: 60px;
+    padding: 0px 30px 80px;
+}
+
+
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    .popup-overlay {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            position: absolute;
+            width: inherit;
+            height: inherit;
+    }
+    .popup-body {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(4px);
+        padding: 40px;
+        position: fixed;
+        width: 100%;
+        bottom: 1px;
+    }
+}

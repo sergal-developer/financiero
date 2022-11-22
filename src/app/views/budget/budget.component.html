@@ -1,10 +1,41 @@
-<div class="frame">
-    <div class="container">
-        <input type="text" [(ngModel)]="description">
-        <input type="number" [(ngModel)]="valueBudget" min="0">
-    </div>
+<div class="budget">
     <div class="actions">
-        <button (click)="saveBudget()"> Guardar </button>
-        <button (click)="cancel()"> Cancel </button>
+        
+        <button class="button-circle close" (click)="cancel()"> 
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+        </button>
+
+        <label class="switch">
+            <input type="checkbox" [(ngModel)]="entry">
+            <span class="slider">
+                <div *ngIf="entry">Entrada</div>
+                <div *ngIf="!entry">Gasto</div>
+            </span>
+        </label>
+
+        <button class="button-circle primary" (click)="saveBudget()"> 
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l5 5l10 -10" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="description">
+            
+
+            <label for="description">
+                <input type="text" name="description" [(ngModel)]="description">
+            </label>
+
+        </div>
+        <div class="amount">
+            <input type="number" [(ngModel)]="valueBudget" min="0">
+        </div>
     </div>
 </div>

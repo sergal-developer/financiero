@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { StorageLocal } from "src/app/database/session.storage";
+import { IBudget } from "src/app/common/models/interfaces";
+import { Financial } from "src/app/common/services/financial";
 
 @Component({
     selector: 'dashboard-view',
@@ -9,23 +10,34 @@ import { StorageLocal } from "src/app/database/session.storage";
   })
   export class DashboardComponent {
     title = 'financiero-ag';
-    budgets: Array<{ description: string, value: number, date: number}> = [];
+    listBudgets: Array<IBudget> = [];
+    balanceTotal: any;
+    budgetTotal: any;
+    entryTotal: any;
+
+
     constructor(
-      private db: StorageLocal,
-      private _router: Router) {}
+      private db: Financial) {}
 
     ngOnInit(): void {
-      this.budgets = this.db.getBudgets();
-      console.log('this.budgets: ', this.budgets);
+      this.getdata();
+    }
+
+    getdata() {
+      this.listBudgets = this.db.getBudgets();
+
+      const stadistics = this.db.getTotalBalance(this.listBudgets);
+      this.balanceTotal = this.db.toMoney(stadistics.total);
+      this.budgetTotal = this.db.toMoney(stadistics.budget);
+      this.entryTotal = this.db.toMoney(stadistics.entry);
     }
 
     delete(budget: any) {
       console.log('budget: ', budget);
-      this.budgets = this.db.deleteBudget(budget);
+      this.listBudgets = this.db.deleteBudget(budget);
+      this.getdata();
     }
 
-    newBudget() {
-      this._router.navigate( [`/budget`]);
-    }
+
   }
   
