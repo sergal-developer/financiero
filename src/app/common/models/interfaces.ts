@@ -4,6 +4,8 @@ export interface IBudget {
     description: string;
     entry: boolean
     id?: string;
-    dateFormated?: string;
-    valueFormated?: string;
+    dateFormated?: any;
+    valueFormated?: any;
+    index?: number;
+    details?: boolean;
 }

@@ -9,9 +9,11 @@
             <div>{{ budgetTotal }}</div>
             <span>Gastos</span>
         </div>
-        <div class="stadistic">
-            <div>NOV - DIC</div>
+
+        <div class="stadistic" (click)="openDate()">
+            <div>{{ monthsSelected }}</div>
         </div>
+
         <div class="stadistic">
             <div>{{ entryTotal }}</div>
             <span>Ingresos</span>
@@ -21,33 +23,115 @@
     <div class="transactions">
         <div class="actions">
             <div class="item">Transacciones</div>
-            <div class="item link">Ver todo</div>
+            <!-- <div class="item link">Ver todo</div> -->
         </div>
+
         <div class="records">
             <ng-container *ngIf="listBudgets">
-                <div class="item" *ngFor="let budget of listBudgets">
-                    <div class="description">{{ budget.description }}</div>
-                    <div class="value">{{ budget.value }}</div>
-                    <div class="actions">
-                        <button class="button-circle" (click)="delete(budget)">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
-                                <circle cx="12" cy="12" r="3" />
-                              </svg>
-                        </button>
+                <div class="budget" *ngFor="let budget of listBudgets" 
+                    (click)="showDetails(budget)"
+                    [ngClass]="{'details': budget.details }">
+                    <div class="item budget-resume">
+                        <div class="type entry" *ngIf="budget.entry">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="icon icon-tabler icon-tabler-arrow-narrow-up" width="32" height="32"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="16" y1="9" x2="12" y2="5" />
+                                <line x1="8" y1="9" x2="12" y2="5" />
+                            </svg>
+                        </div>
+                        <div class="type noEntry" *ngIf="!budget.entry">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="icon icon-tabler icon-tabler-arrow-narrow-down" width="32" height="32"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="16" y1="15" x2="12" y2="19" />
+                                <line x1="8" y1="15" x2="12" y2="19" />
+                            </svg>
+                        </div>
+                        <div class="content">
+                            <div class="description">{{ budget.description }}</div>
+                            <div class="value">{{ budget.valueFormated }}</div>
+                        </div>
+                    </div>
 
-                        <!-- <button (click)="delete(budget)">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
-                                <circle cx="12" cy="12" r="3" />
-                              </svg>
-                        </button> -->
-
+                    <div class="budget-full">
+                        <div class="container">
+                            <div class="type entry" *ngIf="budget.entry">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-arrow-narrow-up" width="32" height="32"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <line x1="16" y1="9" x2="12" y2="5" />
+                                    <line x1="8" y1="9" x2="12" y2="5" />
+                                </svg>
+                            </div>
+                            <div class="type noEntry" *ngIf="!budget.entry">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="icon icon-tabler icon-tabler-arrow-narrow-down" width="32" height="32"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <line x1="16" y1="15" x2="12" y2="19" />
+                                    <line x1="8" y1="15" x2="12" y2="19" />
+                                </svg>
+                            </div>
+                            <div class="content">
+                                <div class="description">{{ budget.description }}</div>
+                                <div class="date">{{ budget.dateFormated }}</div>
+                                <div class="value">{{ budget.valueFormated }}</div>
+                            </div>
+                            
+                        </div>
+                        <div class="actions">
+                            <button class="button-circle" (click)="edit(budget)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                                    <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+                                  </svg>
+                            </button>
+                            <button class="button-circle" (click)="delete(budget)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M19 19h-11l-4 -4a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9 9" />
+                                    <line x1="18" y1="12.3" x2="11.7" y2="6" />
+                                  </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </ng-container>
         </div>
     </div>
 </div>
+
+<panel-component [title]="modal.title" [(open)]="modal.showModal" [size]="modal.size" [showClose]="modal.showClose"
+    (afterChange)="onAfterAction($event)">
+    <div body>
+        <div class="datepicker">
+
+            <label for="start">
+                <input type="date" id="start" name="start" [(ngModel)]="startDateFormat">
+            </label>
+
+            <label for="end" *ngIf="startDateFormat">
+                <input type="date" id="end" name="end" [(ngModel)]="endDateFormat">
+            </label>
+
+            <div>
+                <button (click)="modal.showModal = false">Cancel</button>
+                <button (click)="updateRange()" [disabled]="!(startDateFormat && endDateFormat)">Apply</button>
+            </div>
+
+        </div>
+    </div>
+</panel-component>

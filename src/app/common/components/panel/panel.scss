@@ -1,0 +1,154 @@
+@import "../../../../resources/core/typography";
+@import "../../../../resources/core/colors";
+@import "../../../../resources/core/mixins";
+
+$input-padding-x: 15px;
+$input-padding-y: 15px;
+
+$gbx-gray: #8f8f8f;
+
+.gbx-panel {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  transition: all 300ms;
+  z-index: -1;
+
+  .gbx-overlap {
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  
+  .gbx-container {
+    background: white;
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    padding: 0 30px;
+    box-shadow: 0 0 10px #6f6f6f;
+    transition: all 300ms ease-in-out;
+
+    .gbx-panel-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 60px;
+      transition: all 300ms ease 300ms;
+    }
+
+    .gbx-panel-close {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      padding: 0;
+      font-size: 40px;
+      transition: all 300ms ease 300ms;
+      span {
+        font-size: 40px;
+      }
+    }
+    .gbx-panel-title {
+      width: calc(100% - 40px);
+      @extend .popins;
+      padding: 0 30px;
+      font-size: 20px;
+      transition: all 300ms ease 300ms;
+
+      span {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .gbx-panel-content {
+      height: calc(100% - 90px);
+      padding: 20px 0;
+      @extend .popins;
+
+      @include scroll(6px, $primary, gray, 5px);
+      overflow: auto  ;
+    }
+  }
+
+  &.left {
+    .gbx-container {
+      right: 0;
+      transform: translateX(120%);
+    }
+  }
+
+  &.right {
+    .gbx-container {
+      left: 0;
+      transform: translateX(-120%);
+
+      .gbx-panel-header {
+        flex-direction: row-reverse;
+        .gbx-panel-title {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  &.open {
+    z-index: 9999;
+    .gbx-overlap {
+      opacity: 1;
+    }
+    .gbx-container {
+      transform: translateX(0%);
+    }
+  }
+
+  &.small {
+    .gbx-overlap { }
+    .gbx-container {
+      width: 35%;
+    }
+  }
+
+  &.medium {
+    .gbx-overlap { }
+    .gbx-container {
+      width: 50%;
+    }
+  }
+
+  &.full {
+    .gbx-overlap { opacity: 0;}
+    .gbx-container {
+      width: 100%;
+    }
+  }
+
+  &.semifull {
+    .gbx-overlap { opacity: 0;}
+    .gbx-container {
+      width: 70%;
+    }
+  }
+
+  &.reverse-close {
+    .gbx-panel-header {
+      flex-direction: row-reverse;
+      .gbx-panel-title {
+        padding: 0;
+        padding-right: 30px;
+      }
+    }
+  }
+}
+
+.fix-modal-body {
+  overflow: hidden !important;
+  -webkit-overflow-scrolling: auto !important;
+}

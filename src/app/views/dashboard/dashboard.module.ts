@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from 'src/app/common/components/components.module';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { DashboardComponent } from './dashboard.component';
       CommonModule,
       FormsModule,
       ReactiveFormsModule,
+      ComponentsModule
     ],
     exports: [
       DashboardComponent

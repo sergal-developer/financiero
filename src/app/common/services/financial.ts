@@ -1,4 +1,4 @@
-import { CurrencyPipe } from "@angular/common";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Injectable } from "@angular/core";
 import { StorageLocal } from "src/app/database/session.storage";
 import { IBudget } from "../models/interfaces";
@@ -11,7 +11,8 @@ export class Financial {
 
     constructor(
         private db: StorageLocal,
-        private _currencyPipe: CurrencyPipe) {}
+        private _currencyPipe: CurrencyPipe,
+        private _datePipe: DatePipe) {}
 
     createTable(name: string) {
         try {
@@ -72,6 +73,7 @@ export class Financial {
     getBudgets(query?: { sdate: number, fdate: number }) {
         const db = this.db.get();
         let results: Array<IBudget> = db[this.budgetTable].documents;
+        console.log('results: ', results);
         if (query) {
             results = results.filter((x) => { return x.date >= query.sdate && x.date <= query.fdate; });
         }
@@ -110,5 +112,14 @@ export class Financial {
     toMoney(value: number) {
         const result = this._currencyPipe.transform(value);
         return result;
+    }
+
+    toDate(value: Date, format = 'MM/d/yyyy') {
+        return this._datePipe.transform(value, format);
+    }
+
+    toDateMiliseconds(value: number, format = 'MM/d/yyyy') {
+        const _value = new Date(value);
+        return this.toDate(_value, format);
     }
 }
