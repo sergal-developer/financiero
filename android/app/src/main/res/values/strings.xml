@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Financiero</string>
+    <string name="title_activity_main">Financiero</string>
+    <string name="package_name">com.financiero.mx.app</string>
+    <string name="custom_url_scheme">com.financiero.mx.app</string>
+</resources>
