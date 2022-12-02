@@ -1,0 +1,22 @@
+<div class="frame">
+    <div class="balance">
+        <h4>Total</h4>
+        <h1>{{ balanceTotal }}</h1>
+    </div>
+
+    <div class="transactions">
+        <div class="actions">
+            <div class="item">Transacciones</div>
+            <!-- <div class="item link">Ver todo</div> -->
+        </div>
+
+        <div class="records">
+            <ng-container *ngIf="listBudgets">
+                <list-component
+                    [list]="listBudgets"
+                    (actionEvent)="onAfterAction($event)"
+                ></list-component>
+            </ng-container>
+        </div>
+    </div>
+</div>

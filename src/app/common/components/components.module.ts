@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListModule } from './list/list.module';
 import { PanelModule } from './panel/panel.module';
 
 @NgModule({
+  declarations: [
+    // FreshAutofocusDirective
+  ],
   imports: [
+    ListModule,
     PanelModule
   ],
   exports: [
+    ListModule,
     PanelModule
   ]
 })

@@ -8,12 +8,13 @@
             border: none;
             outline: none;
             @extend .popins;
+            font-size: x-large;
         }
 
         .description {}
         .amount {
             input {
-                font-size: -webkit-xxx-large;
+                font-size: xxx-large;
                 width: 90%;
             }
         }

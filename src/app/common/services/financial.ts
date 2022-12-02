@@ -1,6 +1,6 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Injectable } from "@angular/core";
-import { StorageLocal } from "src/app/database/session.storage";
+import { Storage } from "src/app/database/session.storage";
 import { IBudget } from "../models/interfaces";
 
 @Injectable({
@@ -8,9 +8,9 @@ import { IBudget } from "../models/interfaces";
 })
 export class Financial {
     budgetTable = 'BUDGETS';
+    db = new Storage();
 
     constructor(
-        private db: StorageLocal,
         private _currencyPipe: CurrencyPipe,
         private _datePipe: DatePipe) {}
 
@@ -64,7 +64,6 @@ export class Financial {
         return storage[this.budgetTable].documents.filter((x: any) => x.description.includes(query));
     }
 
-
     saveBudget(data: IBudget) {
         const table = 'BUDGETS';
         this.saveData(table, data);
@@ -93,7 +92,6 @@ export class Financial {
             return v.toString(16);
         });
     }
-
 
     getTotalBalance(list: Array<IBudget>): { total: number, budget: number, entry: number} {
         const result = {

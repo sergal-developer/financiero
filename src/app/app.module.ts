@@ -8,9 +8,9 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardModule } from './views/dashboard/dashboard.module';
 import { BudgetModule } from './views/budget/budget.module';
-import { StorageLocal } from './database/session.storage';
 import { Financial } from './common/services/financial';
 import { ComponentsModule } from './common/components/components.module';
+import { ShoppingListModule } from './views/shoppingList/shoppingList.module';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,10 @@ import { ComponentsModule } from './common/components/components.module';
 
     DashboardModule,
     BudgetModule,
-    ComponentsModule
+    ComponentsModule,
+    ShoppingListModule
   ],
-  providers: [ StorageLocal, Financial, CurrencyPipe, DatePipe ],
+  providers: [ Financial, CurrencyPipe, DatePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

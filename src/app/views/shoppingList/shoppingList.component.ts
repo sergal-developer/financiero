@@ -4,12 +4,11 @@ import { IBudget } from "src/app/common/models/interfaces";
 import { Financial } from "src/app/common/services/financial";
 
 @Component({
-    selector: 'dashboard-view',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    selector: 'shoppinglist-view',
+    templateUrl: './shoppingList.component.html',
+    styleUrls: ['./shoppingList.scss']
   })
-  export class DashboardComponent {
-    title = 'financiero-ag';
+  export class ShoppingListComponent {
     listBudgets: Array<IBudget> = [];
     balanceTotal: any;
     budgetTotal: any;

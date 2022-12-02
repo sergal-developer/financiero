@@ -12,11 +12,11 @@ import { Financial } from "src/app/common/services/financial";
     valueBudget = 0.00;
     description = 'Gasto';
     entry = false;
+    autofocus = true;
     @Output() action = new EventEmitter();
 
     constructor(
-      private db: Financial,
-      private _router: Router) {}
+      private db: Financial) {}
 
     ngOnInit() {}
 

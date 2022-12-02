@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from 'src/app/common/components/components.module';
-import { BudgetComponent } from './budget.component';
+import { ShoppingListComponent } from './shoppingList.component';
 
 
 @NgModule({
     declarations: [
-      BudgetComponent
+      ShoppingListComponent
     ],
     imports: [
       CommonModule,
@@ -16,8 +16,8 @@ import { BudgetComponent } from './budget.component';
       ComponentsModule
     ],
     exports: [
-      BudgetComponent
+      ShoppingListComponent
     ],
     providers: [],
   })
-export class BudgetModule { }
+export class ShoppingListModule { }

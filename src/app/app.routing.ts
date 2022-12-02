@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BudgetComponent } from './views/budget/budget.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { ShoppingListComponent } from './views/shoppingList/shoppingList.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'budget', component: BudgetComponent },
+  { path: 'shopping-list', component: ShoppingListComponent },
 ];
 
 @NgModule({
