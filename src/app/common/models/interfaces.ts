@@ -1,6 +1,6 @@
 export interface IBudget {
     value: number;
-    date: number;
+    date?: number;
     description: string;
     entry: boolean
     id?: string;
@@ -11,4 +11,14 @@ export interface IBudget {
 
     // events
     _editMode?: boolean;
+}
+
+export interface IResponse {
+    code: number;
+    data: any;
+}
+
+export interface IFilter {
+    startDate: number,
+    endDate: number
 }

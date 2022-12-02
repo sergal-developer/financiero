@@ -12,6 +12,7 @@ import { ComponentsModule } from './common/components/components.module';
 import { ShoppingListModule } from './views/shoppingList/shoppingList.module';
 import { GlobalConstants } from './common/globals/globalConstants';
 import { FinancialService } from './common/services/FinancialService';
+import { FinancialAPI } from './common/services/FinancialAPI';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FinancialService } from './common/services/FinancialService';
   providers: [
     GlobalConstants,
     FinancialService,
+    FinancialAPI,
     CurrencyPipe,
     DatePipe
   ],

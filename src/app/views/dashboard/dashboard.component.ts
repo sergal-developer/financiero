@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { GlobalConstants } from "src/app/common/globals/globalConstants";
-import { IBudget } from "src/app/common/models/interfaces";
-import { FinancialService } from "src/app/common/services/FinancialService";
+import { IBudget, IFilter } from "src/app/common/models/interfaces";
+import { FinancialAPI } from "src/app/common/services/FinancialAPI";
 
 @Component({
     selector: 'dashboard-view',
@@ -34,43 +32,41 @@ import { FinancialService } from "src/app/common/services/FinancialService";
       modalClass: '',
       size: 'full'
     };
-    
 
     constructor(
-      private _gc: GlobalConstants,
-      private db: FinancialService) {}
+      private API: FinancialAPI) {}
 
     ngOnInit(): void {
       this.firstInitDates();
     }
 
+    firstInitDates() {
+      const now = new Date();
+      this.startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+      this.endDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+      this.startDateFormat = this.startDate.toISOString().split('T')[0];
+      this.endDateFormat = this.endDate.toISOString().split('T')[0];
+      this.getDates();
+      this.getData();
+    }
+
     getData() {
-      const query = { sdate: this.startDate.getTime(), fdate: this.endDate.getTime() };
-      this.listBudgets = this.db.getBudgets(query);
+      const query: IFilter = { startDate: this.startDate.getTime(), endDate: this.endDate.getTime() };
+      this.listBudgets = this.API.getBudgetsFiltered(query);
 
-      const stadistics = this.db.getTotalBalance(this.listBudgets);
-      this.balanceTotal = this.db.toMoney(stadistics.total);
-      this.budgetTotal = this.db.toMoney(stadistics.budget);
-      this.entryTotal = this.db.toMoney(stadistics.entry);
-
-      this.listBudgets = this.convertItems(this.listBudgets);
+      const stadistics = this.API.getFullBalance(this.listBudgets);
+      this.balanceTotal = stadistics.totalFormat;
+      this.budgetTotal = stadistics.budgetFormat;
+      this.entryTotal = stadistics.entryFormat;
     }
 
     delete(budget: IBudget) {
-      console.log('budget: ', budget);
-      this.listBudgets = this.db.deleteBudget(budget);
+      this.listBudgets = this.API.deleteBudget(budget);
       this.getData();
     }
 
     edit(budget: IBudget) {
-      const data: IBudget = {
-        id: budget.id,
-        value: budget.value,
-        date: new Date().getTime(),
-        description: budget.description,
-        entry: budget.entry,
-      }
-      if (this.db.updateBudget(data)) {
+      if (this.API.updateBudget(budget)) {
         this.getData();
       }
     }
@@ -100,51 +96,18 @@ import { FinancialService } from "src/app/common/services/FinancialService";
       }
     }
 
-    showDetails(item: IBudget) {
-      item.details = !item.details;
-    }
-
-
     //#region CONVERTERS
-    firstInitDates() {
-      const now = new Date();
-      this.startDate = new Date(now.getFullYear(), now.getMonth(), 1);
-      this.endDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-      this.startDateFormat = this.startDate.toISOString().split('T')[0];
-      this.endDateFormat = this.endDate.toISOString().split('T')[0];
-      this.getDates();
-      this.getData();
-    }
-
     getDates() {
       let range = '';
       if (!this.endDate) {
-        range = this.getMonthName(this.startDate.getMonth());
+        range = this.API.getMonthName(this.startDate.getMonth());
       } else if (this.endDate && this.startDate) {
-        const start = this.getMonthName(this.startDate.getMonth());
-        const end = this.getMonthName(this.endDate.getMonth());
+        const start = this.API.getMonthName(this.startDate.getMonth());
+        const end = this.API.getMonthName(this.endDate.getMonth());
         range = start === end ? `${ start }` : `${ start } - ${ end }`;
       }
 
       this.monthsSelected = range;
     }
-
-
-    getMonthName(month: number) {
-      const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-      return months[month];
-    }
-
-    convertItems(list: Array<IBudget>) {
-      list.forEach((x, index) => {
-        x.dateFormated = this.db.toDateMiliseconds(x.date!);
-        x.valueFormated = this.db.toMoney(x.value!);
-        x.index = index;
-      })
-      return list;
-    }
     //#endregion
-
-
   }
-  

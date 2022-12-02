@@ -23,7 +23,6 @@ import { FinancialService } from "src/app/common/services/FinancialService";
     saveBudget() {
       const data: IBudget = {
         value: this.valueBudget,
-        date: new Date().getTime(),
         description: this.description,
         entry: this.entry,
       }
