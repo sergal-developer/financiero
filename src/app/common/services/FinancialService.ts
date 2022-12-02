@@ -1,22 +1,44 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Injectable } from "@angular/core";
 import { Storage } from "src/app/database/session.storage";
+import { GlobalConstants } from "../globals/globalConstants";
 import { IBudget } from "../models/interfaces";
 
 @Injectable({
     providedIn: 'root'
 })
-export class Financial {
+export class FinancialService {
     budgetTable = 'BUDGETS';
     db = new Storage();
 
     constructor(
+        private _gc: GlobalConstants,
         private _currencyPipe: CurrencyPipe,
-        private _datePipe: DatePipe) {}
+        private _datePipe: DatePipe) {
+        }
+
+    configStorage() {
+        this.db = new Storage(this._gc.context);
+        console.info('context: ', this._gc.context);
+    }
+
+    getStorage() {
+        this.configStorage();
+        let db = this.db.get();
+        if (!db) {
+            db = {
+                [this.budgetTable]: {
+                    documents: []
+                }
+            };
+        }
+        return db;
+    }
+
 
     createTable(name: string) {
         try {
-            let storage = this.db.get();
+            let storage = this.getStorage();
             if (storage) {
                 storage[name] = {
                     documents: []
@@ -35,13 +57,13 @@ export class Financial {
     }
 
     saveData(table: string, data: any) {
-        let storage = this.db.get();
-        if (storage) {
+        const db = this.getStorage();
+        if (db) {
             if (!data.id) {
                 data.id = this.uuidv4();
             }
-            storage[this.budgetTable].documents.push(data);
-            this.db.save(storage);
+            db[this.budgetTable].documents.push(data);
+            this.db.save(db);
         } else {
             this.createTable(table);
             this.saveData(table, data);
@@ -49,30 +71,35 @@ export class Financial {
     }
 
     updateData(table: string, data: any) {
-        let storage = this.db.get();
-        if (storage) {
-            storage[this.budgetTable].documents = data;
-            this.db.save(storage);
-        } else {
-            this.createTable(table);
-            this.updateData(table, data);
+        const db = this.getStorage();
+        if (db) {
+            const index = db[this.budgetTable].documents.findIndex((x: IBudget) => x.id === data.id);
+            if (index !== -1) {
+                db[this.budgetTable].documents[index] = data;
+                this.db.save(db);
+                return true;
+            }
         }
+
+        return false;
     }
 
     find(table: string, query: string) {
-        let storage = this.db.get();
-        return storage[this.budgetTable].documents.filter((x: any) => x.description.includes(query));
+        const db = this.getStorage();
+        return db[this.budgetTable].documents.filter((x: any) => x.description.includes(query));
     }
 
     saveBudget(data: IBudget) {
-        const table = 'BUDGETS';
-        this.saveData(table, data);
+        this.saveData(this.budgetTable, data);
+    }
+
+    updateBudget(data: IBudget) {
+        return this.updateData(this.budgetTable, data);
     }
 
     getBudgets(query?: { sdate: number, fdate: number }) {
-        const db = this.db.get();
+        const db = this.getStorage();
         let results: Array<IBudget> = db[this.budgetTable].documents;
-        console.log('results: ', results);
         if (query) {
             results = results.filter((x) => { return x.date >= query.sdate && x.date <= query.fdate; });
         }
@@ -80,7 +107,7 @@ export class Financial {
     }
 
     deleteBudget(budget: IBudget) {
-        const db = this.db.get();
+        const db = this.getStorage();
         db[this.budgetTable].documents = db[this.budgetTable].documents.filter((item: any) => item.id !== budget.id);
         this.updateData(this.budgetTable, db[this.budgetTable].documents);
         return this.getBudgets();

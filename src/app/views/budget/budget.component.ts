@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { IBudget } from "src/app/common/models/interfaces";
-import { Financial } from "src/app/common/services/financial";
+import { FinancialService } from "src/app/common/services/FinancialService";
 
 @Component({
     selector: 'budget-view',
@@ -16,7 +16,7 @@ import { Financial } from "src/app/common/services/financial";
     @Output() action = new EventEmitter();
 
     constructor(
-      private db: Financial) {}
+      private db: FinancialService) {}
 
     ngOnInit() {}
 
@@ -27,7 +27,7 @@ import { Financial } from "src/app/common/services/financial";
         description: this.description,
         entry: this.entry,
       }
-      console.log('data: ', data);
+
       this.db.saveBudget(data);
       this.action.emit({ action: 'save' });
     }

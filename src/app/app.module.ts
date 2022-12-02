@@ -8,9 +8,10 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardModule } from './views/dashboard/dashboard.module';
 import { BudgetModule } from './views/budget/budget.module';
-import { Financial } from './common/services/financial';
 import { ComponentsModule } from './common/components/components.module';
 import { ShoppingListModule } from './views/shoppingList/shoppingList.module';
+import { GlobalConstants } from './common/globals/globalConstants';
+import { FinancialService } from './common/services/FinancialService';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,12 @@ import { ShoppingListModule } from './views/shoppingList/shoppingList.module';
     ComponentsModule,
     ShoppingListModule
   ],
-  providers: [ Financial, CurrencyPipe, DatePipe ],
+  providers: [
+    GlobalConstants,
+    FinancialService,
+    CurrencyPipe,
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

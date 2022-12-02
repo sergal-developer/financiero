@@ -1,5 +1,8 @@
 <div class="budget-record" *ngFor="let budget of list" (click)="showDetails(budget)"
-  [ngClass]="{'seeDetails': budget.details }">
+  [ngClass]="{
+    'seeDetails': budget.details || budget._editMode,
+    'edit': budget._editMode
+  }">
 
   <div class="item card">
     <div class="container">
@@ -24,31 +27,59 @@
         </svg>
       </div>
       <div class="content">
-        <div class="description">{{ budget.description }}</div>
-        <div class="date">{{ budget.dateFormated }}</div>
-        <div class="value">{{ budget.valueFormated }}</div>
+        <div class="description">
+          <div *ngIf="!budget._editMode">{{ budget.description }}</div>
+          <div *ngIf="budget._editMode">
+            <input type="text" tabindex="2" name="description" [(ngModel)]="current.description">
+          </div>
+        </div>
+        <div class="date" *ngIf="!budget._editMode">{{ budget.dateFormated }}</div>
+        <div class="value">
+          <div *ngIf="!budget._editMode">{{ budget.valueFormated }}</div>
+          <div *ngIf="budget._editMode">
+            <input type="number" tabindex="1"  [(ngModel)]="current.value" min="0">
+          </div>
+        </div>
+
+        <div class="actions">
+          <ng-container *ngIf="budget._editMode">
+            <button class="button-circle" (click)="cancelEdit(budget)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <button class="button-circle" (click)="save(budget)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M5 12l5 5l10 -10" />
+              </svg>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="!budget._editMode">
+            <button class="button-circle" (click)="edit(budget)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="32" height="32"
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+              </svg>
+            </button>
+            <button class="button-circle" (click)="delete(budget)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="32" height="32"
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M19 19h-11l-4 -4a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9 9" />
+                <line x1="18" y1="12.3" x2="11.7" y2="6" />
+              </svg>
+            </button>
+          </ng-container>
+        </div>
       </div>
 
-    </div>
-    <div class="actions">
-      <button class="button-circle" (click)="edit(budget)">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="32" height="32"
-          viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
-          <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
-        </svg>
-      </button>
-      <button class="button-circle" (click)="delete(budget)">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="32" height="32"
-          viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M19 19h-11l-4 -4a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9 9" />
-          <line x1="18" y1="12.3" x2="11.7" y2="6" />
-        </svg>
-      </button>
     </div>
   </div>
 

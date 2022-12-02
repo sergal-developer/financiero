@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { GlobalConstants } from './common/globals/globalConstants';
+import { FinancialService } from './common/services/FinancialService';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 @Component({
@@ -21,20 +23,24 @@ export class AppComponent implements OnInit {
 
   //#region LIFECICLE
   constructor(
+    private _gc: GlobalConstants,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute) { }
+    private db: FinancialService
+    ) { }
 
 
   ngOnInit(): void {
+    this._router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+    };
+
     this._router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        console.log('event: ', event);
-        this.page = event.url;
-        // if (params.module) {
-        //   this.module = params.module;
-        // } else {
-        //   this.module = '';
-        // }
+        this._router.navigated = false;
+        window.scrollTo(0, 0);
+
+        this.page = event.url.replace('/', '');
+        this._gc.context = this.page === ''? 'global' : this.page;
       }
     });
   }
@@ -54,7 +60,6 @@ export class AppComponent implements OnInit {
 
   goNewBudget() {
     this.createPopup = true;
-    console.log('this.dashboard: ', this.dashboard);
   }
 
   goPreferences() {
@@ -64,8 +69,15 @@ export class AppComponent implements OnInit {
   action(event: any) {
     this.createPopup = false;
     if (event.action === 'save') {
-      this.dashboard.ngOnInit();
+      this.reloadCurrentRoute();
     }
+  }
+
+  reloadCurrentRoute() {
+    const currentUrl = this._router.url;
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this._router.navigate([currentUrl]);
+    });
   }
   //#endregion
 }

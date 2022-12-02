@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { GlobalConstants } from "src/app/common/globals/globalConstants";
 import { IBudget } from "src/app/common/models/interfaces";
-import { Financial } from "src/app/common/services/financial";
+import { FinancialService } from "src/app/common/services/FinancialService";
 
 @Component({
     selector: 'shoppinglist-view',
@@ -34,7 +35,8 @@ import { Financial } from "src/app/common/services/financial";
     };
 
     constructor(
-      private db: Financial) {}
+      private _gc: GlobalConstants,
+      private db: FinancialService) {}
 
     ngOnInit(): void {
       this.firstInitDates();
@@ -53,13 +55,11 @@ import { Financial } from "src/app/common/services/financial";
     }
 
     delete(budget: IBudget) {
-      console.log('budget: ', budget);
       this.listBudgets = this.db.deleteBudget(budget);
       this.getData();
     }
 
     edit(budget: IBudget) {
-      console.log('budget: ', budget);
     }
 
     updateRange() {
@@ -78,7 +78,7 @@ import { Financial } from "src/app/common/services/financial";
     }
 
     onAfterAction(event?: any) {
-      console.log('event: ', event);
+      console.info('event: ', event);
     }
 
     showDetails(item: IBudget) {
@@ -118,8 +118,8 @@ import { Financial } from "src/app/common/services/financial";
 
     convertItems(list: Array<IBudget>) {
       list.forEach((x, index) => {
-        x.dateFormated = this.db.toDateMiliseconds(x.date);
-        x.valueFormated = this.db.toMoney(x.value);
+        x.dateFormated = this.db.toDateMiliseconds(x.date!);
+        x.valueFormated = this.db.toMoney(x.value!);
         x.index = index;
       })
       return list;

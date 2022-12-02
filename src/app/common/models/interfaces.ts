@@ -8,4 +8,7 @@ export interface IBudget {
     valueFormated?: any;
     index?: number;
     details?: boolean;
+
+    // events
+    _editMode?: boolean;
 }

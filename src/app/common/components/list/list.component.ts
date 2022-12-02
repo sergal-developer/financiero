@@ -15,6 +15,10 @@ export class ListComponent implements OnInit {
   @Output() actionEvent: EventEmitter<any> = new EventEmitter();
   //#endregion
 
+  //#region PROPERTIES
+  current: IBudget = { description: '', date: 0, entry: false, value: 0 };
+  //#endregion
+
   //#region LIFECYCLE
   constructor() { }
 
@@ -29,10 +33,25 @@ export class ListComponent implements OnInit {
   }
 
   edit(item: IBudget) {
-    item.details = !item.details;
+    item.details = false;
+    item._editMode = true;
+    this.current = item;
   }
+
+  cancelEdit(item: IBudget) {
+    item.details = false;
+    item._editMode = false;
+    this.current = { description: '', date: 0, entry: false, value: 0 };
+  }
+
   delete(item: IBudget) {
-    item.details = !item.details;
+    this.actionEvent.emit({action: 'DELETE', data: item });
+  }
+
+  save(item: IBudget) {
+    item.details = false;
+    item._editMode = false;
+    this.actionEvent.emit({action: 'EDIT', data: item });
   }
 
   @HostListener('document:keydown.escape', ['$event'])
@@ -40,14 +59,6 @@ export class ListComponent implements OnInit {
     // this.close();
   }
 
-  // updateFixBody() {
-  //   const body = document.querySelectorAll('body');
-  //   if ( this.open ) {
-  //       body[0].classList.add('fix-modal-body');
-  //   } else {
-  //       body[0].classList.remove('fix-modal-body');
-  //   }
-  // }
   //#endregion
 
   //#region CONVERTERS

@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { GlobalConstants } from "src/app/common/globals/globalConstants";
 import { IBudget } from "src/app/common/models/interfaces";
-import { Financial } from "src/app/common/services/financial";
+import { FinancialService } from "src/app/common/services/FinancialService";
 
 @Component({
     selector: 'dashboard-view',
@@ -33,9 +34,11 @@ import { Financial } from "src/app/common/services/financial";
       modalClass: '',
       size: 'full'
     };
+    
 
     constructor(
-      private db: Financial) {}
+      private _gc: GlobalConstants,
+      private db: FinancialService) {}
 
     ngOnInit(): void {
       this.firstInitDates();
@@ -60,7 +63,16 @@ import { Financial } from "src/app/common/services/financial";
     }
 
     edit(budget: IBudget) {
-      console.log('budget: ', budget);
+      const data: IBudget = {
+        id: budget.id,
+        value: budget.value,
+        date: new Date().getTime(),
+        description: budget.description,
+        entry: budget.entry,
+      }
+      if (this.db.updateBudget(data)) {
+        this.getData();
+      }
     }
 
     updateRange() {
@@ -79,7 +91,13 @@ import { Financial } from "src/app/common/services/financial";
     }
 
     onAfterAction(event?: any) {
-      console.log('event: ', event);
+      if (event.action === 'DELETE') {
+        this.delete(event.data);
+      }
+
+      if (event.action === 'EDIT') {
+        this.edit(event.data);
+      }
     }
 
     showDetails(item: IBudget) {
@@ -119,8 +137,8 @@ import { Financial } from "src/app/common/services/financial";
 
     convertItems(list: Array<IBudget>) {
       list.forEach((x, index) => {
-        x.dateFormated = this.db.toDateMiliseconds(x.date);
-        x.valueFormated = this.db.toMoney(x.value);
+        x.dateFormated = this.db.toDateMiliseconds(x.date!);
+        x.valueFormated = this.db.toMoney(x.value!);
         x.index = index;
       })
       return list;

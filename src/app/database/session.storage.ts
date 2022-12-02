@@ -1,6 +1,10 @@
 export class Storage {
     CONTEXT: string = 'financiero';
-    constructor() { }
+    constructor(context?: string) {
+        if( context ) {
+            this.CONTEXT = context;
+        }
+    }
 
     get() {
         const data = localStorage.getItem(this.CONTEXT);
