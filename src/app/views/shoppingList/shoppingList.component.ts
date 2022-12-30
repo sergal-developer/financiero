@@ -1,17 +1,22 @@
-import { Component } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { CONTEXTNAME } from "src/app/common/globals/contextNames";
+import { GlobalConstants } from "src/app/common/globals/globalConstants";
 import { IBudget, IFilter } from "src/app/common/models/interfaces";
 import { FinancialAPI } from "src/app/common/services/FinancialAPI";
 
 @Component({
     selector: 'shoppinglist-view',
     templateUrl: './shoppingList.component.html',
-    styleUrls: ['./shoppingList.scss']
+    styleUrls: ['./shoppingList.scss'],
+    encapsulation: ViewEncapsulation.None
   })
   export class ShoppingListComponent {
     listBudgets: Array<IBudget> = [];
     balanceTotal: any;
     budgetTotal: any;
     entryTotal: any;
+    stadistics: any;
 
     startDate = new Date;
     startDateFormat: any;
@@ -32,11 +37,36 @@ import { FinancialAPI } from "src/app/common/services/FinancialAPI";
       size: 'full'
     };
 
+    isList = false;
+    budgetGlobal: any = null;
+
+    //#region PERMISSIONS
+    get canSaveGlobal() {
+      return !this.isList && this.listBudgets.length;
+    }
+    //#endregion
+
     constructor(
-      private API: FinancialAPI) {}
+      private _gc: GlobalConstants,
+      private API: FinancialAPI,
+      private router: Router,
+      private activatedRoute: ActivatedRoute) {}
 
     ngOnInit(): void {
-      this.firstInitDates();
+      const context = this.activatedRoute.snapshot.queryParams.name;
+      this.isList = false;
+      if (context) {
+        this._gc.context = context;
+        this.isList = true;
+      }
+
+      this.checkExistStorage();
+    }
+
+    checkExistStorage() {
+      if ( this.API.existStorage(this._gc.context)) {
+      }
+      this.getData();
     }
 
     firstInitDates() {
@@ -50,13 +80,22 @@ import { FinancialAPI } from "src/app/common/services/FinancialAPI";
     }
 
     getData() {
-      const query: IFilter = { startDate: this.startDate.getTime(), endDate: this.endDate.getTime() };
-      this.listBudgets = this.API.getBudgetsFiltered(query);
+      this.listBudgets = this.API.getAllBudgetsFormated();
 
-      const stadistics = this.API.getFullBalance(this.listBudgets);
-      this.balanceTotal = stadistics.totalFormat;
-      this.budgetTotal = stadistics.budgetFormat;
-      this.entryTotal = stadistics.entryFormat;
+      this.stadistics = this.API.getFullBalance(this.listBudgets);
+      this.balanceTotal = this.stadistics.totalFormat;
+      this.budgetTotal = this.stadistics.budgetFormat;
+      this.entryTotal = this.stadistics.entryFormat;
+
+      if ( this.isList) {
+        const budgetsGlobal = this.API.searchBudgetContext({ linkList: this._gc.context });
+        this.budgetGlobal = budgetsGlobal[0];
+        if (budgetsGlobal.length && this.budgetGlobal.value !== this.stadistics.budget) {
+  
+          this.budgetGlobal.value = this.stadistics.budget;
+          this.API.updateBudget(this.budgetGlobal, CONTEXTNAME.GLOBAL);
+        }
+      }
     }
 
     delete(budget: IBudget) {
@@ -93,6 +132,20 @@ import { FinancialAPI } from "src/app/common/services/FinancialAPI";
       if (event.action === 'EDIT') {
         this.edit(event.data);
       }
+    }
+
+    addGeneralBudget() {
+      this.getData();
+      const budgets = this.API.getAllBudgets();
+      const storage = this.API.saveNewDataList(budgets);
+      if (storage) {
+        this.API.addBudgetToContext(budgets, storage.name);
+        this.API.deleteStorage(CONTEXTNAME.SHOPPING);
+        this.gotoHome();
+      }
+    }
+    gotoHome() {
+      this.router.navigate(['/']);
     }
 
     //#region CONVERTERS

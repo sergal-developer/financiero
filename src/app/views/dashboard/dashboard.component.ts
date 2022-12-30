@@ -1,11 +1,12 @@
-import { Component } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { IBudget, IFilter } from "src/app/common/models/interfaces";
 import { FinancialAPI } from "src/app/common/services/FinancialAPI";
 
 @Component({
     selector: 'dashboard-view',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    styleUrls: ['./dashboard.component.scss'],
+    encapsulation: ViewEncapsulation.None
   })
   export class DashboardComponent {
     title = 'financiero-ag';

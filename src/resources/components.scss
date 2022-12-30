@@ -2,13 +2,29 @@
 @import 'core/colors';
 
 
-button {
-    background: #345AFA;
-    border: 2px solid #345AFA;
-    color: white;
+button, .button {
+    border: none;
+    background: transparent;
+    // background: #345AFA;
+    // border: 2px solid #345AFA;
+    // color: white;
+    background: rgb(215, 215, 215);
     margin: 10px 10px 0 0;
     border-radius: 5px;
     padding: 7px;
+
+    &.circular {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: $black_22;
+        color: $black_100   ;
+    }
+
+    &.black {
+        background: $black_100;
+        color: $white_100;
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {

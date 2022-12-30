@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmitFields } from '../../models/EmitFields.entity';
 import { IBudget } from '../../models/interfaces';
 
@@ -20,7 +21,7 @@ export class ListComponent implements OnInit {
   //#endregion
 
   //#region LIFECYCLE
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -36,6 +37,10 @@ export class ListComponent implements OnInit {
     item.details = false;
     item._editMode = true;
     this.current = item;
+  }
+
+  viewlist(item: IBudget) {
+    this.router.navigate(['/shopping-list'], { queryParams: { name: item.linkList }});
   }
 
   cancelEdit(item: IBudget) {

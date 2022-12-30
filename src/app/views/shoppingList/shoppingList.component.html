@@ -1,7 +1,14 @@
-<div class="frame">
+<div class="frames">
     <div class="balance">
-        <h4>Total</h4>
-        <h1>{{ balanceTotal }}</h1>
+        <h4>
+            <span *ngIf="isList && budgetGlobal">{{ budgetGlobal.description }}</span>
+            <span *ngIf="!isList">Total</span>
+        </h4>
+        <h1>{{ budgetTotal }}</h1>
+    </div>
+
+    <div class="actions-bar" *ngIf="canSaveGlobal">
+        <button (click)="addGeneralBudget()">Agregar al Presupuesto</button>
     </div>
 
     <div class="transactions">

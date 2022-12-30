@@ -1,39 +1,47 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 import { IBudget } from "src/app/common/models/interfaces";
+import { FinancialAPI } from "src/app/common/services/FinancialAPI";
 import { FinancialService } from "src/app/common/services/FinancialService";
 
 @Component({
     selector: 'budget-view',
     templateUrl: './budget.component.html',
-    styleUrls: ['./budget.component.scss']
+    styleUrls: ['./budget.component.scss'],
+    encapsulation: ViewEncapsulation.None
   })
   export class BudgetComponent implements OnInit {
-    valueBudget = 0.00;
-    description = 'Gasto';
+    valueBudget = null;
+    description = null;
+    descriptionPlaceHolder = 'Gasto';
     entry = false;
     autofocus = true;
     @Output() action = new EventEmitter();
 
     constructor(
-      private db: FinancialService) {}
+      private API: FinancialAPI) {}
 
     ngOnInit() {}
 
     saveBudget() {
+      let description = this.entry ? 'ingreso' : 'gasto';
       const data: IBudget = {
-        value: this.valueBudget,
-        description: this.description,
+        value: this.valueBudget || 0,
+        description: this.description || description,
         entry: this.entry,
       }
 
-      this.db.saveBudget(data);
+      this.API.saveBudget(data);
       this.action.emit({ action: 'save' });
     }
 
     cancel() {
-      this.valueBudget = 0;
-      this.description = 'Gasto';
+      this.valueBudget = null;
+      this.description = null;
       this.action.emit({ action: 'close' });
+    }
+
+    changeEntry(event: any) {
+      this.descriptionPlaceHolder = this.entry ? 'Ingreso' : 'Gasto';
     }
   }

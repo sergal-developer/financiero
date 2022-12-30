@@ -11,12 +11,14 @@ export class Storage {
         return data ? JSON.parse(data) : null;
     }
 
-    save(data: any) {
-        localStorage.setItem(this.CONTEXT, JSON.stringify(data));
+    save(data: any, context?: string) {
+        context = context || this.CONTEXT;
+        localStorage.setItem(context, JSON.stringify(data));
     }
 
-    clear() {
-        localStorage.removeItem(this.CONTEXT);
+    clear(context?: string) {
+        context = context || this.CONTEXT;
+        localStorage.removeItem(context);
     }
 
     clearAll() {

@@ -7,6 +7,9 @@ list-component {
   .budget-record {
     transition: all 300ms;
     height: 80px;
+    border-radius: 10px;
+    border: 2px solid $black_22;
+    margin-bottom: 10px;
 
     .content {
       margin-left: 20px;
@@ -19,7 +22,7 @@ list-component {
       flex-direction: column;
       justify-content: center;
       padding: 10px;
-      border-bottom: 1px solid #d7d7d7;
+      // border-bottom: 1px solid #d7d7d7;
 
       &:last-child {
         border: none;
@@ -39,19 +42,34 @@ list-component {
     }
 
     .type {
-      width: 40px;
-      height: 40px;
+      width: 64px;
+      height: 64px;
       text-align: center;
-      line-height: 40px;
+      line-height: 64px;
       border-radius: 15px;
-      padding: 4px 0;
+      padding: 0;
+      background: $black_22;
+
+      .type-icon {
+        width: 52px;
+        padding: 6px;
+        height: inherit;
+      }
+      svg {
+        width: inherit  ;
+        height: auto;
+      }
 
       &.entry {
-        background: #bdf5a0;
+        // background: #bdf5a0;
       }
 
       &.noEntry {
-        background: #f5a0a0;
+        // background: #f5a0a0;
+      }
+
+      &.shopping {
+        // background: #f5f1cd;
       }
     }
 
@@ -59,6 +77,7 @@ list-component {
     .date {
       font-size: 100%;
       transition: all 300ms;
+      font-style: italic;
     }
 
     .date {
@@ -88,7 +107,7 @@ list-component {
     }
 
     &.edit {
-      background: #dddddd;
+      background: $black_12;
       height: 180px;
 
       .description, .value, input {
@@ -101,26 +120,18 @@ list-component {
         width: 100%;
         margin-bottom: 10px;
         padding: 5px 10px;
+        background: $black_22;
+        border-radius: 10px;
       }
     }
   }
 
-  .button-circle {
-    padding: 5px;
-    border-radius: 50%;
+  .button.circular {
     width: 35px;
     height: 35px;
-    background: #f4f4f4;
-    border: none;
-
-    &:hover,
-    &:active {
-      background: #d5cdcd;
-    }
-
     svg {
-      height: 25px;
-      width: 25px;
+      height: 100%;
+      width: 100%;
     }
   }
 }

@@ -9,6 +9,8 @@ export interface IBudget {
     index?: number;
     details?: boolean;
 
+    // list
+    linkList?: string
     // events
     _editMode?: boolean;
 }

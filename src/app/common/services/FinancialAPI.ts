@@ -1,5 +1,6 @@
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { Injectable } from "@angular/core";
+import { CONTEXTNAME } from "../globals/contextNames";
 import { IBudget, IFilter, IResponse } from "../models/interfaces";
 import { FinancialService } from "./FinancialService";
 
@@ -25,24 +26,37 @@ export class FinancialAPI {
         return this._db.saveBudget(data);
     }
 
+    saveBudgetContext(budget: IBudget, context: string) {
+        return this._db.saveBudgetContext(budget, context);
+    }
+
     deleteBudget(budget: IBudget) {
       return this._db.deleteBudget(budget);
     }
 
-    updateBudget(budget: IBudget) {
-      const data: IBudget = {
-        id: budget.id,
-        value: budget.value,
-        date: new Date().getTime(),
-        description: budget.description,
-        entry: budget.entry,
-      };
+    updateBudget(budget: IBudget, context?: string) {
+    //   const data: IBudget = {
+    //     id: budget.id,
+    //     value: budget.value,
+    //     date: new Date().getTime(),
+    //     description: budget.description,
+    //     entry: budget.entry,
+    //   };
 
-      return this._db.updateBudget(data);
+      return this._db.updateBudget(budget, context);
     }
 
     getBudgetsFiltered(query: IFilter) {
         let list = this._db.getBudgets(query);
+        return this.convertItems(list);
+    }
+
+    getAllBudgets(context?: string) {
+        return this._db.getBudgets(null, context);
+    }
+
+    getAllBudgetsFormated() {
+        let list = this.getAllBudgets();;
         return this.convertItems(list);
     }
 
@@ -55,11 +69,41 @@ export class FinancialAPI {
         response.total = stadistics.total;
         response.totalFormat = this.toMoney(stadistics.total);
         response.budget = stadistics.budget;
-        response.budgetFormat = this.toMoney(stadistics.total);
+        response.budgetFormat = this.toMoney(stadistics.budget);
         response.entry = stadistics.entry;
-        response.entryFormat = this.toMoney(stadistics.total);
+        response.entryFormat = this.toMoney(stadistics.entry);
 
         return response;
+    }
+
+    existStorage(name: string) {
+        return this._db.existStorage(name);
+    }
+
+    saveNewDataList(data: Array<IBudget>) {
+        const context = this._db.uuidList();
+        return this._db.saveBudgetList(data, context);
+    }
+
+    deleteStorage(context?: string) {
+        return this._db.deleteListStorage(context);
+    }
+
+    addBudgetToContext(budgets: Array<IBudget>, name: string, context: string = CONTEXTNAME.GLOBAL) {
+        const balance = this.getTotalBalance(budgets);
+        const budget: IBudget = {
+            description: `list`,
+            entry: false,
+            value: balance.budget,
+            date: new Date().getTime(),
+            linkList: name
+        }
+        const globalBudgets = this._db.addBudgetList([budget], context);
+    }
+
+    searchBudgetContext(properties: object, context: string = CONTEXTNAME.GLOBAL) {
+        const records = this._db.filterBudgets(properties, context);
+        return records;
     }
     //#endregion API BUDGETS
 

@@ -11,7 +11,7 @@
         </button>
 
         <label class="switch">
-            <input type="checkbox" [(ngModel)]="entry">
+            <input type="checkbox" [(ngModel)]="entry" (change)="changeEntry($event)">
             <span class="slider">
                 <div *ngIf="entry">Entrada</div>
                 <div *ngIf="!entry">Gasto</div>
@@ -32,12 +32,12 @@
         <div class="description">
 
             <label for="description">
-                <input type="text" tabindex="2" name="description" [(ngModel)]="description">
+                <input type="text" tabindex="2" name="description" [attr.placeholder]="descriptionPlaceHolder" [(ngModel)]="description">
             </label>
 
         </div>
         <div class="amount">
-            <input type="number" tabindex="1"  [(ngModel)]="valueBudget" min="0">
+            <input type="number" tabindex="1"  [(ngModel)]="valueBudget" min="0" placeholder="monto">
         </div>
     </div>
 </div>

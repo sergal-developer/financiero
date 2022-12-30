@@ -6,26 +6,41 @@
 
   <div class="item card">
     <div class="container">
-      <div class="type entry" *ngIf="budget.entry">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-up" width="32"
-          height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <line x1="16" y1="9" x2="12" y2="5" />
-          <line x1="8" y1="9" x2="12" y2="5" />
-        </svg>
+      <div class="type" [ngClass]="{
+        'entry': budget.entry  && !budget.linkList,
+        'noEntry': !budget.entry && !budget.linkList,
+        'shopping': budget.linkList }" >
+
+        <div class="type-icon" *ngIf="budget.entry && !budget.linkList">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-up" width="32"
+            height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="16" y1="9" x2="12" y2="5" />
+            <line x1="8" y1="9" x2="12" y2="5" />
+          </svg>
+        </div>
+        <div class="type-icon" *ngIf="!budget.entry && !budget.linkList">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-down" width="32"
+            height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="16" y1="15" x2="12" y2="19" />
+            <line x1="8" y1="15" x2="12" y2="19" />
+          </svg>
+        </div>
+        <div class="type-icon" *ngIf="budget.linkList">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-basket" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <polyline points="7 10 12 4 17 10" />
+            <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z" />
+            <circle cx="12" cy="15" r="2" />
+          </svg>
+        </div>
       </div>
-      <div class="type noEntry" *ngIf="!budget.entry">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-down" width="32"
-          height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
-          stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <line x1="16" y1="15" x2="12" y2="19" />
-          <line x1="8" y1="15" x2="12" y2="19" />
-        </svg>
-      </div>
+
       <div class="content">
         <div class="description">
           <div *ngIf="!budget._editMode">{{ budget.description }}</div>
@@ -43,14 +58,14 @@
 
         <div class="actions">
           <ng-container *ngIf="budget._editMode">
-            <button class="button-circle" (click)="cancelEdit(budget)">
+            <button class="button circular" (click)="cancelEdit(budget)">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
-            <button class="button-circle" (click)="save(budget)">
+            <button class="button circular" (click)="save(budget)">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M5 12l5 5l10 -10" />
@@ -58,7 +73,17 @@
             </button>
           </ng-container>
           <ng-container *ngIf="!budget._editMode">
-            <button class="button-circle" (click)="edit(budget)">
+            <button class="button circular" (click)="viewlist(budget)" *ngIf="budget.linkList">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list-search" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <circle cx="15" cy="15" r="4" />
+                <path d="M18.5 18.5l2.5 2.5" />
+                <path d="M4 6h16" />
+                <path d="M4 12h4" />
+                <path d="M4 18h4" />
+              </svg>
+            </button>
+            <button class="button circular" (click)="edit(budget)" *ngIf="!budget.linkList">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="32" height="32"
                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -67,7 +92,7 @@
                 <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
               </svg>
             </button>
-            <button class="button-circle" (click)="delete(budget)">
+            <button class="button circular" (click)="delete(budget)">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="32" height="32"
                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
